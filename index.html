@@ -3,53 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web App dei Docenti - Sacra Famiglia Orzinuovi</title>
+<title>Portale Sacra Famiglia — Web App dei Docenti</title>
 <meta name="description" content="Le web app didattiche realizzate dai docenti della Scuola Sacra Famiglia di Orzinuovi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* PALETTE ARANCIO */
-    --orange:#EE7C00;              /* arancio del laboratorio */
-    --orange-mid:#FF9520;
-    --orange-bright:#FFA340;
+    --orange:#EE7C00;
+    --orange-bright:#FF9520;
     --orange-deep:#B45309;
-    --orange-darker:#7C2D12;
-    --orange-soft:#FFE6CC;          /* sfondo card hover */
+    --orange-soft:#FFE6CC;
     --orange-line:#F8B580;
-    --orange-light:#FFD4A0;
-    --orange-pale:#FFF1E0;          /* paper-bg accent */
+    --orange-pale:#FFF1E0;
 
-    /* PALETTE BLU (scritte importanti: scuola + docenti) */
-    --blu-deep:#0F2E5C;             /* blu profondo navy */
-    --blu:#1B4480;                  /* blu medio */
-    --blu-light:#5B7FB8;             /* blu chiaro per accenti */
+    --blue-deep:#1E3A5F;
+    --blue:#2A4D7A;
+    --blue-soft:#5B7BA0;
 
-    /* SFONDI */
-    --espresso:#1F1108;
-    --paper:#FBF1E2;                /* SFONDO PORTALE: pesca chiaro caldo */
-    --blue-deep:#1E3A5F;            /* blu istituzionale per nomi maestre */
-    --blue:#2A4D7A;                 /* blu medio */
-    --blue-soft:#5B7BA0;            /* blu chiaro per dettagli */
-    --paper-2:#FFFFFF;              /* card bianche */
-    --line:#F0DCC0;                 /* linee/bordi caldi */
+    --ink:#1A1310;
+    --ink-soft:#5C4734;
+    --paper:#FBF1E2;
+    --paper-2:#FFFFFF;
+    --line:#E8DDC7;
 
-    /* TESTI */
-    --ink:#1A1310;                  /* nero caldo - titoli APP */
-    --ink-soft:#5C4734;             /* descrizioni */
+    --shadow-card:0 1px 0 rgba(45,26,13,.04), 0 8px 24px -12px rgba(45,26,13,.20);
+    --shadow-card-h:0 1px 0 rgba(45,26,13,.06), 0 16px 36px -14px rgba(45,26,13,.36);
 
-    --shadow-card:0 1px 0 rgba(154,68,8,.04), 0 8px 24px -12px rgba(154,68,8,.18);
-    --shadow-card-h:0 1px 0 rgba(154,68,8,.06), 0 16px 36px -14px rgba(154,68,8,.32);
-
-    /* Cluster DPIA */
     --c-A-bg:#FECACA; --c-A-fg:#9F1239; --c-A-bd:#FCA5A5;
     --c-B-bg:#FED7AA; --c-B-fg:#9A3412; --c-B-bd:#FDBA74;
     --c-C-bg:#DBEAFE; --c-C-fg:#1E40AF; --c-C-bd:#93C5FD;
     --c-D-bg:#E7E5E4; --c-D-fg:#57534E; --c-D-bd:#D6D3D1;
     --c-E-bg:#D6D3D1; --c-E-fg:#1C1917; --c-E-bd:#A8A29E;
-    --c-F-bg:#DCFCE7; --c-F-fg:#166534; --c-F-bd:#86EFAC;
+    --c-F-bg:#ECFCCB; --c-F-fg:#3F6212; --c-F-bd:#BEF264;
   }
+
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
@@ -58,150 +46,183 @@
     background:var(--paper);
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    font-feature-settings:"ss01","cv11";
   }
   a{color:inherit;text-decoration:none}
   button{font-family:inherit}
 
-  /* ── BANNER ────────────────────────────────────────────── */
+  /* ── BANNER ──────────────────────────────────────── */
   .banner{
-    position:relative;display:block;width:100%;
-    aspect-ratio:1600/280;max-height:280px;overflow:hidden;
+    position:relative;
+    width:100%;
     background:#EE7C00;
     border-bottom:3px solid var(--blue-deep);
+    overflow:hidden;
+    min-height:200px;
   }
-  .banner svg.banner-bg{
-    position:absolute;inset:0;width:100%;height:100%;display:block;
-  }
-  .globe-canvas{
+  .banner-bg{
     position:absolute;
-    right:6%;
-    top:50%;
-    transform:translateY(-50%);
-    width:240px;height:240px;
+    inset:0;
+    width:100%;
+    height:100%;
     z-index:1;
     pointer-events:none;
-    /* alone glow per integrare con il cosmo */
-    filter:drop-shadow(0 0 18px rgba(255,140,60,.25));
   }
-  @media (max-width:1100px){
-    .globe-canvas{width:180px;height:180px;right:4%}
-  }
-  @media (max-width:760px){
-    .globe-canvas{display:none}
-  }
-  .banner-overlay{
-    position:absolute;inset:0;
-    display:flex;align-items:center;
-    padding:0 6%;
+  .banner-content{
+    position:relative;
     z-index:2;
+    max-width:1320px;
+    margin:0 auto;
+    padding:32px 6%;
+    display:flex;
+    align-items:center;
     gap:24px;
+    flex-wrap:nowrap;
   }
   .banner-logo{
-    width:128px;height:128px;flex-shrink:0;
+    width:96px;
+    height:96px;
+    flex-shrink:0;
     background:#fff;
-    border-radius:18px;
-    padding:10px;
+    border-radius:16px;
+    padding:8px;
     box-shadow:0 14px 32px -10px rgba(30,58,95,.32),
                0 2px 6px -2px rgba(30,58,95,.18);
   }
-  .banner-logo img{width:100%;height:100%;object-fit:contain;display:block}
-  .banner-text{
-    color:var(--blue-deep);
-    display:flex;flex-direction:column;
-    gap:0;
-    line-height:1;
-  }
-  .banner-eyebrow{
-    font-size:clamp(13px,1.2vw,16px);
-    font-weight:700;
-    letter-spacing:.32em;
-    text-transform:uppercase;
-    color:var(--blue-deep);
-    opacity:.78;
-    margin-bottom:6px;
+  .banner-logo img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
   }
   .banner-title{
     margin:0;
-    font-size:clamp(30px,4.4vw,58px);
-    font-weight:800;letter-spacing:-.025em;line-height:1.02;
+    font-size:clamp(24px,3vw,40px);
+    font-weight:800;
+    letter-spacing:-.025em;
+    line-height:1;
     color:var(--blue-deep);
+    align-self:center;
+    flex-shrink:0;
+    white-space:nowrap;
   }
   .banner-sub{
-    margin:8px 0 0;
-    font-size:clamp(13px,1.3vw,18px);
+    margin:0;
+    font-size:clamp(13px,1.2vw,17px);
     font-weight:500;
+    font-style:italic;
     color:var(--blue);
-    opacity:.85;
+    opacity:.88;
+    align-self:center;
     line-height:1.3;
+    /* sottotitolo si comprime se necessario, ma resta sempre sulla riga */
+    min-width:0;
   }
-.banner-text p::before{
+  .banner-sub::before{
     content:"·";
-    margin-right:14px;
+    margin-right:12px;
     color:var(--blue);
     opacity:.5;
-    font-weight:600;
     font-style:normal;
+    font-weight:700;
   }
-@media (max-width:760px){
-    .banner{aspect-ratio:auto;min-height:200px}
-    .globe-canvas{
+
+  /* Globo Three.js: posizionato sopra il banner-bg (z-index:1) ma sotto il content (z-index:2) */
+  .globe-svg{
     position:absolute;
-    right:6%;
     top:50%;
+    right:6%;
     transform:translateY(-50%);
-    width:240px;height:240px;
+    width:200px;
+    height:200px;
     z-index:1;
     pointer-events:none;
-    /* alone glow per integrare con il cosmo */
-    filter:drop-shadow(0 0 18px rgba(255,140,60,.25));
+    filter:drop-shadow(0 0 22px rgba(255,140,60,.3));
   }
+
   @media (max-width:1100px){
-    .globe-canvas{width:180px;height:180px;right:4%}
+    .globe-svg{width:150px;height:150px;right:4%}
   }
   @media (max-width:760px){
-    .globe-canvas{display:none}
-  }
-  .banner-overlay{padding:24px 22px;gap:16px}
-    .banner-logo{width:80px;height:80px;padding:6px;border-radius:12px}
-    .banner-eyebrow{letter-spacing:.24em}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .banner svg animateTransform,
-    .banner svg animate{display:none}
+    .globe-svg{display:none}
+    .banner-content{flex-direction:column;align-items:flex-start;gap:10px;padding:24px 22px;flex-wrap:wrap}
+    .banner-logo{width:72px;height:72px;padding:6px;border-radius:12px}
+    .banner-title{white-space:normal}
+    .banner-sub::before{content:"";margin-right:0}
   }
 
-  /* ── FILTRI (solo ricerca) ─────────────────────────────── */
-  .filters-wrap{
-    max-width:1320px;margin:0 auto;
-    padding:32px 32px 24px;
+  /* ── FILTRI E RICERCA ───────────────────────────── */
+  .toolbar{
+    max-width:1320px;
+    margin:0 auto;
+    padding:24px 32px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
   }
-  .filters{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:flex-end}
   .search{
-    display:flex;align-items:center;gap:8px;
-    border:1px solid var(--line);background:var(--paper-2);
-    border-radius:999px;padding:7px 14px;transition:border-color .15s, box-shadow .15s;
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid var(--line);
+    background:var(--paper-2);
+    border-radius:999px;
+    padding:6px 14px;
+    transition:border-color .15s;
   }
-  .search:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(238,122,31,.15)}
+  .search:focus-within{border-color:var(--orange)}
   .search svg{flex-shrink:0;color:var(--ink-soft)}
-  .search input{border:none;outline:none;background:transparent;font-size:14px;font-family:inherit;width:240px;color:var(--ink)}
+  .search input{
+    border:none;
+    outline:none;
+    background:transparent;
+    font-size:14px;
+    font-family:inherit;
+    width:240px;
+    color:var(--ink);
+  }
 
-  /* ── DPIA legenda ──────────────────────────────────────── */
   .dpia-info{
-    max-width:1320px;margin:0 auto;padding:0 32px;font-size:13px;color:var(--ink-soft);
-    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    max-width:1320px;
+    margin:0 auto;
+    padding:14px 32px;
+    font-size:13px;
+    color:var(--ink-soft);
+    display:none;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
   }
+  .dpia-info.visible{display:flex}
   .dpia-info .legend-pill{display:inline-flex;align-items:center;gap:6px}
-  .dpia-label{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
-
-  /* ── GRIGLIA COLLEGHI ──────────────────────────────────── */
-  .colleghi-wrap{max-width:1320px;margin:0 auto;padding:24px 32px 60px}
-  .colleghi-grid{
-    display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:22px;
+  .dpia-info .label{
+    font-size:11px;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:700;
   }
-  @media (max-width:1100px){.colleghi-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}}
-  @media (max-width:760px){.colleghi-grid{grid-template-columns:1fr}}
+
+  /* ── GRIGLIA CARD COLLEGHI ──────────────────────── */
+  .colleghi-wrap{
+    max-width:1320px;
+    margin:0 auto;
+    padding:32px 32px 60px;
+  }
+  .colleghi-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:22px;
+  }
+  @media (max-width:1100px){
+    .colleghi-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  }
+  @media (max-width:760px){
+    .colleghi-grid{grid-template-columns:1fr}
+  }
 
   .collega-card{
     background:var(--paper-2);
@@ -216,70 +237,97 @@
   }
   .collega-head{
     padding:22px 24px 20px;
-    background:linear-gradient(180deg, var(--paper-2) 0%, var(--orange-pale) 100%);
+    background:linear-gradient(180deg, var(--paper-2) 0%, #FBF6EE 100%);
     border-bottom:2px solid var(--orange);
     border-radius:16px 16px 0 0;
   }
   .collega-name{
-    margin:0;font-weight:700;font-size:28px;letter-spacing:-.02em;
-    /* NOME DOCENTE in BLU PROFONDO */
+    margin:0;
+    font-weight:700;
+    font-size:26px;
+    letter-spacing:-.02em;
     color:var(--blue-deep);
     line-height:1.1;
   }
   .collega-apps{
-    display:flex;flex-direction:column;
+    display:flex;
+    flex-direction:column;
     border-radius:0 0 16px 16px;
     overflow:hidden;
   }
   .app-row{
-    display:flex;align-items:center;gap:14px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     padding:16px 24px;
     border-top:1px dashed var(--line);
     transition:background .15s, padding-left .15s;
     cursor:pointer;
-    position:relative;
   }
   .collega-apps .app-row:first-child{border-top:none}
-  .app-row:hover{background:var(--orange-soft);padding-left:28px}
+  .app-row:hover{
+    background:var(--orange-soft);
+    padding-left:28px;
+  }
   .app-row-main{flex:1;min-width:0}
   .app-row-title{
-    font-weight:700;font-size:17px;
-    /* TITOLO APP in NERO */
-    color:var(--ink);line-height:1.25;
-    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    font-weight:600;
+    font-size:17px;
+    color:var(--ink);
+    line-height:1.25;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
   }
   .app-row-desc{
-    font-size:13px;color:var(--ink-soft);line-height:1.45;
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.45;
     margin-top:4px;
   }
   .app-row-arrow{
-    color:var(--orange);flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    width:28px;height:28px;border-radius:50%;
+    color:var(--orange);
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    border-radius:50%;
     transition:background .15s, transform .15s;
   }
-  .app-row:hover .app-row-arrow{background:var(--orange);color:#fff;transform:translateX(2px)}
+  .app-row:hover .app-row-arrow{
+    background:var(--orange);
+    color:#fff;
+    transform:translateX(2px);
+  }
 
   .empty{
-    text-align:center;padding:80px 20px;color:var(--ink-soft);font-size:16px;
+    text-align:center;
+    padding:80px 20px;
+    color:var(--ink-soft);
+    font-size:16px;
     grid-column:1/-1;
   }
   .empty strong{color:var(--ink);font-weight:600}
 
-  /* ── DPIA BADGE + TOOLTIP ──────────────────────────────── */
+  /* ── DPIA BADGE ─────────────────────────────────── */
   .dpia-badge{
-    /* usa display:inline-block invece di inline-flex,
-       così il tooltip figlio si posiziona correttamente */
-    display:inline-block;
-    width:22px;height:22px;line-height:19px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:22px;
+    height:22px;
     border-radius:11px;
-    font-size:11px;font-weight:800;letter-spacing:.3px;
-    border:1.5px solid;cursor:help;
-    text-align:center;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.3px;
+    border:1.5px solid;
+    cursor:help;
+    line-height:1;
     transition:transform .15s;
     flex-shrink:0;
-    position:relative;
-    /* permette al tooltip di "uscire" dal bordo */
   }
   .dpia-badge:hover{transform:scale(1.12)}
   .dpia-badge[data-cluster="A"]{background:var(--c-A-bg);color:var(--c-A-fg);border-color:var(--c-A-bd)}
@@ -289,68 +337,7 @@
   .dpia-badge[data-cluster="E"]{background:var(--c-E-bg);color:var(--c-E-fg);border-color:var(--c-E-bd)}
   .dpia-badge[data-cluster="F"]{background:var(--c-F-bg);color:var(--c-F-fg);border-color:var(--c-F-bd)}
 
-  /* TOOLTIP */
-.dpia-tooltip::before{
-    /* freccina che punta al badge */
-    content:"";
-    position:absolute;
-    top:100%;
-    left:50%;
-    transform:translateX(-50%);
-    width:0;height:0;
-    border:6px solid transparent;
-    border-top-color:#1A1310;
-  }
-  .dpia-tooltip-title{
-    display:block;
-    font-weight:800;
-    font-size:13px;
-    color:#86EFAC;  /* verde acceso per cluster F sicuri */
-    margin-bottom:5px;
-    letter-spacing:.2px;
-  }
-  .dpia-tooltip-body{
-    display:block;
-    color:rgba(255,255,255,.86);
-  }
-  .dpia-tooltip-meta{
-    display:block;
-    margin-top:9px;
-    padding-top:9px;
-    border-top:1px solid rgba(255,255,255,.14);
-    font-size:10.5px;
-    opacity:.55;
-    letter-spacing:.3px;
-  }
-  /* visibilita' tooltip */
-/* vari colori per le headline tooltip in base al cluster */
-  .dpia-badge[data-cluster="A"] .dpia-tooltip-title{color:#FCA5A5}
-  .dpia-badge[data-cluster="B"] .dpia-tooltip-title{color:#FDBA74}
-  .dpia-badge[data-cluster="C"] .dpia-tooltip-title{color:#93C5FD}
-  .dpia-badge[data-cluster="D"] .dpia-tooltip-title{color:#D6D3D1}
-  .dpia-badge[data-cluster="E"] .dpia-tooltip-title{color:#A8A29E}
-  .dpia-badge[data-cluster="F"] .dpia-tooltip-title{color:#86EFAC}
-
-  /* ── FOOTER ────────────────────────────────────────────── */
-  footer{
-    background:var(--espresso);color:rgba(255,255,255,.78);
-    padding:36px 32px 28px;border-top:3px solid var(--orange);
-    margin-top:0;
-  }
-  .foot-inner{
-    max-width:1320px;margin:0 auto;
-    display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;
-  }
-  .foot-brand{
-    font-size:18px;font-weight:700;color:#9DB8D9;letter-spacing:-.01em;
-  }
-  .foot-copyright{font-size:12px;opacity:.6}
-  @media (max-width:760px){
-    footer{padding:28px 22px 22px}
-    .foot-inner{flex-direction:column;align-items:flex-start;gap:14px}
-  }
-
-  /* ── DPIA TOOLTIP (singleton body-level) ──────────────────── */
+  /* ── DPIA TOOLTIP body-level (singleton) ────────── */
   #dpia-tooltip{
     position:fixed;
     z-index:9999;
@@ -375,7 +362,6 @@
     font-size:13px;
     color:var(--orange-bright);
     margin-bottom:4px;
-    letter-spacing:.1px;
   }
   #dpia-tooltip .tt-body{
     display:block;
@@ -396,16 +382,55 @@
     top:100%;
     left:50%;
     transform:translateX(-50%);
-    width:0;height:0;
     border:6px solid transparent;
     border-top-color:#0F0A06;
+  }
+
+  /* ── FOOTER ─────────────────────────────────────── */
+  footer{
+    background:#221208;
+    color:rgba(255,255,255,.78);
+    padding:36px 32px 28px;
+    border-top:3px solid var(--orange);
+  }
+  .foot-inner{
+    max-width:1320px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+  .foot-brand{
+    font-size:18px;
+    font-weight:700;
+    color:#9DB8D9;
+    letter-spacing:-.01em;
+  }
+  .foot-copyright{
+    font-size:12px;
+    opacity:.6;
+  }
+  @media (max-width:760px){
+    footer{padding:28px 22px 22px}
+    .foot-inner{flex-direction:column;align-items:flex-start;gap:14px}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .globe-svg animateTransform,
+    .globe-svg animate{
+      animation-play-state:paused;
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- BANNER -->
+<!-- ════════════════ BANNER ════════════════ -->
 <div class="banner" role="banner">
+
+  <!-- Sfondo SVG: gradient + stelle nella zona destra (cosmo) -->
   <svg class="banner-bg" viewBox="0 0 1600 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
       <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="0.5">
@@ -415,115 +440,9 @@
         <stop offset="0.88" stop-color="#1A2A4A"/>
         <stop offset="1" stop-color="#050B1A"/>
       </linearGradient>
-      <radialGradient id="rightGlow" cx="0.86" cy="0.5" r="0.18">
-        <stop offset="0" stop-color="#FFA340" stop-opacity="0.35"/>
-        <stop offset="1" stop-color="#050B1A" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="globeFace" cx="0.35" cy="0.3" r="0.85">
-        <stop offset="0" stop-color="#3B6EA8" stop-opacity="1"/>
-        <stop offset="0.55" stop-color="#1E3A5F" stop-opacity="1"/>
-        <stop offset="1" stop-color="#0E1F36" stop-opacity="1"/>
-      </radialGradient>
-      <radialGradient id="globeHalo" cx="0.5" cy="0.5" r="0.5">
-        <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
-        <stop offset="0.7" stop-color="#FFFFFF" stop-opacity="0.18"/>
-        <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
-      </radialGradient>
-      <clipPath id="globeClip">
-        <circle cx="1380" cy="140" r="85"/>
-      </clipPath>
-      <filter id="dotGlow" x="-100%" y="-100%" width="300%" height="300%">
-        <feGaussianBlur stdDeviation="2" result="b"/>
-        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
     </defs>
-
     <rect width="1600" height="280" fill="url(#bgGrad)"/>
-    <rect width="1600" height="280" fill="url(#rightGlow)"/>
-
-    <!-- MESH -->
-    <g stroke="#1E3A5F" stroke-width="0.6" fill="none" opacity="0.55">
-      <line x1="80" y1="60" x2="200" y2="110"/>
-      <line x1="200" y1="110" x2="320" y2="70"/>
-      <line x1="320" y1="70" x2="440" y2="130"/>
-      <line x1="440" y1="130" x2="560" y2="80"/>
-      <line x1="560" y1="80" x2="680" y2="150"/>
-      <line x1="80" y1="60" x2="140" y2="180"/>
-      <line x1="200" y1="110" x2="140" y2="180"/>
-      <line x1="200" y1="110" x2="280" y2="220"/>
-      <line x1="320" y1="70" x2="280" y2="220"/>
-      <line x1="320" y1="70" x2="420" y2="200"/>
-      <line x1="440" y1="130" x2="420" y2="200"/>
-      <line x1="440" y1="130" x2="560" y2="240"/>
-      <line x1="560" y1="80" x2="560" y2="240"/>
-      <line x1="560" y1="80" x2="700" y2="230"/>
-      <line x1="680" y1="150" x2="700" y2="230"/>
-      <line x1="140" y1="180" x2="60" y2="240"/>
-      <line x1="140" y1="180" x2="200" y2="260"/>
-      <line x1="280" y1="220" x2="200" y2="260"/>
-      <line x1="280" y1="220" x2="340" y2="250"/>
-      <line x1="420" y1="200" x2="340" y2="250"/>
-      <line x1="420" y1="200" x2="480" y2="270"/>
-      <line x1="560" y1="240" x2="480" y2="270"/>
-      <line x1="700" y1="230" x2="480" y2="270"/>
-      <line x1="680" y1="150" x2="820" y2="90"/>
-      <line x1="820" y1="90" x2="940" y2="60"/>
-      <line x1="820" y1="90" x2="820" y2="200"/>
-      <line x1="940" y1="60" x2="1100" y2="130"/>
-      <line x1="820" y1="200" x2="1100" y2="130"/>
-      <line x1="980" y1="180" x2="1100" y2="130"/>
-      <line x1="1100" y1="130" x2="840" y2="250"/>
-      <line x1="700" y1="230" x2="820" y2="200"/>
-      <line x1="820" y1="200" x2="980" y2="260"/>
-      <line x1="980" y1="180" x2="1120" y2="230"/>
-      <line x1="840" y1="250" x2="1120" y2="230"/>
-      <line x1="980" y1="260" x2="1120" y2="230"/>
-      <line x1="60" y1="240" x2="200" y2="260"/>
-      <line x1="200" y1="260" x2="340" y2="250"/>
-      <line x1="340" y1="250" x2="480" y2="270"/>
-    </g>
-    <g stroke="#1E3A5F" stroke-width="0.6" fill="none" opacity="0.45">
-      <line x1="60" y1="40" x2="200" y2="110" stroke-dasharray="4 4"/>
-      <line x1="700" y1="40" x2="560" y2="80" stroke-dasharray="3 3"/>
-      <line x1="60" y1="240" x2="60" y2="100" stroke-dasharray="2 4"/>
-    </g>
-    <g fill="#1E3A5F" opacity="0.65">
-      <circle cx="80" cy="60" r="2"/>
-      <circle cx="200" cy="110" r="2"/>
-      <circle cx="320" cy="70" r="2"/>
-      <circle cx="440" cy="130" r="2"/>
-      <circle cx="560" cy="80" r="2"/>
-      <circle cx="680" cy="150" r="2"/>
-      <circle cx="140" cy="180" r="2"/>
-      <circle cx="280" cy="220" r="2"/>
-      <circle cx="420" cy="200" r="2"/>
-      <circle cx="560" cy="240" r="2"/>
-      <circle cx="700" cy="230" r="2"/>
-      <circle cx="60" cy="240" r="2"/>
-      <circle cx="200" cy="260" r="2"/>
-      <circle cx="340" cy="250" r="2"/>
-      <circle cx="480" cy="270" r="2"/>
-      <circle cx="820" cy="90" r="2"/>
-      <circle cx="940" cy="60" r="2"/>
-      <circle cx="820" cy="200" r="2"/>
-      <circle cx="980" cy="180" r="2"/>
-      <circle cx="1100" cy="130" r="2"/>
-      <circle cx="840" cy="250" r="2"/>
-      <circle cx="980" cy="260" r="2"/>
-      <circle cx="1120" cy="230" r="2"/>
-    </g>
-    <g fill="#FFFFFF" filter="url(#dotGlow)">
-      <circle cx="440" cy="130" r="3.5"><animate attributeName="opacity" values="0.35;0.95;0.35" dur="3.2s" repeatCount="indefinite"/></circle>
-      <circle cx="940" cy="60" r="3.5"><animate attributeName="opacity" values="0.35;0.95;0.35" dur="3.2s" repeatCount="indefinite"/></circle>
-      <circle cx="200" cy="220" r="3.5"><animate attributeName="opacity" values="0.35;0.95;0.35" dur="3.2s" repeatCount="indefinite"/></circle>
-      <circle cx="1100" cy="130" r="3.5"><animate attributeName="opacity" values="0.35;0.95;0.35" dur="3.2s" repeatCount="indefinite"/></circle>
-    </g>
-    <g fill="#FFFFFF" filter="url(#dotGlow)">
-      <circle cx="680" cy="150" r="3"><animate attributeName="opacity" values="0.35;0.95;0.35" dur="2.4s" repeatCount="indefinite"/></circle>
-      <circle cx="820" cy="200" r="3"><animate attributeName="opacity" values="0.35;0.95;0.35" dur="2.4s" repeatCount="indefinite"/></circle>
-    </g>
-
-    <!-- Stelle del cosmo (lato destro del banner, sopra il gradient blu) -->
+    <!-- stelle del cosmo (lato destro) -->
     <g fill="#FFFFFF" opacity="0.85">
       <circle cx="1180" cy="40"  r="0.9"/>
       <circle cx="1230" cy="80"  r="1.1"/>
@@ -544,7 +463,6 @@
       <circle cx="1455" cy="225" r="0.8"/>
       <circle cx="1580" cy="120" r="1.0"/>
     </g>
-    <!-- Stelle più grandi con glow -->
     <g fill="#FFFFFF">
       <circle cx="1565" cy="80" r="1.4">
         <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
@@ -557,52 +475,188 @@
       </circle>
     </g>
   </svg>
-  <canvas class="globe-canvas" id="globe-canvas" width="480" height="480"></canvas>
 
-  <div class="banner-overlay">
+  <!-- Globo SVG (zero dipendenze, animazione SMIL) -->
+  <svg class="globe-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <!-- Sfera oceano: blu profondo con shading 3D -->
+      <radialGradient id="globe-ocean" cx="0.32" cy="0.28" r="0.95">
+        <stop offset="0"    stop-color="#3B6EA8"/>
+        <stop offset="0.45" stop-color="#1E3A5F"/>
+        <stop offset="0.85" stop-color="#0A1A33"/>
+        <stop offset="1"    stop-color="#050B1A"/>
+      </radialGradient>
+      <!-- Atmosfera arancio caldo attorno al globo -->
+      <radialGradient id="globe-halo" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0.62" stop-color="#FFA340" stop-opacity="0"/>
+        <stop offset="0.78" stop-color="#FFA340" stop-opacity="0.45"/>
+        <stop offset="1"    stop-color="#FFA340" stop-opacity="0"/>
+      </radialGradient>
+      <!-- Riflesso speculare in alto a sinistra -->
+      <radialGradient id="globe-shine" cx="0.32" cy="0.25" r="0.32">
+        <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.35"/>
+        <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+      </radialGradient>
+      <!-- Maschera circolare per clippare i contenuti rotanti -->
+      <clipPath id="globe-clip">
+        <circle cx="100" cy="100" r="80"/>
+      </clipPath>
+      <!-- Glow per luci citta -->
+      <filter id="city-glow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="1.6" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Atmosfera (alone esterno) -->
+    <circle cx="100" cy="100" r="98" fill="url(#globe-halo)"/>
+
+    <!-- Sfera oceano -->
+    <circle cx="100" cy="100" r="80" fill="url(#globe-ocean)"/>
+
+    <!-- Continenti + luci citta rotanti, clippati al cerchio del globo -->
+    <g clip-path="url(#globe-clip)">
+      <g>
+        <animateTransform attributeName="transform" attributeType="XML"
+                          type="translate" from="0 0" to="-160 0"
+                          dur="8s" repeatCount="indefinite"/>
+        <!-- COPIA 1 dei continenti (centrati a x=100) -->
+        <g transform="translate(100 100)" fill="#0A1A2E" fill-opacity="0.85">
+          <!-- Eurasia / Africa (massa principale) -->
+          <path d="M -32,-42 Q -10,-50 18,-44 Q 40,-38 50,-22 Q 56,-4 48,12 Q 38,28 18,30 Q 0,28 -16,18 Q -32,4 -38,-12 Q -40,-28 -32,-42 Z"/>
+          <!-- Europa nord -->
+          <path d="M -22,-50 Q -8,-58 6,-52 Q 14,-46 8,-40 Q -8,-38 -22,-44 Z"/>
+          <!-- Africa sud -->
+          <path d="M -10,16 Q 4,18 14,28 Q 18,42 8,50 Q -4,52 -12,42 Q -18,28 -10,16 Z"/>
+          <!-- America (massa secondaria) -->
+          <path d="M -68,-30 Q -52,-38 -38,-30 Q -32,-18 -42,-6 Q -54,4 -64,-2 Q -72,-14 -68,-30 Z"/>
+          <path d="M -56,4 Q -48,8 -44,18 Q -42,32 -50,40 Q -58,42 -60,32 Q -62,16 -56,4 Z"/>
+        </g>
+        <!-- LUCI CITTA copia 1 -->
+        <g transform="translate(100 100)" fill="#FFB050" filter="url(#city-glow)">
+          <circle cx="-12" cy="-32" r="0.9"/><circle cx="-6" cy="-30" r="1.1"/><circle cx="2" cy="-34" r="0.8"/>
+          <circle cx="10" cy="-28" r="1.0"/><circle cx="-20" cy="-26" r="0.7"/><circle cx="20" cy="-26" r="0.9"/>
+          <circle cx="-2" cy="-22" r="0.8"/><circle cx="14" cy="-18" r="1.2"/><circle cx="-14" cy="-14" r="0.7"/>
+          <circle cx="6" cy="-10" r="0.9"/><circle cx="22" cy="-8" r="1.0"/><circle cx="-8" cy="-2" r="0.8"/>
+          <circle cx="14" cy="2" r="0.9"/><circle cx="32" cy="-12" r="0.8"/><circle cx="-50" cy="-22" r="0.9"/>
+          <circle cx="-58" cy="-12" r="1.0"/><circle cx="-46" cy="-8" r="0.7"/><circle cx="-52" cy="14" r="0.8"/>
+          <circle cx="-48" cy="26" r="1.1"/><circle cx="40" cy="-2" r="1.0"/><circle cx="36" cy="6" r="0.7"/>
+          <circle cx="-4" cy="20" r="0.9"/><circle cx="6" cy="32" r="0.8"/><circle cx="-12" cy="38" r="0.7"/>
+        </g>
+
+        <!-- COPIA 2 (offset +160 per loop seamless) -->
+        <g transform="translate(260 100)" fill="#0A1A2E" fill-opacity="0.85">
+          <path d="M -32,-42 Q -10,-50 18,-44 Q 40,-38 50,-22 Q 56,-4 48,12 Q 38,28 18,30 Q 0,28 -16,18 Q -32,4 -38,-12 Q -40,-28 -32,-42 Z"/>
+          <path d="M -22,-50 Q -8,-58 6,-52 Q 14,-46 8,-40 Q -8,-38 -22,-44 Z"/>
+          <path d="M -10,16 Q 4,18 14,28 Q 18,42 8,50 Q -4,52 -12,42 Q -18,28 -10,16 Z"/>
+          <path d="M -68,-30 Q -52,-38 -38,-30 Q -32,-18 -42,-6 Q -54,4 -64,-2 Q -72,-14 -68,-30 Z"/>
+          <path d="M -56,4 Q -48,8 -44,18 Q -42,32 -50,40 Q -58,42 -60,32 Q -62,16 -56,4 Z"/>
+        </g>
+        <g transform="translate(260 100)" fill="#FFB050" filter="url(#city-glow)">
+          <circle cx="-12" cy="-32" r="0.9"/><circle cx="-6" cy="-30" r="1.1"/><circle cx="2" cy="-34" r="0.8"/>
+          <circle cx="10" cy="-28" r="1.0"/><circle cx="-20" cy="-26" r="0.7"/><circle cx="20" cy="-26" r="0.9"/>
+          <circle cx="-2" cy="-22" r="0.8"/><circle cx="14" cy="-18" r="1.2"/><circle cx="-14" cy="-14" r="0.7"/>
+          <circle cx="6" cy="-10" r="0.9"/><circle cx="22" cy="-8" r="1.0"/><circle cx="-8" cy="-2" r="0.8"/>
+          <circle cx="14" cy="2" r="0.9"/><circle cx="32" cy="-12" r="0.8"/><circle cx="-50" cy="-22" r="0.9"/>
+          <circle cx="-58" cy="-12" r="1.0"/><circle cx="-46" cy="-8" r="0.7"/><circle cx="-52" cy="14" r="0.8"/>
+          <circle cx="-48" cy="26" r="1.1"/><circle cx="40" cy="-2" r="1.0"/><circle cx="36" cy="6" r="0.7"/>
+          <circle cx="-4" cy="20" r="0.9"/><circle cx="6" cy="32" r="0.8"/><circle cx="-12" cy="38" r="0.7"/>
+        </g>
+      </g>
+
+      <!-- Paralleli e meridiani fissi sopra ai continenti -->
+      <g stroke="#5B7BA0" stroke-width="0.4" fill="none" opacity="0.4">
+        <ellipse cx="100" cy="100" rx="80" ry="20"/>
+        <ellipse cx="100" cy="100" rx="80" ry="40"/>
+        <ellipse cx="100" cy="100" rx="80" ry="60"/>
+        <ellipse cx="100" cy="100" rx="20" ry="80"/>
+        <ellipse cx="100" cy="100" rx="50" ry="80"/>
+      </g>
+    </g>
+
+    <!-- Highlight speculare (sopra ai continenti, fisso) -->
+    <circle cx="100" cy="100" r="80" fill="url(#globe-shine)" pointer-events="none"/>
+
+    <!-- Bordo del pianeta -->
+    <circle cx="100" cy="100" r="80" fill="none" stroke="#FFA340" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- DUE pulse pin animati (citta che pulsano) -->
+    <g>
+      <circle cx="78" cy="78" r="2" fill="#FFE6CC"/>
+      <circle cx="78" cy="78" r="2" fill="#FFA340" opacity="0.8">
+        <animate attributeName="r" values="2;8;2" dur="2.4s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0;0.7" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    <g>
+      <circle cx="124" cy="116" r="2" fill="#FFE6CC"/>
+      <circle cx="124" cy="116" r="2" fill="#FFA340" opacity="0.8">
+        <animate attributeName="r" values="2;7;2" dur="3.1s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0;0.7" dur="3.1s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Satelliti orbitanti -->
+    <g>
+      <animateTransform attributeName="transform" attributeType="XML"
+                        type="rotate" from="0 100 100" to="360 100 100"
+                        dur="9s" repeatCount="indefinite"/>
+      <circle cx="186" cy="100" r="2.2" fill="#FFE6CC" filter="url(#city-glow)"/>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" attributeType="XML"
+                        type="rotate" from="360 100 100" to="0 100 100"
+                        dur="14s" repeatCount="indefinite"/>
+      <circle cx="100" cy="14" r="1.8" fill="#FFE6CC" filter="url(#city-glow)"/>
+    </g>
+  </svg>
+<!-- Contenuto: logo + testi -->
+  <div class="banner-content">
     <div class="banner-logo">
       <img src="logo_arancio.jpg" alt="Sacra Famiglia" onerror="this.style.display='none'">
     </div>
-    <div class="banner-text">
-      <h1 class="banner-title">Scuola Sacra Famiglia</h1>
-      <p class="banner-sub">Scuola Primaria e Secondaria di I grado</p>
-    </div>
-  </div>
-
-<div class="filters-wrap">
-  <div class="filters">
-    <label class="search">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="search-input" type="text" placeholder="Cerca app, docente o tema...">
-    </label>
+    <h1 class="banner-title">Portale Sacra Famiglia</h1>
+    <p class="banner-sub">Le web app didattiche dei nostri docenti</p>
   </div>
 </div>
 
-<div class="dpia-info" id="dpia-info" style="display:none">
-  <span class="dpia-label">Certificazioni DPIA</span>
+<!-- ════════════════ TOOLBAR ════════════════ -->
+<div class="toolbar">
+  <label class="search">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="search-input" type="text" placeholder="Cerca app, docente o tema...">
+  </label>
+</div>
+
+<div class="dpia-info" id="dpia-info">
+  <span class="label">Certificazioni DPIA</span>
   <span id="dpia-legend"></span>
 </div>
 
+<!-- ════════════════ CARD COLLEGHI ════════════════ -->
 <section class="colleghi-wrap">
-  <div class="colleghi-grid" id="colleghi-container"></div>
+  <div class="colleghi-grid" id="colleghi-container">
+    <div class="empty"><strong>Caricamento in corso...</strong></div>
+  </div>
 </section>
 
+<!-- ════════════════ FOOTER ════════════════ -->
 <footer>
   <div class="foot-inner">
-    <div class="foot-brand">Scuola Sacra Famiglia &middot; Orzinuovi</div>
-    <div class="foot-copyright">&copy; 2026 &middot; A cura di Andrea Cerioli, Animatore Digitale</div>
+    <div class="foot-brand">Scuola Sacra Famiglia · Orzinuovi</div>
+    <div class="foot-copyright">© 2026 · A cura di Andrea Cerioli, Animatore Digitale</div>
   </div>
 </footer>
 
-
-<!-- Three.js per il globo terrestre -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- ═════ SCRIPT PORTALE (deve girare PRIMA di Three.js per garantire che le card si vedano sempre) ═════ -->
 <script>
+/* ─────────────────────────────────────────────────────────────
+   FILE JSON DPIA
+   ───────────────────────────────────────────────────────────── */
 const DPIA_FILES = [
   "DPIA_Web_App_maestre_aprile_2026_v1.0.json"
 ];
 
-/* Headline del tooltip per ogni cluster DPIA — testo visibile al docente */
 const CLUSTER_HEADLINES = {
   A: "App ad alto rischio - DPIA + FRIA",
   B: "App con trattamento dati personali",
@@ -612,37 +666,64 @@ const CLUSTER_HEADLINES = {
   F: "App certificata - Nessuna raccolta dati"
 };
 
-/* Headline tooltip per cluster - frasi chiare e rassicuranti */
-const CLUSTER_TITLE = {
-  A: "Trattamento ad alto rischio",
-  B: "Trattamento di dati personali",
-  C: "Trattamento limitato",
-  D: "Registrazione semplificata",
-  E: "Esente da DPIA",
-  F: "App certificata e sicura"
-};
-const CLUSTER_BODY_DEFAULT = {
-  A: "DPIA completa, valutazione di impatto rinforzata.",
-  B: "DPIA completa, dati personali trattati con misure di sicurezza.",
-  C: "Registrazione DPIA per trattamento limitato.",
-  D: "Registrazione semplificata applicabile.",
-  E: "Esente da specifica DPIA.",
-  F: "Nessun dato personale raccolto. App didattica autonoma."
-};
-
+/* ─────────────────────────────────────────────────────────────
+   WEB APP — { titolo, descrizione, url, autore }
+   ───────────────────────────────────────────────────────────── */
 const WEBAPPS = [
-  { titolo: "I mesi dell'anno", descrizione: "Attivita' per la classe prima: scoprire e ordinare i dodici mesi dell'anno.", url: "https://mesi-classe1.neocities.org/", autore: "Maestra Ilaria" },
-  { titolo: "Egizi - escape room", descrizione: "Escape room digitale sull'antico Egitto: enigmi, indizi e civilta' del Nilo.", url: "https://egizi-escape.neocities.org/", autore: "Maestra Elisa" },
-  { titolo: "Animal Quest!", descrizione: "Riconoscere e classificare gli animali per gruppi e caratteristiche principali.", url: "https://classanimali.neocities.org/", autore: "Maestro Andrea" },
-  { titolo: "L'ultimo bagno", descrizione: "Allenare il pensiero logico riconoscendo e completando sequenze.", url: "https://sequenze.neocities.org/", autore: "Maestra Elisa" },
-  { titolo: "Decimal Quest", descrizione: "Comprendere la divisione con i numeri decimali attraverso esercizi guidati.", url: "https://decimaliperdiviso.neocities.org/", autore: "Maestro Andrea" },
-  { titolo: "Ancient Egypt Quiz", descrizione: "Quiz interattivo in inglese sull'antico Egitto: lessico e civilta'.", url: "https://canva.link/eyew3e2mvycv9as", autore: "Teacher Daniela" },
-  // ─── Maestra Olga ───
-  { titolo: "La ruota della settimana", descrizione: "Attivita' interattiva sui giorni della settimana, realizzata con Canva.", url: "https://maestraolga.my.canva.site/c2djjkmamj1mt18y", autore: "Maestra Olga" },
-  { titolo: "La rana salterina", descrizione: "Attivita' ludica con la rana protagonista, realizzata con Canva.", url: "https://maestraolga.my.canva.site/", autore: "Maestra Olga" },
+  {
+    titolo: "I mesi dell'anno",
+    descrizione: "Attivita' per la classe prima: scoprire e ordinare i dodici mesi dell'anno.",
+    url: "https://mesi-classe1.neocities.org/",
+    autore: "Maestra Ilaria"
+  },
+  {
+    titolo: "Egizi - escape room",
+    descrizione: "Escape room digitale sull'antico Egitto: enigmi, indizi e civilta' del Nilo.",
+    url: "https://egizi-escape.neocities.org/",
+    autore: "Maestra Elisa"
+  },
+  {
+    titolo: "L'ultimo bagno",
+    descrizione: "Allenare il pensiero logico riconoscendo e completando sequenze.",
+    url: "https://sequenze.neocities.org/",
+    autore: "Maestra Elisa"
+  },
+  {
+    titolo: "La ruota della settimana",
+    descrizione: "Attivita' interattiva sui giorni della settimana, realizzata con Canva.",
+    url: "https://maestraolga.my.canva.site/c2djjkmamj1mt18y",
+    autore: "Maestra Olga"
+  },
+  {
+    titolo: "La rana salterina",
+    descrizione: "Attivita' ludica con la rana protagonista, realizzata con Canva.",
+    url: "https://maestraolga.my.canva.site/",
+    autore: "Maestra Olga"
+  },
+  {
+    titolo: "Animal Quest!",
+    descrizione: "Riconoscere e classificare gli animali per gruppi e caratteristiche principali.",
+    url: "https://classanimali.neocities.org/",
+    autore: "Maestro Andrea"
+  },
+  {
+    titolo: "Decimal Quest",
+    descrizione: "Comprendere la divisione con i numeri decimali attraverso esercizi guidati.",
+    url: "https://decimaliperdiviso.neocities.org/",
+    autore: "Maestro Andrea"
+  },
+  {
+    titolo: "Ancient Egypt Quiz",
+    descrizione: "Quiz interattivo in inglese sull'antico Egitto: lessico e civilta'.",
+    url: "https://canva.link/eyew3e2mvycv9as",
+    autore: "Teacher Daniela"
+  }
 ];
 
-const state = { query:"" };
+/* ─────────────────────────────────────────────────────────────
+   STATE & DPIA
+   ───────────────────────────────────────────────────────────── */
+const state = { query: "" };
 let DPIA_MAP = null;
 const DPIA_CLUSTERS = new Set();
 
@@ -651,26 +732,22 @@ function normalizeUrl(u){
   return u.trim().toLowerCase().replace(/\/+$/, "");
 }
 
-function escapeHTML(s){
-  return String(s||"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-
 async function loadDPIA(){
   const map = new Map();
   await Promise.all(DPIA_FILES.map(async file => {
     try {
-      const r = await fetch(file, { cache:"no-store" });
+      const r = await fetch(file, { cache: "no-store" });
       if(!r.ok) return;
       const j = await r.json();
       const info = {
         cluster: j.cluster || j.clusterAuto || "?",
         reason:  j.clusterReason || "",
-        date:    j.meta && j.meta.date    || "",
-        prot:    j.meta && j.meta.prot    || "",
-        version: j.meta && j.meta.version || "",
-        clusterName: j.meta && j.meta.name || "",
-        titolare:    j.meta && j.meta.titolare    || "",
-        dpo:         j.meta && j.meta.dpo         || ""
+        date:    (j.meta && j.meta.date)    || "",
+        prot:    (j.meta && j.meta.prot)    || "",
+        version: (j.meta && j.meta.version) || "",
+        clusterName: (j.meta && j.meta.name) || "",
+        titolare:    (j.meta && j.meta.titolare)    || "",
+        dpo:         (j.meta && j.meta.dpo)         || ""
       };
       const apps = (j.meta && j.meta.clusterApps) || [];
       apps.forEach(a => {
@@ -701,19 +778,39 @@ function applyDPIABadges(){
     const badge = document.createElement("span");
     badge.className = "dpia-badge";
     badge.dataset.cluster = info.cluster;
-    badge.dataset.head    = CLUSTER_HEADLINES[info.cluster] || `Cluster ${info.cluster}`;
+    badge.dataset.head    = CLUSTER_HEADLINES[info.cluster] || ("Cluster " + info.cluster);
     badge.dataset.body    = info.reason || "";
     const metaParts = [];
-    if(info.prot)    metaParts.push(`Prot. ${info.prot}`);
+    if(info.prot)    metaParts.push("Prot. " + info.prot);
     if(info.date)    metaParts.push(info.date);
     if(info.version) metaParts.push(info.version);
-    badge.dataset.meta = metaParts.join(" · ");
+    badge.dataset.meta = metaParts.join(" \u00b7 ");
     badge.textContent = info.cluster;
     titleEl.prepend(badge);
   });
 }
 
-/* ── Tooltip singleton: hover handler ──────────────────────── */
+function renderDPIALegend(){
+  if(!DPIA_CLUSTERS.size) return;
+  const wrap = document.getElementById("dpia-info");
+  const span = document.getElementById("dpia-legend");
+  const order = ["A","B","C","D","E","F"];
+  const labels = {
+    A:"Profilazione/alto rischio",
+    B:"Trattamento dati personali",
+    C:"Trattamento limitato",
+    D:"Registrazione semplificata",
+    E:"Esente da specifica DPIA",
+    F:"Nessun dato personale"
+  };
+  span.innerHTML = order
+    .filter(c => DPIA_CLUSTERS.has(c))
+    .map(c => '<span class="legend-pill"><span class="dpia-badge" data-cluster="'+c+'">'+c+'</span> '+(labels[c]||"")+'</span>')
+    .join(" &nbsp;\u00b7&nbsp; ");
+  wrap.classList.add("visible");
+}
+
+/* ─── Tooltip singleton body-level ─── */
 function initDPIATooltip(){
   let tooltip = document.getElementById("dpia-tooltip");
   if(!tooltip){
@@ -726,7 +823,7 @@ function initDPIATooltip(){
   const ttBody = tooltip.querySelector(".tt-body");
   const ttMeta = tooltip.querySelector(".tt-meta");
 
-  document.addEventListener("mouseover", e => {
+  document.addEventListener("mouseover", function(e){
     const badge = e.target.closest(".dpia-badge");
     if(!badge) return;
     ttHead.textContent = badge.dataset.head || "";
@@ -735,233 +832,106 @@ function initDPIATooltip(){
     ttBody.style.display = badge.dataset.body ? "block" : "none";
     ttMeta.style.display = badge.dataset.meta ? "block" : "none";
 
-    /* posiziona sopra il badge, centrato */
     const r = badge.getBoundingClientRect();
     tooltip.classList.add("visible");
-    /* misura il tooltip dopo averlo reso visibile per ottenere width corretto */
     const tw = tooltip.offsetWidth;
     const th = tooltip.offsetHeight;
     let left = r.left + r.width/2 - tw/2;
     let top  = r.top - th - 12;
-    /* clamp ai bordi della viewport */
     const margin = 8;
     if(left < margin) left = margin;
     if(left + tw > window.innerWidth - margin) left = window.innerWidth - tw - margin;
-    /* se va sotto al top, mostra sotto al badge invece che sopra */
-    if(top < margin){
-      top = r.bottom + 12;
-      tooltip.classList.add("below");
-    } else {
-      tooltip.classList.remove("below");
-    }
+    if(top < margin) top = r.bottom + 12;
     tooltip.style.left = left + "px";
     tooltip.style.top  = top + "px";
   });
 
-  document.addEventListener("mouseout", e => {
+  document.addEventListener("mouseout", function(e){
     const badge = e.target.closest(".dpia-badge");
     if(!badge) return;
     tooltip.classList.remove("visible");
   });
 
-  /* nascondi al scroll per evitare tooltip "fluttuante" sganciato */
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", function(){
     tooltip.classList.remove("visible");
   }, { passive: true });
 }
-initDPIATooltip();
 
-
-function renderDPIALegend(){
-  if(!DPIA_CLUSTERS.size) return;
-  const wrap = document.getElementById("dpia-info");
-  const span = document.getElementById("dpia-legend");
-  const order = ["A","B","C","D","E","F"];
-  span.innerHTML = order
-    .filter(c => DPIA_CLUSTERS.has(c))
-    .map(c => `<span class="legend-pill"><span class="dpia-badge" data-cluster="${c}">${c}</span> ${CLUSTER_TITLE[c] || ""}</span>`)
-    .join(" &nbsp;&middot;&nbsp; ");
-  wrap.style.display = "flex";
-}
-
+/* ─── Render Card ─── */
 function getFiltered(){
   const q = state.query.trim().toLowerCase();
-  return WEBAPPS.filter(a => {
-    if(q){
-      const blob = (a.titolo + " " + a.descrizione + " " + a.autore).toLowerCase();
-      if(!blob.includes(q)) return false;
-    }
-    return true;
+  if(!q) return WEBAPPS.slice();
+  return WEBAPPS.filter(function(a){
+    const blob = (a.titolo + " " + a.descrizione + " " + a.autore).toLowerCase();
+    return blob.indexOf(q) !== -1;
+  });
+}
+
+function escapeHTML(s){
+  return String(s||"").replace(/[&<>"']/g, function(c){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c];
   });
 }
 
 function renderColleghi(){
   const cont = document.getElementById("colleghi-container");
+  if(!cont) return;
   cont.innerHTML = "";
   const filtered = getFiltered();
   if(filtered.length === 0){
-    cont.innerHTML = `<div class="empty"><strong>Nessun risultato.</strong><br>Prova a modificare la ricerca.</div>`;
+    cont.innerHTML = '<div class="empty"><strong>Nessun risultato.</strong><br>Prova a modificare la ricerca.</div>';
     return;
   }
+  // Group by autore
   const byAutore = new Map();
-  filtered.forEach(a => {
+  filtered.forEach(function(a){
     if(!byAutore.has(a.autore)) byAutore.set(a.autore, []);
     byAutore.get(a.autore).push(a);
   });
-  [...byAutore.entries()]
-    .sort((a,b) => a[0].localeCompare(b[0], "it"))
-    .forEach(([nome, apps]) => {
-      const card = document.createElement("article");
-      card.className = "collega-card";
-      const appsHTML = apps.map(a => `
-        <a class="app-row" href="${a.url}" target="_blank" rel="noopener">
-          <div class="app-row-main">
-            <div class="app-row-title">${escapeHTML(a.titolo)}</div>
-            <div class="app-row-desc">${escapeHTML(a.descrizione)}</div>
-          </div>
-          <span class="app-row-arrow">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </span>
-        </a>
-      `).join("");
-      card.innerHTML = `
-        <header class="collega-head">
-          <h2 class="collega-name">${escapeHTML(nome)}</h2>
-        </header>
-        <div class="collega-apps">${appsHTML}</div>
-      `;
-      cont.appendChild(card);
-    });
+  // Sort alfabetico
+  const sorted = Array.from(byAutore.entries()).sort(function(a,b){
+    return a[0].localeCompare(b[0], "it");
+  });
+  sorted.forEach(function(entry){
+    const nome = entry[0];
+    const apps = entry[1];
+    const card = document.createElement("article");
+    card.className = "collega-card";
+    const appsHTML = apps.map(function(a){
+      return ''
+        + '<a class="app-row" href="' + escapeHTML(a.url) + '" target="_blank" rel="noopener">'
+        + '  <div class="app-row-main">'
+        + '    <div class="app-row-title">' + escapeHTML(a.titolo) + '</div>'
+        + '    <div class="app-row-desc">' + escapeHTML(a.descrizione) + '</div>'
+        + '  </div>'
+        + '  <span class="app-row-arrow">'
+        + '    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'
+        + '  </span>'
+        + '</a>';
+    }).join("");
+    card.innerHTML = ''
+      + '<header class="collega-head">'
+      + '  <h2 class="collega-name">' + escapeHTML(nome) + '</h2>'
+      + '</header>'
+      + '<div class="collega-apps">' + appsHTML + '</div>';
+    cont.appendChild(card);
+  });
   applyDPIABadges();
 }
 
-document.getElementById("search-input").addEventListener("input", e => {
-  state.query = e.target.value;
-  renderColleghi();
-});
+/* ─── Listener ricerca ─── */
+const searchInput = document.getElementById("search-input");
+if(searchInput){
+  searchInput.addEventListener("input", function(e){
+    state.query = e.target.value;
+    renderColleghi();
+  });
+}
 
+/* ─── INIT immediato delle card e DPIA ─── */
+initDPIATooltip();
 renderColleghi();
 loadDPIA();
-</script>
-
-
-<!-- Inizializzazione globo Three.js -->
-<script>
-(function initGlobe(){
-  const canvas = document.getElementById('globe-canvas');
-  if(!canvas || typeof THREE === 'undefined') return;
-
-  const W = 240, H = 240;
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.z = 3;
-
-  const renderer = new THREE.WebGLRenderer({
-    canvas, alpha: true, antialias: true
-  });
-  renderer.setPixelRatio(window.devicePixelRatio || 1);
-  renderer.setSize(W, H, false);
-
-  // Gruppo terra: contiene oceano + luci, ruota insieme
-  const earth = new THREE.Group();
-  // tilt asse terrestre realistico (~23.4 gradi)
-  earth.rotation.z = 0.41;
-  scene.add(earth);
-
-  // Sfera oceano (blu profondo come fallback se texture non carica)
-  const oceanGeo = new THREE.SphereGeometry(1, 64, 64);
-  const oceanMat = new THREE.MeshBasicMaterial({color: 0x0A1F3A});
-  const ocean = new THREE.Mesh(oceanGeo, oceanMat);
-  earth.add(ocean);
-
-  // Caricamento texture NASA Black Marble (Earth at Night)
-  // La texture include continenti scuri + luci arancio delle citta
-  const loader = new THREE.TextureLoader();
-  loader.setCrossOrigin('anonymous');
-
-  // Cascata di URL: prima locale, poi CDN affidabili
-  // Per usare il file locale: scarica BlackMarble da NASA SVS e mettilo
-  // accanto a index.html con nome 'earth_night.jpg'
-  const TEXTURE_URLS = [
-    './earth_night.jpg',
-    'https://cdn.jsdelivr.net/gh/turban/webgl-earth@master/images/2_no_clouds_4k_night.jpg',
-    'https://threejs.org/examples/textures/planets/earth_lights_2048.png'
-  ];
-
-  function loadEarthTexture(idx){
-    if(idx >= TEXTURE_URLS.length){
-      console.warn('[Globe] Tutte le texture fallite, mostro solo oceano');
-      return;
-    }
-    const url = TEXTURE_URLS[idx];
-    const isLightsOnly = url.includes('earth_lights'); // ultima opzione: solo luci
-    loader.load(
-      url,
-      function(tex){
-        tex.colorSpace = THREE.SRGBColorSpace || tex.colorSpace;
-        if(isLightsOnly){
-          // Fallback: lights additivi sopra l'oceano blu (look del codice precedente)
-          const lightsGeo = new THREE.SphereGeometry(1.002, 64, 64);
-          const lightsMat = new THREE.MeshBasicMaterial({
-            map: tex,
-            color: 0xFF8C40,
-            transparent: true,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false
-          });
-          earth.add(new THREE.Mesh(lightsGeo, lightsMat));
-        } else {
-          // Black Marble completa: la uso come materiale principale dell'oceano
-          // Boost saturazione + luminosita per intensificare l'arancio delle citta
-          ocean.material.dispose();
-          ocean.material = new THREE.MeshBasicMaterial({
-            map: tex,
-            color: 0xFFFFFF
-          });
-        }
-      },
-      undefined,
-      function(){
-        console.warn('[Globe] Texture fallita:', url, '- provo successiva');
-        loadEarthTexture(idx + 1);
-      }
-    );
-  }
-  loadEarthTexture(0);
-
-  // Atmosfera: sfera leggermente piu grande, BackSide, additive
-  const haloGeo = new THREE.SphereGeometry(1.15, 32, 32);
-  const haloMat = new THREE.MeshBasicMaterial({
-    color: 0xFFA340,
-    transparent: true,
-    opacity: 0.18,
-    side: THREE.BackSide,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false
-  });
-  const halo = new THREE.Mesh(haloGeo, haloMat);
-  earth.add(halo);
-
-  // Animation loop: rotazione veloce
-  let mounted = false;
-  function tick(){
-    requestAnimationFrame(tick);
-    earth.rotation.y += 0.022;  // ~5s per giro - rotazione veloce
-    renderer.render(scene, camera);
-  }
-  // Doppio rAF per garantire layout completato (pattern Andrea per Three.js)
-  requestAnimationFrame(function(){
-    requestAnimationFrame(tick);
-  });
-
-  // Stop quando reduced-motion
-  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    // ferma rotazione ma renderizza una volta
-    earth.rotation.y = 0;
-    renderer.render(scene, camera);
-    return;
-  }
-})();
 </script>
 
 </body>
