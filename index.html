@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web App dei Docenti — Sacra Famiglia</title>
-<meta name="description" content="Le web app didattiche realizzate dai docenti della Scuola Sacra Famiglia di Orzinuovi e Martinengo.">
+<title>Web App dei Docenti — Sacra Famiglia Orzinuovi</title>
+<meta name="description" content="Le web app didattiche realizzate dai docenti della Scuola Sacra Famiglia di Orzinuovi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bordeaux-deep:#5A0F14;
@@ -25,71 +25,124 @@
     --line:#E5DCD0;
     --shadow-card:0 1px 0 rgba(90,15,20,.04), 0 8px 24px -12px rgba(90,15,20,.20);
     --shadow-card-h:0 1px 0 rgba(90,15,20,.06), 0 16px 36px -14px rgba(90,15,20,.36);
-    --r:14px;
+
+    --c-A-bg:#FBE7E5; --c-A-fg:#A8423E; --c-A-bd:#E8A8A2;
+    --c-B-bg:#FDF3E0; --c-B-fg:#8E5418; --c-B-bd:#E8C794;
+    --c-C-bg:#E5EEF7; --c-C-fg:#1F3A60; --c-C-bd:#A5C0DB;
+    --c-D-bg:#EFEFEF; --c-D-fg:#5A5A5A; --c-D-bd:#C5C5C5;
+    --c-E-bg:#E5E5E5; --c-E-fg:#3A3A3A; --c-E-bd:#B0B0B0;
+    --c-F-bg:#E8F0E8; --c-F-fg:#3D6B3A; --c-F-bd:#B0CFAE;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
     color:var(--ink);
     background:var(--paper);
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
+    font-feature-settings:"ss01","cv11";
   }
   a{color:inherit;text-decoration:none}
   button{font-family:inherit}
 
-  /* TOPBAR */
-  .topbar{
-    background:var(--bordeaux-deep);color:#fff;
-    padding:14px 32px;display:flex;align-items:center;justify-content:space-between;
-    border-bottom:1px solid rgba(201,163,107,.18);
-  }
-  .topbar-left{display:flex;align-items:center;gap:14px}
-  .topbar-logo{
-    width:42px;height:42px;border-radius:8px;background:#fff;
-    display:flex;align-items:center;justify-content:center;overflow:hidden;padding:3px;
-  }
-  .topbar-logo img{width:100%;height:100%;object-fit:contain}
-  .topbar-title{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:600;letter-spacing:.2px}
-  .topbar-sub{font-size:12px;opacity:.7;letter-spacing:.4px;text-transform:uppercase;color:var(--gold-light)}
-  .topbar-right{display:flex;align-items:center;gap:18px;font-size:13px;opacity:.85}
-  .topbar-right a:hover{opacity:1;color:var(--gold-light)}
-
-  /* BANNER */
+  /* ── BANNER UNIFICATO ───────────────────────────────────────── */
   .banner{
     position:relative;display:block;width:100%;
-    aspect-ratio:1600/460;max-height:460px;overflow:hidden;
-    background:var(--bordeaux-deep);
+    aspect-ratio:1600/280;max-height:280px;overflow:hidden;
+    background:#2E0509;
+    border-bottom:3px solid var(--gold);
   }
-  .banner svg{display:block;width:100%;height:100%}
-  @media (max-width:760px){.banner{aspect-ratio:1600/620}}
+  .banner svg.banner-bg{
+    position:absolute;inset:0;width:100%;height:100%;display:block;
+  }
+  .banner-overlay{
+    position:absolute;inset:0;
+    display:flex;align-items:center;
+    padding:0 6%;
+    z-index:2;
+  }
+  .banner-logo{
+    width:108px;height:108px;flex-shrink:0;
+    background:#fff;border-radius:14px;padding:6px;
+    box-shadow:0 14px 32px -10px rgba(0,0,0,.5);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .banner-logo img{width:100%;height:100%;object-fit:contain}
+  .banner-text{
+    margin-left:32px;color:#fff;
+    text-shadow:0 2px 12px rgba(0,0,0,.45);
+  }
+  .banner-text h1{
+    margin:0;
+    font-size:clamp(26px,3.5vw,46px);
+    font-weight:800;letter-spacing:-.025em;line-height:1.02;
+  }
+  .banner-text p{
+    margin:6px 0 0;
+    font-size:clamp(13px,1.3vw,17px);
+    font-weight:400;font-style:italic;
+    color:var(--gold-light);
+    opacity:.95;
+  }
+  .banner-nav{
+    position:absolute;top:14px;right:22px;z-index:3;
+    color:var(--gold-light);font-size:12px;
+    letter-spacing:.4px;
+    border:1px solid rgba(232,212,168,.4);
+    padding:5px 12px;border-radius:999px;
+    background:rgba(0,0,0,.18);
+    transition:all .15s;
+  }
+  .banner-nav:hover{
+    background:var(--gold-light);color:var(--bordeaux-deep);
+    border-color:var(--gold-light);
+  }
 
-  /* STAT BAR */
+  /* ── GLOBO ANIMATO ──────────────────────────────────────────── */
+  .globe-spin{
+    animation:globeRotate 32s linear infinite;
+    transform-box:fill-box;
+  }
+  @keyframes globeRotate{
+    from{transform:translateX(0)}
+    to{transform:translateX(-200px)}
+  }
+  .pulse-slow{animation:pulseSlow 3.2s ease-in-out infinite alternate}
+  .pulse-mid{animation:pulseSlow 2.4s ease-in-out infinite alternate}
+  @keyframes pulseSlow{
+    from{opacity:.35}
+    to{opacity:.95}
+  }
+  .orbit-a{animation:orbit 14s linear infinite;transform-origin:1380px 140px}
+  .orbit-b{animation:orbit 22s linear infinite reverse;transform-origin:1380px 140px}
+  @keyframes orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+  @media (max-width:760px){
+    .banner{aspect-ratio:auto;min-height:220px}
+    .banner-overlay{padding:20px 22px;flex-direction:column;align-items:flex-start;gap:14px}
+    .banner-logo{width:72px;height:72px}
+    .banner-text{margin-left:0}
+    .banner-nav{top:10px;right:10px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .globe-spin,.pulse-slow,.pulse-mid,.orbit-a,.orbit-b{animation:none}
+  }
+
+  /* ── STAT BAR ──────────────────────────────────────────────── */
   .hero-meta-wrap{background:var(--bordeaux-deep);border-bottom:1px solid rgba(201,163,107,.2)}
   .hero-meta{
     max-width:1320px;margin:0 auto;padding:0 32px;
-    display:grid;grid-template-columns:repeat(3,1fr);color:#fff;
+    display:grid;grid-template-columns:repeat(2,1fr);color:#fff;
   }
   .stat{padding:22px 0;text-align:center}
   .stat:not(:last-child){border-right:1px solid rgba(201,163,107,.18)}
-  .stat-num{font-family:'Fraunces',Georgia,serif;font-size:36px;font-weight:600;color:var(--gold-light);line-height:1}
-  .stat-lbl{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:6px}
-
-  /* INTRO */
-  .intro{max-width:1320px;margin:0 auto;padding:48px 32px 16px}
-  .intro p{font-size:18px;color:var(--ink-soft);max-width:760px;margin:0;line-height:1.6}
-  .intro p strong{color:var(--bordeaux);font-weight:600}
-
-  /* FILTRI */
-  .filters-wrap{max-width:1320px;margin:0 auto;padding:24px 32px;border-bottom:1px solid var(--line)}
+  .stat-num{font-size:36px;font-weight:600;color:var(--gold-light);line-height:1;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:6px;margin:0 auto;padding:32px 32px 24px;border-bottom:1px solid var(--line)}
   .filters{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
   .filter-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .filter-label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
-  .chip{
-    border:1px solid var(--line);background:var(--paper-2);
-    padding:6px 12px;border-radius:999px;font-size:13px;cursor:pointer;
+  .filter-label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-soft);font-weight:600;background:var(--paper-2);
+    padding:6px 14px;border-radius:999px;font-size:13.5px;cursor:pointer;
     color:var(--ink-soft);transition:all .15s;font-family:inherit;
   }
   .chip:hover{border-color:var(--bordeaux-mid);color:var(--bordeaux)}
@@ -101,330 +154,598 @@
   }
   .search:focus-within{border-color:var(--bordeaux-mid)}
   .search svg{flex-shrink:0;color:var(--ink-soft)}
-  .search input{border:none;outline:none;background:transparent;font-size:13px;font-family:inherit;width:200px;color:var(--ink)}
+  .search input{border:none;outline:none;background:transparent;font-size:14px;font-family:inherit;width:200px;color:var(--ink);margin:0 auto;padding:18px 32px 0;font-size:13px;color:var(--ink-soft);
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  }
+  .dpia-info .legend-pill{display:inline-flex;align-items:center;gap:6px}
 
-  /* DOCENTI */
-  .docenti-wrap{max-width:1320px;margin:0 auto;padding:36px 32px 16px}
-  .section-head{
-    display:flex;align-items:baseline;justify-content:space-between;
-    border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:22px;
+  /* ── GRIGLIA COLLEGHI ──────────────────────────────────────── */
+  .colleghi-wrap{max-width:1320px;margin:0 auto;padding:32px 32px 60px}
+  .colleghi-grid{
+    display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:22px;
   }
-  .section-head h2{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:28px;color:var(--bordeaux);margin:0;letter-spacing:-.01em}
-  .section-head .count{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-soft)}
-  .docenti-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-  .docente-card{
-    background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
-    padding:14px 16px;cursor:pointer;transition:all .15s;
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    font-family:inherit;text-align:left;
+  @media (max-width:1100px){
+    .colleghi-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
   }
-  .docente-card:hover{border-color:var(--bordeaux-mid);transform:translateY(-1px)}
-  .docente-card.active{background:var(--bordeaux-soft);border-color:var(--bordeaux)}
-  .docente-name{font-weight:600;font-size:14px;color:var(--ink)}
-  .docente-role{font-size:11px;color:var(--ink-soft);margin-top:2px;letter-spacing:.3px}
-  .docente-count{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:600;color:var(--bordeaux);line-height:1}
-
-  /* AREE */
-  .area-wrap{max-width:1320px;margin:0 auto;padding:30px 32px}
-  .area{margin-bottom:48px}
-  .area-head{
-    display:flex;align-items:baseline;justify-content:space-between;
-    border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:22px;
+  @media (max-width:760px){
+    .colleghi-grid{grid-template-columns:1fr}
   }
-  .area-head h2{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:30px;color:var(--bordeaux);margin:0;letter-spacing:-.01em}
-  .area-head h2 .num{font-size:14px;color:var(--ink-soft);font-weight:400;margin-left:10px;font-family:'Inter',sans-serif;letter-spacing:.5px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
-  .card{
-    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);
-    padding:20px 20px 18px;
-    display:flex;flex-direction:column;justify-content:space-between;
-    min-height:170px;box-shadow:var(--shadow-card);
+  .collega-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:var(--shadow-card);
+    overflow:hidden;
     transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    position:relative;overflow:hidden;
   }
-  .card::before{
-    content:"";position:absolute;left:0;top:0;width:3px;height:100%;
-    background:var(--bordeaux);opacity:0;transition:opacity .18s;
+  .collega-card:hover{
+    box-shadow:var(--shadow-card-h);
+    border-color:var(--bordeaux-line);
   }
-  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-card-h);border-color:var(--bordeaux-mid)}
-  .card:hover::before{opacity:1}
-  .card-tag{display:inline-block;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:8px}
-  .card-title{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:20px;line-height:1.18;color:var(--ink);margin:0 0 8px;letter-spacing:-.005em}
-  .card-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:0 0 16px}
-  .card-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px dashed var(--line);font-size:12px}
-  .card-author{color:var(--ink-soft);display:flex;align-items:center;gap:6px}
-  .card-author-name{font-weight:600;color:var(--ink)}
-  .card-arrow{color:var(--bordeaux);display:flex;align-items:center;gap:4px;font-weight:600;font-size:12px;letter-spacing:.4px}
-  .card-arrow svg{transition:transform .18s}
-  .card:hover .card-arrow svg{transform:translateX(3px)}
-  .empty{text-align:center;padding:60px 20px;color:var(--ink-soft);font-size:15px}
+  .collega-head{
+    padding:22px 24px 18px;
+    background:linear-gradient(180deg, var(--paper-2) 0%, #FBF6F2 100%);
+    border-bottom:2px solid var(--gold);
+  }
+  .collega-name{
+    margin:0;font-weight:700;font-size:28px;letter-spacing:-.02em;
+    color:var(--bordeaux);
+    line-height:1.1;
+  }
+  .collega-meta{
+    margin-top:8px;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--gold-deep);font-weight:700;
+  }
+  .collega-apps{display:flex;flex-direction:column}
+  .app-row{
+    display:flex;align-items:center;gap:14px;
+    padding:16px 24px;
+    border-top:1px dashed var(--line);
+    transition:background .15s, padding-left .15s;
+    cursor:pointer;
+  }
+  .collega-apps .app-row:first-child{border-top:none}
+  .app-row:hover{background:var(--bordeaux-soft);padding-left:28px}
+  .app-row-main{flex:1;min-width:0}
+  .app-row-title{
+    font-weight:600;font-size:17px;color:var(--ink);line-height:1.25;
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  }
+  .app-row-desc{
+    font-size:13px;color:var(--ink-soft);line-height:1.45;
+    margin-top:4px;
+  }
+  .app-row-arrow{
+    color:var(--bordeaux);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    width:28px;height:28px;border-radius:50%;
+    transition:background .15s, transform .15s;
+  }
+  .app-row:hover .app-row-arrow{background:var(--bordeaux);color:#fff;transform:translateX(2px)}
+
+  .empty{
+    text-align:center;padding:80px 20px;color:var(--ink-soft);font-size:16px;
+    grid-column:1/-1;
+  }
   .empty strong{color:var(--ink);font-weight:600}
 
-  /* FOOTER */
-  footer{background:var(--bordeaux-deep);color:rgba(255,255,255,.86);margin-top:60px;padding:48px 32px 28px;border-top:3px solid var(--gold)}
+  /* ── DPIA BADGE ────────────────────────────────────────────── */
+  .dpia-badge{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:22px;height:22px;border-radius:11px;
+    font-size:11px;font-weight:700;letter-spacing:.3px;
+    border:1.5px solid;cursor:help;line-height:1;
+    transition:transform .15s;
+    flex-shrink:0;
+  }
+  .dpia-badge:hover{transform:scale(1.12)}
+  .dpia-badge[data-cluster="A"]{background:var(--c-A-bg);color:var(--c-A-fg);border-color:var(--c-A-bd)}
+  .dpia-badge[data-cluster="B"]{background:var(--c-B-bg);color:var(--c-B-fg);border-color:var(--c-B-bd)}
+  .dpia-badge[data-cluster="C"]{background:var(--c-C-bg);color:var(--c-C-fg);border-color:var(--c-C-bd)}
+  .dpia-badge[data-cluster="D"]{background:var(--c-D-bg);color:var(--c-D-fg);border-color:var(--c-D-bd)}
+  .dpia-badge[data-cluster="E"]{background:var(--c-E-bg);color:var(--c-E-fg);border-color:var(--c-E-bd)}
+  .dpia-badge[data-cluster="F"]{background:var(--c-F-bg);color:var(--c-F-fg);border-color:var(--c-F-bd)}
+
+  /* ── FOOTER ────────────────────────────────────────────────── */
+  footer{background:var(--bordeaux-deep);color:rgba(255,255,255,.86);margin-top:0;padding:48px 32px 28px;border-top:3px solid var(--gold)}
   .foot-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
-  .foot-brand{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:500;color:var(--gold-light);margin-bottom:8px}
-  .foot-text{font-size:13px;line-height:1.6;max-width:420px}
-  .foot-col h4{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 12px}
-  .foot-col a{display:block;font-size:13px;padding:3px 0;opacity:.85}
+  .foot-brand{font-size:24px;font-weight:500;color:var(--gold-light);margin-bottom:8px;line-height:1.6;max-width:420px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 12px;font-size:13.5px;padding:3px 0;opacity:.85}
   .foot-col a:hover{opacity:1;color:var(--gold-light)}
   .foot-bottom{max-width:1320px;margin:32px auto 0;border-top:1px solid rgba(201,163,107,.18);padding-top:18px;font-size:12px;opacity:.6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
   @media (max-width:920px){
-    .intro,.filters-wrap,.docenti-wrap,.area-wrap{padding-left:22px;padding-right:22px}
-    .topbar{padding:12px 22px}
-    .topbar-right{display:none}
+    .filters-wrap,.colleghi-wrap,.dpia-info{padding-left:22px;padding-right:22px}
     .search{margin-left:0;width:100%}
     .search input{width:100%}
     .foot-inner{grid-template-columns:1fr;gap:24px}
     footer{padding:36px 22px 24px}
     .hero-meta{padding:0 22px}
-    .stat-num{font-size:28px}
+    .stat-num{font-size:30px}
   }
 </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-logo">
-      <img src="logo_quadrato_rosso.jpg" alt="Sacra Famiglia" onerror="this.style.display='none'">
-    </div>
-    <div>
-      <div class="topbar-title">Sacra Famiglia · Orzinuovi e Martinengo</div>
-      <div class="topbar-sub">Portale dei docenti</div>
-    </div>
-  </div>
-  <div class="topbar-right">
-    <a href="https://acerio.vercel.app/" target="_blank" rel="noopener">Animatore Digitale</a>
-    <a href="#docenti">I Docenti</a>
-    <a href="#aree">Le Aree</a>
-  </div>
-</header>
-
-<!-- BANNER SVG -->
-<div class="banner" role="img" aria-label="Scuola Sacra Famiglia — Le web app dei docenti">
-  <svg viewBox="0 0 1600 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+<!-- ════════════════════════════════════════════════════════════
+     BANNER UNIFICATO (logo HTML + decorazioni SVG)
+═════════════════════════════════════════════════════════════ -->
+<div class="banner" role="banner">
+  <svg class="banner-bg" viewBox="0 0 1600 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
       <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#3D080D"/>
-        <stop offset="0.45" stop-color="#5A0F14"/>
-        <stop offset="1" stop-color="#2E0509"/>
+        <stop offset="0.6" stop-color="#5A0F14"/>
+        <stop offset="1" stop-color="#1F0306"/>
       </linearGradient>
-      <radialGradient id="warmGlow" cx="0.7" cy="0.25" r="0.6">
-        <stop offset="0" stop-color="#9B3A40" stop-opacity="0.45"/>
-        <stop offset="0.5" stop-color="#7A1F25" stop-opacity="0.18"/>
+      <radialGradient id="rightGlow" cx="0.85" cy="0.5" r="0.45">
+        <stop offset="0" stop-color="#C9A36B" stop-opacity="0.22"/>
         <stop offset="1" stop-color="#5A0F14" stop-opacity="0"/>
       </radialGradient>
-      <radialGradient id="leftDarken" cx="0.05" cy="0.5" r="0.55">
-        <stop offset="0" stop-color="#000" stop-opacity="0.35"/>
-        <stop offset="1" stop-color="#000" stop-opacity="0"/>
+      <radialGradient id="globeFace" cx="0.35" cy="0.3" r="0.85">
+        <stop offset="0" stop-color="#A03842" stop-opacity="1"/>
+        <stop offset="0.55" stop-color="#5A0F14" stop-opacity="1"/>
+        <stop offset="1" stop-color="#1F0306" stop-opacity="1"/>
       </radialGradient>
-      <linearGradient id="goldFig" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#E8D4A8"/>
-        <stop offset="1" stop-color="#A8814A"/>
-      </linearGradient>
-      <linearGradient id="goldFig2" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#D9B47E"/>
-        <stop offset="1" stop-color="#8E6938"/>
-      </linearGradient>
+      <radialGradient id="globeHalo" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#E8D4A8" stop-opacity="0"/>
+        <stop offset="0.7" stop-color="#C9A36B" stop-opacity="0.18"/>
+        <stop offset="1" stop-color="#C9A36B" stop-opacity="0"/>
+      </radialGradient>
+      <clipPath id="globeClip">
+        <circle cx="1380" cy="140" r="85"/>
+      </clipPath>
+      <filter id="dotGlow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="2" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
     </defs>
 
-    <rect width="1600" height="460" fill="url(#bgGrad)"/>
-    <rect width="1600" height="460" fill="url(#warmGlow)"/>
-    <rect width="1600" height="460" fill="url(#leftDarken)"/>
+    <!-- Sfondo -->
+    <rect width="1600" height="280" fill="url(#bgGrad)"/>
+    <rect width="1600" height="280" fill="url(#rightGlow)"/>
 
-    <!-- Reticolo -->
-    <g stroke="#C9A36B" stroke-width="0.5" fill="none" opacity="0.45">
-      <line x1="780" y1="40" x2="900" y2="110"/>
-      <line x1="900" y1="110" x2="1040" y2="60"/>
-      <line x1="1040" y1="60" x2="1180" y2="130"/>
-      <line x1="1180" y1="130" x2="1340" y2="80"/>
-      <line x1="1340" y1="80" x2="1480" y2="160"/>
-      <line x1="900" y1="110" x2="980" y2="220"/>
-      <line x1="1040" y1="60" x2="1120" y2="200"/>
-      <line x1="1180" y1="130" x2="1260" y2="270"/>
-      <line x1="1340" y1="80" x2="1420" y2="240"/>
-      <line x1="980" y1="220" x2="1120" y2="200"/>
-      <line x1="1120" y1="200" x2="1260" y2="270"/>
-      <line x1="1260" y1="270" x2="1420" y2="240"/>
-      <line x1="1420" y1="240" x2="1540" y2="320"/>
-      <line x1="980" y1="220" x2="850" y2="290"/>
-      <line x1="850" y1="290" x2="720" y2="220"/>
-      <line x1="720" y1="220" x2="600" y2="310"/>
-      <line x1="600" y1="310" x2="480" y2="240"/>
-      <line x1="850" y1="290" x2="900" y2="380"/>
-      <line x1="900" y1="380" x2="1080" y2="370"/>
-      <line x1="1080" y1="370" x2="1260" y2="270"/>
-      <line x1="1080" y1="370" x2="1240" y2="400"/>
-      <line x1="1240" y1="400" x2="1420" y2="240"/>
-      <line x1="600" y1="310" x2="720" y2="380"/>
-      <line x1="720" y1="380" x2="900" y2="380"/>
-      <line x1="480" y1="240" x2="350" y2="310"/>
-      <line x1="350" y1="310" x2="220" y2="240"/>
-      <line x1="220" y1="240" x2="100" y2="320"/>
-      <line x1="350" y1="310" x2="400" y2="400"/>
-      <line x1="100" y1="320" x2="180" y2="420"/>
-      <line x1="1480" y1="160" x2="1540" y2="320"/>
+    <!-- MESH DIGITALE di sfondo -->
+    <g stroke="#C9A36B" stroke-width="0.5" fill="none" opacity="0.42">
+      <line x1="80" y1="60" x2="200" y2="110"/>
+      <line x1="200" y1="110" x2="320" y2="70"/>
+      <line x1="320" y1="70" x2="440" y2="130"/>
+      <line x1="440" y1="130" x2="560" y2="80"/>
+      <line x1="560" y1="80" x2="680" y2="150"/>
+      <line x1="80" y1="60" x2="140" y2="180"/>
+      <line x1="200" y1="110" x2="140" y2="180"/>
+      <line x1="200" y1="110" x2="280" y2="220"/>
+      <line x1="320" y1="70" x2="280" y2="220"/>
+      <line x1="320" y1="70" x2="420" y2="200"/>
+      <line x1="440" y1="130" x2="420" y2="200"/>
+      <line x1="440" y1="130" x2="560" y2="240"/>
+      <line x1="560" y1="80" x2="560" y2="240"/>
+      <line x1="560" y1="80" x2="700" y2="230"/>
+      <line x1="680" y1="150" x2="700" y2="230"/>
+      <line x1="140" y1="180" x2="60" y2="240"/>
+      <line x1="140" y1="180" x2="200" y2="260"/>
+      <line x1="280" y1="220" x2="200" y2="260"/>
+      <line x1="280" y1="220" x2="340" y2="250"/>
+      <line x1="420" y1="200" x2="340" y2="250"/>
+      <line x1="420" y1="200" x2="480" y2="270"/>
+      <line x1="560" y1="240" x2="480" y2="270"/>
+      <line x1="700" y1="230" x2="480" y2="270"/>
+      <line x1="680" y1="150" x2="820" y2="90"/>
+      <line x1="820" y1="90" x2="940" y2="60"/>
+      <line x1="820" y1="90" x2="820" y2="200"/>
+      <line x1="940" y1="60" x2="1100" y2="130"/>
+      <line x1="820" y1="200" x2="1100" y2="130"/>
+      <line x1="980" y1="180" x2="1100" y2="130"/>
+      <line x1="1100" y1="130" x2="840" y2="250"/>
+      <line x1="700" y1="230" x2="820" y2="200"/>
+      <line x1="820" y1="200" x2="980" y2="260"/>
+      <line x1="980" y1="180" x2="1120" y2="230"/>
+      <line x1="840" y1="250" x2="1120" y2="230"/>
+      <line x1="980" y1="260" x2="1120" y2="230"/>
+      <line x1="60" y1="240" x2="200" y2="260"/>
+      <line x1="200" y1="260" x2="340" y2="250"/>
+      <line x1="340" y1="250" x2="480" y2="270"/>
     </g>
-    <g fill="#E8D4A8">
-      <circle cx="780" cy="40" r="2.2"/>
-      <circle cx="900" cy="110" r="2.5"/>
-      <circle cx="1040" cy="60" r="2.2"/>
-      <circle cx="1180" cy="130" r="2.5"/>
-      <circle cx="1340" cy="80" r="2.5"/>
-      <circle cx="1480" cy="160" r="3"/>
-      <circle cx="980" cy="220" r="2.5"/>
-      <circle cx="1120" cy="200" r="2.2"/>
-      <circle cx="1260" cy="270" r="2.8"/>
-      <circle cx="1420" cy="240" r="3"/>
-      <circle cx="1540" cy="320" r="2.5"/>
-      <circle cx="850" cy="290" r="2.2"/>
-      <circle cx="720" cy="220" r="2.5"/>
-      <circle cx="600" cy="310" r="2.5"/>
-      <circle cx="480" cy="240" r="2.2"/>
-      <circle cx="350" cy="310" r="2.5"/>
-      <circle cx="220" cy="240" r="2.2"/>
-      <circle cx="100" cy="320" r="2.5"/>
-      <circle cx="900" cy="380" r="2.5"/>
-      <circle cx="1080" cy="370" r="2.8"/>
-      <circle cx="1240" cy="400" r="2.5"/>
-      <circle cx="720" cy="380" r="2.2"/>
-      <circle cx="400" cy="400" r="2.2"/>
-      <circle cx="180" cy="420" r="2.2"/>
+    <g stroke="#C9A36B" stroke-width="0.5" fill="none" opacity="0.55">
+      <line x1="60" y1="40" x2="200" y2="110" stroke-dasharray="4 4"/>
+      <line x1="700" y1="40" x2="560" y2="80" stroke-dasharray="3 3"/>
+      <line x1="60" y1="240" x2="60" y2="100" stroke-dasharray="2 4"/>
     </g>
-
-    <!-- Albero della conoscenza -->
-    <g transform="translate(1430, 145)">
-      <ellipse cx="0" cy="0" rx="78" ry="68" fill="url(#goldFig)" opacity="0.92"/>
-      <ellipse cx="-30" cy="-15" rx="40" ry="32" fill="#E8D4A8" opacity="0.5"/>
-      <path d="M-5,55 Q-3,75 -4,95 L4,95 Q3,75 5,55 Z" fill="#A8814A"/>
-      <g transform="translate(-15,-45)" fill="#FBF8F4">
-        <polygon points="0,0 22,-7 0,-14 -22,-7"/>
-        <rect x="-5" y="0" width="10" height="6" rx="1"/>
-        <line x1="20" y1="-6" x2="28" y2="2" stroke="#FBF8F4" stroke-width="1.5"/>
-        <circle cx="28" cy="3" r="2"/>
-      </g>
-      <g transform="translate(-50,15)" fill="#FBF8F4">
-        <path d="M0,0 L18,-3 L18,12 L0,15 Z" opacity="0.95"/>
-        <path d="M0,0 L-18,-3 L-18,12 L0,15 Z" opacity="0.95"/>
-        <line x1="0" y1="0" x2="0" y2="15" stroke="#A8814A" stroke-width="0.6"/>
-      </g>
-      <g transform="translate(40,-5)" fill="#FBF8F4">
-        <circle cx="0" cy="0" r="7"/>
-        <path d="M0,-7 Q2,-11 5,-10" stroke="#A8814A" stroke-width="1" fill="none"/>
-      </g>
-      <g transform="translate(45,30)" fill="#FBF8F4">
-        <rect x="-3" y="0" width="6" height="20" rx="1"/>
-        <ellipse cx="0" cy="0" rx="4" ry="2"/>
-        <ellipse cx="0" cy="20" rx="4" ry="2"/>
-      </g>
-      <g fill="#E8D4A8">
-        <ellipse cx="-60" cy="-25" rx="6" ry="3" transform="rotate(-30 -60 -25)"/>
-        <ellipse cx="55" cy="-30" rx="5" ry="2.5" transform="rotate(20 55 -30)"/>
-        <ellipse cx="-25" cy="50" rx="5" ry="2.5" transform="rotate(40 -25 50)"/>
-      </g>
+    <g fill="#E8D4A8" opacity="0.7">
+      <circle cx="80" cy="60" r="2"/>
+      <circle cx="200" cy="110" r="2"/>
+      <circle cx="320" cy="70" r="2"/>
+      <circle cx="440" cy="130" r="2"/>
+      <circle cx="560" cy="80" r="2"/>
+      <circle cx="680" cy="150" r="2"/>
+      <circle cx="140" cy="180" r="2"/>
+      <circle cx="280" cy="220" r="2"/>
+      <circle cx="420" cy="200" r="2"/>
+      <circle cx="560" cy="240" r="2"/>
+      <circle cx="700" cy="230" r="2"/>
+      <circle cx="60" cy="240" r="2"/>
+      <circle cx="200" cy="260" r="2"/>
+      <circle cx="340" cy="250" r="2"/>
+      <circle cx="480" cy="270" r="2"/>
+      <circle cx="820" cy="90" r="2"/>
+      <circle cx="940" cy="60" r="2"/>
+      <circle cx="820" cy="200" r="2"/>
+      <circle cx="980" cy="180" r="2"/>
+      <circle cx="1100" cy="130" r="2"/>
+      <circle cx="840" cy="250" r="2"/>
+      <circle cx="980" cy="260" r="2"/>
+      <circle cx="1120" cy="230" r="2"/>
+    </g>
+    <!-- nodi pulsanti -->
+    <g fill="#FFE8B8" filter="url(#dotGlow)" class="pulse-slow">
+      <circle cx="440" cy="130" r="3.5"/>
+      <circle cx="940" cy="60" r="3.5"/>
+      <circle cx="200" cy="220" r="3.5"/>
+      <circle cx="1100" cy="130" r="3.5"/>
+    </g>
+    <g fill="#FFE8B8" filter="url(#dotGlow)" class="pulse-mid">
+      <circle cx="680" cy="150" r="3"/>
+      <circle cx="820" cy="200" r="3"/>
     </g>
 
-    <!-- Albero piccolo -->
-    <g transform="translate(1310, 285)">
-      <ellipse cx="0" cy="0" rx="38" ry="42" fill="url(#goldFig2)" opacity="0.85"/>
-      <ellipse cx="-12" cy="-10" rx="18" ry="15" fill="#E8D4A8" opacity="0.45"/>
-      <path d="M-3,38 Q-2,55 -3,72 L3,72 Q2,55 3,38 Z" fill="#8E6938"/>
+    <!-- ═══════ GLOBO ═══════ -->
+    <!-- alone esterno -->
+    <circle cx="1380" cy="140" r="120" fill="url(#globeHalo)"/>
+
+    <!-- linee di connessione che escono dal globo -->
+    <g stroke="#C9A36B" stroke-width="0.5" fill="none" opacity="0.35">
+      <line x1="1295" y1="100" x2="1100" y2="60"/>
+      <line x1="1300" y1="180" x2="1120" y2="220"/>
+      <line x1="1380" y1="55" x2="1380" y2="20"/>
+      <line x1="1465" y1="140" x2="1560" y2="140"/>
+      <line x1="1450" y1="200" x2="1540" y2="240"/>
     </g>
 
-    <!-- Adulto su libri con laptop -->
-    <g transform="translate(1230, 380)" fill="url(#goldFig)">
-      <rect x="-32" y="20" width="64" height="8" rx="1.5" fill="#A8814A"/>
-      <rect x="-36" y="28" width="72" height="9" rx="1.5" fill="#8E6938"/>
-      <rect x="-30" y="37" width="60" height="7" rx="1.5" fill="#A8814A"/>
-      <circle cx="0" cy="-58" r="11"/>
-      <path d="M-9,-46 Q-12,-30 -16,-10 L-22,15 L-6,18 L-3,-8 L3,-8 L6,18 L22,15 L16,-10 Q12,-30 9,-46 Z"/>
-      <path d="M-16,18 L-22,5 L-6,2 L-3,18 Z" opacity="0.85"/>
-      <path d="M22,15 L26,0 L10,-5 L6,18 Z" opacity="0.85"/>
-      <g fill="#E8D4A8">
-        <path d="M-20,-6 L-12,-22 L18,-22 L26,-6 Z"/>
-        <rect x="-22" y="-6" width="50" height="3" rx="1" fill="#FBF8F4"/>
+    <!-- sfera (faccia con gradient 3D) -->
+    <circle cx="1380" cy="140" r="85" fill="url(#globeFace)"/>
+
+    <!-- contenuto rotante: dots che scorrono dietro al clip -->
+    <g clip-path="url(#globeClip)">
+      <g class="globe-spin">
+        <!-- copia 1 -->
+        <g fill="#C9A36B" transform="translate(1380 140)">
+          <circle cx="-87" cy="-95" r="1.4"/>
+          <circle cx="-71" cy="-95" r="1.4"/>
+          <circle cx="-55" cy="-95" r="1.4"/>
+          <circle cx="-39" cy="-95" r="1.4"/>
+          <circle cx="-23" cy="-95" r="1.4"/>
+          <circle cx="-7" cy="-95" r="1.4"/>
+          <circle cx="9" cy="-95" r="1.4"/>
+          <circle cx="25" cy="-95" r="1.4"/>
+          <circle cx="41" cy="-95" r="1.4"/>
+          <circle cx="57" cy="-95" r="1.4"/>
+          <circle cx="73" cy="-95" r="1.4"/>
+          <circle cx="89" cy="-95" r="1.4"/>
+          <circle cx="-95" cy="-79" r="1.4"/>
+          <circle cx="-79" cy="-79" r="1.4"/>
+          <circle cx="-63" cy="-79" r="1.4"/>
+          <circle cx="-47" cy="-79" r="1.4"/>
+          <circle cx="-31" cy="-79" r="1.4"/>
+          <circle cx="-15" cy="-79" r="1.4"/>
+          <circle cx="1" cy="-79" r="1.4"/>
+          <circle cx="17" cy="-79" r="1.4"/>
+          <circle cx="33" cy="-79" r="1.4"/>
+          <circle cx="49" cy="-79" r="1.4"/>
+          <circle cx="65" cy="-79" r="1.4"/>
+          <circle cx="81" cy="-79" r="1.4"/>
+          <circle cx="-87" cy="-63" r="1.4"/>
+          <circle cx="-71" cy="-63" r="1.4"/>
+          <circle cx="-55" cy="-63" r="1.4"/>
+          <circle cx="-39" cy="-63" r="1.4"/>
+          <circle cx="-23" cy="-63" r="1.4"/>
+          <circle cx="-7" cy="-63" r="1.4"/>
+          <circle cx="9" cy="-63" r="1.4"/>
+          <circle cx="25" cy="-63" r="1.4"/>
+          <circle cx="41" cy="-63" r="1.4"/>
+          <circle cx="57" cy="-63" r="1.4"/>
+          <circle cx="73" cy="-63" r="1.4"/>
+          <circle cx="89" cy="-63" r="1.4"/>
+          <circle cx="-95" cy="-47" r="1.4"/>
+          <circle cx="-79" cy="-47" r="1.4"/>
+          <circle cx="-63" cy="-47" r="1.4"/>
+          <circle cx="-47" cy="-47" r="1.4"/>
+          <circle cx="-31" cy="-47" r="1.4"/>
+          <circle cx="-15" cy="-47" r="1.4"/>
+          <circle cx="1" cy="-47" r="1.4"/>
+          <circle cx="17" cy="-47" r="1.4"/>
+          <circle cx="33" cy="-47" r="1.4"/>
+          <circle cx="49" cy="-47" r="1.4"/>
+          <circle cx="65" cy="-47" r="1.4"/>
+          <circle cx="81" cy="-47" r="1.4"/>
+          <circle cx="-87" cy="-31" r="1.4"/>
+          <circle cx="-71" cy="-31" r="1.4"/>
+          <circle cx="-55" cy="-31" r="1.4"/>
+          <circle cx="-39" cy="-31" r="1.4"/>
+          <circle cx="-23" cy="-31" r="1.4"/>
+          <circle cx="-7" cy="-31" r="1.4"/>
+          <circle cx="9" cy="-31" r="1.4"/>
+          <circle cx="25" cy="-31" r="1.4"/>
+          <circle cx="41" cy="-31" r="1.4"/>
+          <circle cx="57" cy="-31" r="1.4"/>
+          <circle cx="73" cy="-31" r="1.4"/>
+          <circle cx="89" cy="-31" r="1.4"/>
+          <circle cx="-95" cy="-15" r="1.4"/>
+          <circle cx="-79" cy="-15" r="1.4"/>
+          <circle cx="-63" cy="-15" r="1.4"/>
+          <circle cx="-47" cy="-15" r="1.4"/>
+          <circle cx="-31" cy="-15" r="1.4"/>
+          <circle cx="-15" cy="-15" r="1.4"/>
+          <circle cx="1" cy="-15" r="1.4"/>
+          <circle cx="17" cy="-15" r="1.4"/>
+          <circle cx="33" cy="-15" r="1.4"/>
+          <circle cx="49" cy="-15" r="1.4"/>
+          <circle cx="65" cy="-15" r="1.4"/>
+          <circle cx="81" cy="-15" r="1.4"/>
+          <circle cx="-87" cy="1" r="1.4"/>
+          <circle cx="-71" cy="1" r="1.4"/>
+          <circle cx="-55" cy="1" r="1.4"/>
+          <circle cx="-39" cy="1" r="1.4"/>
+          <circle cx="-23" cy="1" r="1.4"/>
+          <circle cx="-7" cy="1" r="1.4"/>
+          <circle cx="9" cy="1" r="1.4"/>
+          <circle cx="25" cy="1" r="1.4"/>
+          <circle cx="41" cy="1" r="1.4"/>
+          <circle cx="57" cy="1" r="1.4"/>
+          <circle cx="73" cy="1" r="1.4"/>
+          <circle cx="89" cy="1" r="1.4"/>
+          <circle cx="-95" cy="17" r="1.4"/>
+          <circle cx="-79" cy="17" r="1.4"/>
+          <circle cx="-63" cy="17" r="1.4"/>
+          <circle cx="-47" cy="17" r="1.4"/>
+          <circle cx="-31" cy="17" r="1.4"/>
+          <circle cx="-15" cy="17" r="1.4"/>
+          <circle cx="1" cy="17" r="1.4"/>
+          <circle cx="17" cy="17" r="1.4"/>
+          <circle cx="33" cy="17" r="1.4"/>
+          <circle cx="49" cy="17" r="1.4"/>
+          <circle cx="65" cy="17" r="1.4"/>
+          <circle cx="81" cy="17" r="1.4"/>
+          <circle cx="-87" cy="33" r="1.4"/>
+          <circle cx="-71" cy="33" r="1.4"/>
+          <circle cx="-55" cy="33" r="1.4"/>
+          <circle cx="-39" cy="33" r="1.4"/>
+          <circle cx="-23" cy="33" r="1.4"/>
+          <circle cx="-7" cy="33" r="1.4"/>
+          <circle cx="9" cy="33" r="1.4"/>
+          <circle cx="25" cy="33" r="1.4"/>
+          <circle cx="41" cy="33" r="1.4"/>
+          <circle cx="57" cy="33" r="1.4"/>
+          <circle cx="73" cy="33" r="1.4"/>
+          <circle cx="89" cy="33" r="1.4"/>
+          <circle cx="-95" cy="49" r="1.4"/>
+          <circle cx="-79" cy="49" r="1.4"/>
+          <circle cx="-63" cy="49" r="1.4"/>
+          <circle cx="-47" cy="49" r="1.4"/>
+          <circle cx="-31" cy="49" r="1.4"/>
+          <circle cx="-15" cy="49" r="1.4"/>
+          <circle cx="1" cy="49" r="1.4"/>
+          <circle cx="17" cy="49" r="1.4"/>
+          <circle cx="33" cy="49" r="1.4"/>
+          <circle cx="49" cy="49" r="1.4"/>
+          <circle cx="65" cy="49" r="1.4"/>
+          <circle cx="81" cy="49" r="1.4"/>
+          <circle cx="-87" cy="65" r="1.4"/>
+          <circle cx="-71" cy="65" r="1.4"/>
+          <circle cx="-55" cy="65" r="1.4"/>
+          <circle cx="-39" cy="65" r="1.4"/>
+          <circle cx="-23" cy="65" r="1.4"/>
+          <circle cx="-7" cy="65" r="1.4"/>
+          <circle cx="9" cy="65" r="1.4"/>
+          <circle cx="25" cy="65" r="1.4"/>
+          <circle cx="41" cy="65" r="1.4"/>
+          <circle cx="57" cy="65" r="1.4"/>
+          <circle cx="73" cy="65" r="1.4"/>
+          <circle cx="89" cy="65" r="1.4"/>
+          <circle cx="-95" cy="81" r="1.4"/>
+          <circle cx="-79" cy="81" r="1.4"/>
+          <circle cx="-63" cy="81" r="1.4"/>
+          <circle cx="-47" cy="81" r="1.4"/>
+          <circle cx="-31" cy="81" r="1.4"/>
+          <circle cx="-15" cy="81" r="1.4"/>
+          <circle cx="1" cy="81" r="1.4"/>
+          <circle cx="17" cy="81" r="1.4"/>
+          <circle cx="33" cy="81" r="1.4"/>
+          <circle cx="49" cy="81" r="1.4"/>
+          <circle cx="65" cy="81" r="1.4"/>
+          <circle cx="81" cy="81" r="1.4"/>
+        </g>
+        <!-- copia 2 (spostata di +200 per loop seamless) -->
+        <g fill="#C9A36B" transform="translate(1580 140)">
+          <circle cx="-87" cy="-95" r="1.4"/>
+          <circle cx="-71" cy="-95" r="1.4"/>
+          <circle cx="-55" cy="-95" r="1.4"/>
+          <circle cx="-39" cy="-95" r="1.4"/>
+          <circle cx="-23" cy="-95" r="1.4"/>
+          <circle cx="-7" cy="-95" r="1.4"/>
+          <circle cx="9" cy="-95" r="1.4"/>
+          <circle cx="25" cy="-95" r="1.4"/>
+          <circle cx="41" cy="-95" r="1.4"/>
+          <circle cx="57" cy="-95" r="1.4"/>
+          <circle cx="73" cy="-95" r="1.4"/>
+          <circle cx="89" cy="-95" r="1.4"/>
+          <circle cx="-95" cy="-79" r="1.4"/>
+          <circle cx="-79" cy="-79" r="1.4"/>
+          <circle cx="-63" cy="-79" r="1.4"/>
+          <circle cx="-47" cy="-79" r="1.4"/>
+          <circle cx="-31" cy="-79" r="1.4"/>
+          <circle cx="-15" cy="-79" r="1.4"/>
+          <circle cx="1" cy="-79" r="1.4"/>
+          <circle cx="17" cy="-79" r="1.4"/>
+          <circle cx="33" cy="-79" r="1.4"/>
+          <circle cx="49" cy="-79" r="1.4"/>
+          <circle cx="65" cy="-79" r="1.4"/>
+          <circle cx="81" cy="-79" r="1.4"/>
+          <circle cx="-87" cy="-63" r="1.4"/>
+          <circle cx="-71" cy="-63" r="1.4"/>
+          <circle cx="-55" cy="-63" r="1.4"/>
+          <circle cx="-39" cy="-63" r="1.4"/>
+          <circle cx="-23" cy="-63" r="1.4"/>
+          <circle cx="-7" cy="-63" r="1.4"/>
+          <circle cx="9" cy="-63" r="1.4"/>
+          <circle cx="25" cy="-63" r="1.4"/>
+          <circle cx="41" cy="-63" r="1.4"/>
+          <circle cx="57" cy="-63" r="1.4"/>
+          <circle cx="73" cy="-63" r="1.4"/>
+          <circle cx="89" cy="-63" r="1.4"/>
+          <circle cx="-95" cy="-47" r="1.4"/>
+          <circle cx="-79" cy="-47" r="1.4"/>
+          <circle cx="-63" cy="-47" r="1.4"/>
+          <circle cx="-47" cy="-47" r="1.4"/>
+          <circle cx="-31" cy="-47" r="1.4"/>
+          <circle cx="-15" cy="-47" r="1.4"/>
+          <circle cx="1" cy="-47" r="1.4"/>
+          <circle cx="17" cy="-47" r="1.4"/>
+          <circle cx="33" cy="-47" r="1.4"/>
+          <circle cx="49" cy="-47" r="1.4"/>
+          <circle cx="65" cy="-47" r="1.4"/>
+          <circle cx="81" cy="-47" r="1.4"/>
+          <circle cx="-87" cy="-31" r="1.4"/>
+          <circle cx="-71" cy="-31" r="1.4"/>
+          <circle cx="-55" cy="-31" r="1.4"/>
+          <circle cx="-39" cy="-31" r="1.4"/>
+          <circle cx="-23" cy="-31" r="1.4"/>
+          <circle cx="-7" cy="-31" r="1.4"/>
+          <circle cx="9" cy="-31" r="1.4"/>
+          <circle cx="25" cy="-31" r="1.4"/>
+          <circle cx="41" cy="-31" r="1.4"/>
+          <circle cx="57" cy="-31" r="1.4"/>
+          <circle cx="73" cy="-31" r="1.4"/>
+          <circle cx="89" cy="-31" r="1.4"/>
+          <circle cx="-95" cy="-15" r="1.4"/>
+          <circle cx="-79" cy="-15" r="1.4"/>
+          <circle cx="-63" cy="-15" r="1.4"/>
+          <circle cx="-47" cy="-15" r="1.4"/>
+          <circle cx="-31" cy="-15" r="1.4"/>
+          <circle cx="-15" cy="-15" r="1.4"/>
+          <circle cx="1" cy="-15" r="1.4"/>
+          <circle cx="17" cy="-15" r="1.4"/>
+          <circle cx="33" cy="-15" r="1.4"/>
+          <circle cx="49" cy="-15" r="1.4"/>
+          <circle cx="65" cy="-15" r="1.4"/>
+          <circle cx="81" cy="-15" r="1.4"/>
+          <circle cx="-87" cy="1" r="1.4"/>
+          <circle cx="-71" cy="1" r="1.4"/>
+          <circle cx="-55" cy="1" r="1.4"/>
+          <circle cx="-39" cy="1" r="1.4"/>
+          <circle cx="-23" cy="1" r="1.4"/>
+          <circle cx="-7" cy="1" r="1.4"/>
+          <circle cx="9" cy="1" r="1.4"/>
+          <circle cx="25" cy="1" r="1.4"/>
+          <circle cx="41" cy="1" r="1.4"/>
+          <circle cx="57" cy="1" r="1.4"/>
+          <circle cx="73" cy="1" r="1.4"/>
+          <circle cx="89" cy="1" r="1.4"/>
+          <circle cx="-95" cy="17" r="1.4"/>
+          <circle cx="-79" cy="17" r="1.4"/>
+          <circle cx="-63" cy="17" r="1.4"/>
+          <circle cx="-47" cy="17" r="1.4"/>
+          <circle cx="-31" cy="17" r="1.4"/>
+          <circle cx="-15" cy="17" r="1.4"/>
+          <circle cx="1" cy="17" r="1.4"/>
+          <circle cx="17" cy="17" r="1.4"/>
+          <circle cx="33" cy="17" r="1.4"/>
+          <circle cx="49" cy="17" r="1.4"/>
+          <circle cx="65" cy="17" r="1.4"/>
+          <circle cx="81" cy="17" r="1.4"/>
+          <circle cx="-87" cy="33" r="1.4"/>
+          <circle cx="-71" cy="33" r="1.4"/>
+          <circle cx="-55" cy="33" r="1.4"/>
+          <circle cx="-39" cy="33" r="1.4"/>
+          <circle cx="-23" cy="33" r="1.4"/>
+          <circle cx="-7" cy="33" r="1.4"/>
+          <circle cx="9" cy="33" r="1.4"/>
+          <circle cx="25" cy="33" r="1.4"/>
+          <circle cx="41" cy="33" r="1.4"/>
+          <circle cx="57" cy="33" r="1.4"/>
+          <circle cx="73" cy="33" r="1.4"/>
+          <circle cx="89" cy="33" r="1.4"/>
+          <circle cx="-95" cy="49" r="1.4"/>
+          <circle cx="-79" cy="49" r="1.4"/>
+          <circle cx="-63" cy="49" r="1.4"/>
+          <circle cx="-47" cy="49" r="1.4"/>
+          <circle cx="-31" cy="49" r="1.4"/>
+          <circle cx="-15" cy="49" r="1.4"/>
+          <circle cx="1" cy="49" r="1.4"/>
+          <circle cx="17" cy="49" r="1.4"/>
+          <circle cx="33" cy="49" r="1.4"/>
+          <circle cx="49" cy="49" r="1.4"/>
+          <circle cx="65" cy="49" r="1.4"/>
+          <circle cx="81" cy="49" r="1.4"/>
+          <circle cx="-87" cy="65" r="1.4"/>
+          <circle cx="-71" cy="65" r="1.4"/>
+          <circle cx="-55" cy="65" r="1.4"/>
+          <circle cx="-39" cy="65" r="1.4"/>
+          <circle cx="-23" cy="65" r="1.4"/>
+          <circle cx="-7" cy="65" r="1.4"/>
+          <circle cx="9" cy="65" r="1.4"/>
+          <circle cx="25" cy="65" r="1.4"/>
+          <circle cx="41" cy="65" r="1.4"/>
+          <circle cx="57" cy="65" r="1.4"/>
+          <circle cx="73" cy="65" r="1.4"/>
+          <circle cx="89" cy="65" r="1.4"/>
+          <circle cx="-95" cy="81" r="1.4"/>
+          <circle cx="-79" cy="81" r="1.4"/>
+          <circle cx="-63" cy="81" r="1.4"/>
+          <circle cx="-47" cy="81" r="1.4"/>
+          <circle cx="-31" cy="81" r="1.4"/>
+          <circle cx="-15" cy="81" r="1.4"/>
+          <circle cx="1" cy="81" r="1.4"/>
+          <circle cx="17" cy="81" r="1.4"/>
+          <circle cx="33" cy="81" r="1.4"/>
+          <circle cx="49" cy="81" r="1.4"/>
+          <circle cx="65" cy="81" r="1.4"/>
+          <circle cx="81" cy="81" r="1.4"/>
+        </g>
       </g>
     </g>
 
-    <!-- Bambino legge -->
-    <g transform="translate(1095, 380)" fill="url(#goldFig)">
-      <circle cx="0" cy="-48" r="9"/>
-      <path d="M-7,-38 Q-10,-25 -13,-10 L-16,12 L-4,15 L-2,-5 L2,-5 L4,15 L16,12 L13,-10 Q10,-25 7,-38 Z"/>
-      <path d="M-13,12 L-16,25 L-3,28 L-2,12 Z" opacity="0.85"/>
-      <path d="M13,12 L16,25 L3,28 L2,12 Z" opacity="0.85"/>
-      <g fill="#E8D4A8">
-        <path d="M-13,-15 L0,-8 L13,-15 L13,0 L0,7 L-13,0 Z"/>
-        <line x1="0" y1="-8" x2="0" y2="7" stroke="#A8814A" stroke-width="0.6"/>
-      </g>
+    <!-- paralleli fissi (linee curve sopra al pattern) -->
+    <g clip-path="url(#globeClip)" stroke="#E8D4A8" stroke-width="0.5" fill="none" opacity="0.45">
+      <path d="M 1295 90 Q 1380 100 1465 90"/>
+      <path d="M 1295 115 Q 1380 122 1465 115"/>
+      <path d="M 1295 140 L 1465 140" stroke-width="0.7" opacity="0.6"/>
+      <path d="M 1295 165 Q 1380 158 1465 165"/>
+      <path d="M 1295 190 Q 1380 180 1465 190"/>
     </g>
 
-    <!-- Insegnante + bambina -->
-    <g transform="translate(880, 395)" fill="url(#goldFig)">
-      <g>
-        <circle cx="0" cy="-50" r="8"/>
-        <path d="M5,-54 Q12,-50 10,-42" stroke="#A8814A" stroke-width="2.5" fill="none"/>
-        <path d="M-6,-40 Q-9,-25 -10,-10 L-12,15 L-3,18 L-1,-5 L1,-5 L3,18 L12,15 L10,-10 Q9,-25 6,-40 Z"/>
-        <path d="M-3,-30 L-15,-22" stroke="url(#goldFig)" stroke-width="4" stroke-linecap="round"/>
-      </g>
-      <g transform="translate(60,-25)">
-        <circle cx="0" cy="-72" r="11"/>
-        <ellipse cx="-3" cy="-78" rx="9" ry="6"/>
-        <path d="M-9,-60 Q-12,-40 -14,-15 L-18,55 L-6,58 L-3,-5 L3,-5 L6,58 L18,55 L14,-15 Q12,-40 9,-60 Z"/>
-        <path d="M-9,-50 L-30,-40" stroke="url(#goldFig)" stroke-width="6" stroke-linecap="round"/>
-        <rect x="9" y="-30" width="14" height="20" rx="1.5" fill="#E8D4A8"/>
-      </g>
-    </g>
+    <!-- highlight superiore (riflesso luce 3D) -->
+    <ellipse cx="1355" cy="115" rx="32" ry="16" fill="#FFE8B8" opacity="0.12"/>
 
-    <!-- Germoglio -->
-    <g transform="translate(800, 410)" fill="url(#goldFig)">
-      <ellipse cx="0" cy="0" rx="22" ry="6" opacity="0.7"/>
-      <path d="M-2,0 L-2,-22 L2,-22 L2,0 Z"/>
-      <path d="M-2,-16 Q-14,-22 -16,-30 Q-8,-30 -2,-22 Z" fill="#E8D4A8"/>
-      <path d="M2,-16 Q14,-22 16,-30 Q8,-30 2,-22 Z" fill="#E8D4A8"/>
-    </g>
+    <!-- contorno sfera -->
+    <circle cx="1380" cy="140" r="85" fill="none" stroke="#C9A36B" stroke-width="1.2" opacity="0.85"/>
 
-    <!-- Bambino corre -->
-    <g transform="translate(720, 395)" fill="url(#goldFig)">
-      <circle cx="0" cy="-58" r="10"/>
-      <path d="M-10,-46 Q-14,-30 -8,-15 L-14,8 L-4,12 L0,-5 L8,-25 L18,-15 L25,-25 L18,-35 Q14,-50 10,-55 Z"/>
-      <path d="M-14,8 L-18,28 L-8,32 L-3,12 Z"/>
-      <path d="M0,-5 L10,15 L20,12 L13,-10 Z" opacity="0.85"/>
+    <!-- punti orbitanti decorativi -->
+    <g class="orbit-a">
+      <circle cx="1480" cy="140" r="3" fill="#FFE8B8" filter="url(#dotGlow)"/>
     </g>
-
-    <!-- Sparkle -->
-    <g fill="#E8D4A8">
-      <g transform="translate(680, 430)">
-        <path d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z"/>
-      </g>
-      <g transform="translate(1545, 105)" opacity="0.7">
-        <path d="M0,-6 L1.5,-1.5 L6,0 L1.5,1.5 L0,6 L-1.5,1.5 L-6,0 L-1.5,-1.5 Z"/>
-      </g>
-      <g transform="translate(550, 155)" opacity="0.5">
-        <path d="M0,-5 L1,-1 L5,0 L1,1 L0,5 L-1,1 L-5,0 L-1,-1 Z"/>
-      </g>
+    <g class="orbit-b">
+      <circle cx="1380" cy="40" r="2.5" fill="#FFE8B8" filter="url(#dotGlow)"/>
     </g>
-
-    <!-- Testo -->
-    <text x="80" y="195" fill="#FFFFFF" font-family="Fraunces, Georgia, serif" font-size="68" font-weight="600" letter-spacing="-1">Le web app</text>
-    <text x="80" y="265" fill="#E8D4A8" font-family="Fraunces, Georgia, serif" font-size="68" font-weight="500" font-style="italic" letter-spacing="-1">dei nostri docenti</text>
-    <text x="80" y="310" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="20" font-weight="400" opacity="0.85">Scuola Sacra Famiglia · Primaria e Secondaria di I grado</text>
-    <line x1="80" y1="340" x2="180" y2="340" stroke="#C9A36B" stroke-width="2"/>
   </svg>
+
+  <!-- Overlay HTML: logo (immagine vera) + testo (scritto pulito, no AI-OCR errors) -->
+  <div class="banner-overlay">
+    <div class="banner-logo">
+      <img src="logo_quadrato_rosso.jpg" alt="Sacra Famiglia" onerror="this.style.display='none'">
+    </div>
+    <div class="banner-text">
+      <h1>Scuola Sacra Famiglia</h1>
+      <p>Primaria e Secondaria di I grado</p>
+    </div>
+  </div>
+  <a class="banner-nav" href="https://acerio.vercel.app/" target="_blank" rel="noopener">Animatore Digitale →</a>
 </div>
 
 <div class="hero-meta-wrap">
   <div class="hero-meta">
     <div class="stat"><div class="stat-num" id="stat-apps">0</div><div class="stat-lbl">Web app</div></div>
     <div class="stat"><div class="stat-num" id="stat-teachers">0</div><div class="stat-lbl">Docenti</div></div>
-    <div class="stat"><div class="stat-num" id="stat-areas">0</div><div class="stat-lbl">Aree</div></div>
   </div>
 </div>
-
-<section class="intro">
-  <p>Un archivio aperto delle attività digitali progettate dalle <strong>maestre della Primaria</strong> e dai <strong>professori della Secondaria</strong>. Strumenti pensati per la classe, costruiti per durare, condivisi per essere riusati.</p>
-</section>
 
 <div class="filters-wrap">
   <div class="filters">
@@ -434,10 +755,6 @@
       <button class="chip" data-filter="ordine" data-value="primaria">Primaria</button>
       <button class="chip" data-filter="ordine" data-value="secondaria">Secondaria</button>
     </div>
-    <div class="filter-group" id="area-chips">
-      <span class="filter-label">Area</span>
-      <button class="chip active" data-filter="area" data-value="all">Tutte</button>
-    </div>
     <label class="search">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="search-input" type="text" placeholder="Cerca app, docente o tema...">
@@ -445,16 +762,13 @@
   </div>
 </div>
 
-<section class="docenti-wrap" id="docenti">
-  <div class="section-head">
-    <h2>I Docenti</h2>
-    <span class="count" id="docenti-count">0 contributori</span>
-  </div>
-  <div class="docenti-grid" id="docenti-grid"></div>
-</section>
+<div class="dpia-info" id="dpia-info" style="display:none">
+  <span class="filter-label">Certificazioni DPIA</span>
+  <span id="dpia-legend"></span>
+</div>
 
-<section class="area-wrap" id="aree">
-  <div id="aree-container"></div>
+<section class="colleghi-wrap">
+  <div class="colleghi-grid" id="colleghi-container"></div>
 </section>
 
 <footer>
@@ -462,7 +776,7 @@
     <div>
       <div class="foot-brand">Scuola Sacra Famiglia</div>
       <div class="foot-text">
-        Scuola paritaria del primo ciclo, plessi di Orzinuovi (BS) e Martinengo (BG).
+        Scuola paritaria del primo ciclo, Orzinuovi (BS).
         Le web app raccolte in questo portale sono realizzate dai docenti per uso didattico
         e condivise con licenza educativa interna.
       </div>
@@ -475,8 +789,7 @@
     </div>
     <div class="foot-col">
       <h4>Trasparenza</h4>
-      <a href="#aree">Bollini DPIA</a>
-      <a href="#docenti">Contributori</a>
+      <a href="#">Bollini DPIA</a>
     </div>
   </div>
   <div class="foot-bottom">
@@ -487,143 +800,163 @@
 
 <script>
 /* ─────────────────────────────────────────────────────────────
-   EDITARE QUI PER AGGIUNGERE / MODIFICARE LE WEB APP
-   { titolo, descrizione, url, autore, area, ordine }
-   - area     : vedi AREE qui sotto
-   - ordine   : "primaria" | "secondaria" | "entrambi"
+   FILE JSON DPIA — generati da DPIA Studio
    ───────────────────────────────────────────────────────────── */
-
-const AREE = [
-  { id:"italiano",    label:"Italiano e Letture" },
-  { id:"matematica",  label:"Matematica e Logica" },
-  { id:"scienze",     label:"Scienze" },
-  { id:"storia",      label:"Storia e Geografia" },
-  { id:"lingue",      label:"Lingue Straniere" },
-  { id:"arte-musica", label:"Arte e Musica" },
-  { id:"civica",      label:"Educazione Civica" },
-  { id:"trasversali", label:"Trasversali" },
-  { id:"inclusione",  label:"Inclusione e BES" },
+const DPIA_FILES = [
+  "DPIA_Web_App_maestre_aprile_2026_v1.0.json"
 ];
 
+/* ─────────────────────────────────────────────────────────────
+   WEB APP — { titolo, descrizione, url, autore, ordine }
+   Ordine: "primaria" | "secondaria" | "entrambi"
+   ───────────────────────────────────────────────────────────── */
 const WEBAPPS = [
   // ─── Maestra Ilaria ───
   {
     titolo: "I mesi dell'anno",
-    descrizione: "Attività per la classe prima: scoprire e ordinare i dodici mesi dell'anno.",
+    descrizione: "Attivita' per la classe prima: scoprire e ordinare i dodici mesi dell'anno.",
     url: "https://mesi-classe1.neocities.org/",
     autore: "Maestra Ilaria",
-    area: "storia",
     ordine: "primaria"
   },
 
   // ─── Maestra Elisa ───
   {
-    titolo: "Egizi Escape",
+    titolo: "Egizi - escape room",
     descrizione: "Escape room digitale sull'antico Egitto: enigmi, indizi e civilta' del Nilo.",
     url: "https://egizi-escape.neocities.org/",
     autore: "Maestra Elisa",
-    area: "storia",
     ordine: "primaria"
   },
   {
-    titolo: "Classifichiamo gli animali",
+    titolo: "Animal Quest!",
     descrizione: "Riconoscere e classificare gli animali per gruppi e caratteristiche principali.",
     url: "https://classanimali.neocities.org/",
     autore: "Maestra Elisa",
-    area: "scienze",
     ordine: "primaria"
   },
   {
-    titolo: "Sequenze",
+    titolo: "L'ultimo bagno",
     descrizione: "Allenare il pensiero logico riconoscendo e completando sequenze.",
     url: "https://sequenze.neocities.org/",
     autore: "Maestra Elisa",
-    area: "matematica",
     ordine: "primaria"
   },
 
   // ─── Maestro Andrea ───
   {
-    titolo: "Decimali per Diviso",
+    titolo: "Decimal Quest",
     descrizione: "Comprendere la divisione con i numeri decimali attraverso esercizi guidati.",
     url: "https://decimaliperdiviso.neocities.org/",
     autore: "Maestro Andrea",
-    area: "matematica",
     ordine: "primaria"
   },
 
   // ─── Teacher Daniela ───
   {
-    titolo: "English Resources",
-    descrizione: "Risorse di lingua inglese realizzate con Canva. Descrizione provvisoria, da rifinire.",
+    titolo: "Ancient Egypt Quiz",
+    descrizione: "Quiz interattivo in inglese sull'antico Egitto: lessico e civilta'.",
     url: "https://canva.link/eyew3e2mvycv9as",
     autore: "Teacher Daniela",
-    area: "lingue",
-    ordine: "entrambi"
+    ordine: "primaria"
   },
-
-  // ─── AGGIUNGI QUI LE PROSSIME APP ───
 ];
 
-/* ── LOGICA ────────────────────────────────────────────────── */
-const state = { ordine:"all", area:"all", autore:null, query:"" };
+const state = { ordine:"all", query:"" };
+let DPIA_MAP = null;
+const DPIA_CLUSTERS = new Set();
 
-function buildAreaChips(){
-  const wrap = document.getElementById("area-chips");
-  const aree_usate = new Set(WEBAPPS.map(a => a.area));
-  AREE.filter(a => aree_usate.has(a.id)).forEach(a => {
-    const b = document.createElement("button");
-    b.className = "chip";
-    b.dataset.filter = "area";
-    b.dataset.value = a.id;
-    b.textContent = a.label;
-    wrap.appendChild(b);
+function normalizeUrl(u){
+  if(!u) return "";
+  return u.trim().toLowerCase().replace(/\/+$/, "");
+}
+
+async function loadDPIA(){
+  const map = new Map();
+  await Promise.all(DPIA_FILES.map(async file => {
+    try {
+      const r = await fetch(file, { cache:"no-store" });
+      if(!r.ok) return;
+      const j = await r.json();
+      const info = {
+        cluster: j.cluster || j.clusterAuto || "?",
+        reason:  j.clusterReason || "",
+        date:    j.meta && j.meta.date    || "",
+        prot:    j.meta && j.meta.prot    || "",
+        version: j.meta && j.meta.version || "",
+        clusterName: j.meta && j.meta.name || "",
+        titolare:    j.meta && j.meta.titolare    || "",
+        dpo:         j.meta && j.meta.dpo         || ""
+      };
+      const apps = (j.meta && j.meta.clusterApps) || [];
+      apps.forEach(a => {
+        const u = normalizeUrl(a.url);
+        if(u){
+          map.set(u, info);
+          DPIA_CLUSTERS.add(info.cluster);
+        }
+      });
+    } catch(e){
+      console.warn("[DPIA] Caricamento fallito:", file, e);
+    }
+  }));
+  DPIA_MAP = map;
+  applyDPIABadges();
+  renderDPIALegend();
+}
+
+function applyDPIABadges(){
+  if(!DPIA_MAP) return;
+  document.querySelectorAll(".app-row").forEach(row => {
+    const url = normalizeUrl(row.getAttribute("href"));
+    const info = DPIA_MAP.get(url);
+    if(!info) return;
+    const titleEl = row.querySelector(".app-row-title");
+    if(!titleEl || titleEl.querySelector(".dpia-badge")) return;
+    const badge = document.createElement("span");
+    badge.className = "dpia-badge";
+    badge.dataset.cluster = info.cluster;
+    badge.textContent = info.cluster;
+    const lines = [
+      `DPIA · Cluster ${info.cluster}`,
+      info.clusterName ? `Cluster: ${info.clusterName}` : "",
+      info.reason || "",
+      info.prot || info.date || info.version
+        ? `Prot. ${info.prot || "—"} · ${info.date || ""} · ${info.version || ""}`
+        : "",
+      info.titolare ? `Titolare: ${info.titolare}` : "",
+      info.dpo ? `DPO: ${info.dpo}` : ""
+    ].filter(Boolean);
+    badge.title = lines.join("\n");
+    titleEl.prepend(badge);
   });
+}
+
+function renderDPIALegend(){
+  if(!DPIA_CLUSTERS.size) return;
+  const wrap = document.getElementById("dpia-info");
+  const span = document.getElementById("dpia-legend");
+  const order = ["A","B","C","D","E","F"];
+  const labels = {
+    A:"Profilazione/alto rischio",
+    B:"Trattamento dati personali",
+    C:"Trattamento limitato",
+    D:"Registrazione semplificata",
+    E:"Esente da specifica DPIA",
+    F:"Nessun dato personale"
+  };
+  span.innerHTML = order
+    .filter(c => DPIA_CLUSTERS.has(c))
+    .map(c => `<span class="legend-pill"><span class="dpia-badge" data-cluster="${c}">${c}</span> ${labels[c] || ""}</span>`)
+    .join(" &nbsp;·&nbsp; ");
+  wrap.style.display = "flex";
 }
 
 function updateStats(){
   document.getElementById("stat-apps").textContent = WEBAPPS.length;
-  const docenti = new Set(WEBAPPS.map(a => a.autore));
-  document.getElementById("stat-teachers").textContent = docenti.size;
-  const aree = new Set(WEBAPPS.map(a => a.area));
-  document.getElementById("stat-areas").textContent = aree.size;
+  document.getElementById("stat-teachers").textContent = new Set(WEBAPPS.map(a => a.autore)).size;
   const oggi = new Date().toLocaleDateString("it-IT", { day:"numeric", month:"long", year:"numeric" });
   document.getElementById("last-update").textContent = "Ultimo aggiornamento: " + oggi;
-}
-
-function renderDocenti(){
-  const grid = document.getElementById("docenti-grid");
-  grid.innerHTML = "";
-  const map = new Map();
-  WEBAPPS.forEach(a => {
-    if(!map.has(a.autore)) map.set(a.autore, { count:0, ordine:new Set() });
-    const o = map.get(a.autore);
-    o.count++;
-    o.ordine.add(a.ordine);
-  });
-  document.getElementById("docenti-count").textContent =
-    map.size + (map.size === 1 ? " contributore" : " contributori");
-
-  [...map.entries()]
-    .sort((a,b) => b[1].count - a[1].count || a[0].localeCompare(b[0]))
-    .forEach(([nome, info]) => {
-      const card = document.createElement("button");
-      card.className = "docente-card";
-      if(state.autore === nome) card.classList.add("active");
-      card.innerHTML = `
-        <div>
-          <div class="docente-name">${nome}</div>
-          <div class="docente-role">${[...info.ordine].map(formatOrdine).join(" · ")}</div>
-        </div>
-        <div class="docente-count">${info.count}</div>
-      `;
-      card.addEventListener("click", () => {
-        state.autore = (state.autore === nome) ? null : nome;
-        renderDocenti();
-        renderAree();
-      });
-      grid.appendChild(card);
-    });
 }
 
 function formatOrdine(o){
@@ -632,35 +965,10 @@ function formatOrdine(o){
        : "Primaria + Secondaria";
 }
 
-function appCard(a){
-  const areaLabel = AREE.find(x => x.id === a.area)?.label || a.area;
-  return `
-    <a class="card" href="${a.url}" target="_blank" rel="noopener">
-      <div>
-        <span class="card-tag">${areaLabel}</span>
-        <h3 class="card-title">${a.titolo}</h3>
-        <p class="card-desc">${a.descrizione}</p>
-      </div>
-      <div class="card-foot">
-        <span class="card-author">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span class="card-author-name">${a.autore}</span>
-        </span>
-        <span class="card-arrow">
-          Apri
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </span>
-      </div>
-    </a>
-  `;
-}
-
 function getFiltered(){
   const q = state.query.trim().toLowerCase();
   return WEBAPPS.filter(a => {
     if(state.ordine !== "all" && a.ordine !== state.ordine && a.ordine !== "entrambi") return false;
-    if(state.area   !== "all" && a.area !== state.area) return false;
-    if(state.autore && a.autore !== state.autore) return false;
     if(q){
       const blob = (a.titolo + " " + a.descrizione + " " + a.autore).toLowerCase();
       if(!blob.includes(q)) return false;
@@ -669,27 +977,53 @@ function getFiltered(){
   });
 }
 
-function renderAree(){
-  const cont = document.getElementById("aree-container");
+function renderColleghi(){
+  const cont = document.getElementById("colleghi-container");
   cont.innerHTML = "";
   const filtered = getFiltered();
   if(filtered.length === 0){
-    cont.innerHTML = `<div class="empty"><strong>Nessuna web app trovata.</strong><br>Prova a rimuovere qualche filtro.</div>`;
+    cont.innerHTML = `<div class="empty"><strong>Nessun risultato.</strong><br>Prova a rimuovere qualche filtro o a modificare la ricerca.</div>`;
     return;
   }
-  AREE.forEach(area => {
-    const apps = filtered.filter(a => a.area === area.id);
-    if(apps.length === 0) return;
-    const sec = document.createElement("section");
-    sec.className = "area";
-    sec.innerHTML = `
-      <div class="area-head">
-        <h2>${area.label}<span class="num">${apps.length} ${apps.length===1?"web app":"web app"}</span></h2>
-      </div>
-      <div class="grid">${apps.map(appCard).join("")}</div>
-    `;
-    cont.appendChild(sec);
+  const byAutore = new Map();
+  filtered.forEach(a => {
+    if(!byAutore.has(a.autore)) byAutore.set(a.autore, []);
+    byAutore.get(a.autore).push(a);
   });
+  [...byAutore.entries()]
+    .sort((a,b) => a[0].localeCompare(b[0], "it"))
+    .forEach(([nome, apps]) => {
+      const ordini = new Set(apps.map(a => a.ordine));
+      let ordineLabel;
+      if(ordini.has("entrambi") || (ordini.has("primaria") && ordini.has("secondaria"))){
+        ordineLabel = "Primaria + Secondaria";
+      } else {
+        ordineLabel = formatOrdine([...ordini][0]);
+      }
+
+      const card = document.createElement("article");
+      card.className = "collega-card";
+      const appsHTML = apps.map(a => `
+        <a class="app-row" href="${a.url}" target="_blank" rel="noopener">
+          <div class="app-row-main">
+            <div class="app-row-title">${a.titolo}</div>
+            <div class="app-row-desc">${a.descrizione}</div>
+          </div>
+          <span class="app-row-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+      `).join("");
+      card.innerHTML = `
+        <header class="collega-head">
+          <h2 class="collega-name">${nome}</h2>
+          <div class="collega-meta">${ordineLabel} · ${apps.length} ${apps.length===1?"web app":"web app"}</div>
+        </header>
+        <div class="collega-apps">${appsHTML}</div>
+      `;
+      cont.appendChild(card);
+    });
+  applyDPIABadges();
 }
 
 document.addEventListener("click", e => {
@@ -701,29 +1035,18 @@ document.addEventListener("click", e => {
   document.querySelectorAll(`.chip[data-filter="${f}"]`).forEach(c => {
     c.classList.toggle("active", c.dataset.value === v);
   });
-  renderAree();
+  renderColleghi();
 });
 
 document.getElementById("search-input").addEventListener("input", e => {
   state.query = e.target.value;
-  renderAree();
+  renderColleghi();
 });
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener("click", e => {
-    const id = a.getAttribute("href").slice(1);
-    const t = document.getElementById(id);
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:"smooth", block:"start"}); }
-  });
-});
-
-buildAreaChips();
 updateStats();
-renderDocenti();
-renderAree();
+renderColleghi();
+loadDPIA();
 </script>
-
-<script src="dpia-badges.js" defer></script>
 
 </body>
 </html>
