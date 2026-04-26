@@ -142,12 +142,11 @@
   .toolbar{
     max-width:1320px;
     margin:0 auto;
-    padding:24px 32px;
+    padding:18px 32px;
     display:flex;
     align-items:center;
     gap:14px;
     flex-wrap:wrap;
-    border-bottom:1px solid var(--line);
   }
   .search{
     margin-left:auto;
@@ -175,14 +174,13 @@
   .dpia-info{
     max-width:1320px;
     margin:0 auto;
-    padding:14px 32px;
+    padding:0 32px 14px;
     font-size:13px;
     color:var(--ink-soft);
     display:none;
     align-items:center;
     gap:14px;
     flex-wrap:wrap;
-    border-bottom:1px solid var(--line);
   }
   .dpia-info.visible{display:flex}
   .dpia-info .legend-pill{display:inline-flex;align-items:center;gap:6px}
@@ -198,7 +196,8 @@
   .colleghi-wrap{
     max-width:1320px;
     margin:0 auto;
-    padding:32px 32px 60px;
+    padding:18px 32px 60px;
+    border-top:1px solid var(--line);
   }
   .colleghi-grid{
     display:grid;
@@ -816,6 +815,8 @@ function initDPIATooltip(){
   document.addEventListener("mouseover", function(e){
     const badge = e.target.closest(".dpia-badge");
     if(!badge) return;
+    // Skip badge senza contenuto (es. quelli della legenda DPIA)
+    if(!badge.dataset.head && !badge.dataset.body && !badge.dataset.meta) return;
     ttHead.textContent = badge.dataset.head || "";
     ttBody.textContent = badge.dataset.body || "";
     ttMeta.textContent = badge.dataset.meta || "";
