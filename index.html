@@ -138,66 +138,11 @@
     .banner-logo{width:72px;height:72px;padding:6px;border-radius:12px}
   }
 
-  /* ── FILTRI E RICERCA ───────────────────────────── */
-  .toolbar{
-    max-width:1320px;
-    margin:0 auto;
-    padding:18px 32px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    flex-wrap:wrap;
-  }
-  .search{
-    margin-left:auto;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    border:1px solid var(--line);
-    background:var(--paper-2);
-    border-radius:999px;
-    padding:6px 14px;
-    transition:border-color .15s;
-  }
-  .search:focus-within{border-color:var(--orange)}
-  .search svg{flex-shrink:0;color:var(--ink-soft)}
-  .search input{
-    border:none;
-    outline:none;
-    background:transparent;
-    font-size:14px;
-    font-family:inherit;
-    width:240px;
-    color:var(--ink);
-  }
-
-  .dpia-info{
-    max-width:1320px;
-    margin:0 auto;
-    padding:0 32px 14px;
-    font-size:13px;
-    color:var(--ink-soft);
-    display:none;
-    align-items:center;
-    gap:14px;
-    flex-wrap:wrap;
-  }
-  .dpia-info.visible{display:flex}
-  .dpia-info .legend-pill{display:inline-flex;align-items:center;gap:6px}
-  .dpia-info .label{
-    font-size:11px;
-    letter-spacing:1.4px;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    font-weight:700;
-  }
-
-  /* ── GRIGLIA CARD COLLEGHI ──────────────────────── */
+/* ── GRIGLIA CARD COLLEGHI ──────────────────────── */
   .colleghi-wrap{
     max-width:1320px;
     margin:0 auto;
-    padding:18px 32px 60px;
-    border-top:1px solid var(--line);
+    padding:32px 32px 60px;
   }
   .colleghi-grid{
     display:grid;
@@ -609,19 +554,6 @@
   </div>
 </div>
 
-<!-- ════════════════ TOOLBAR ════════════════ -->
-<div class="toolbar">
-  <label class="search">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <input id="search-input" type="text" placeholder="Cerca app, docente o tema...">
-  </label>
-</div>
-
-<div class="dpia-info" id="dpia-info">
-  <span class="label">Certificazioni DPIA</span>
-  <span id="dpia-legend"></span>
-</div>
-
 <!-- ════════════════ CARD COLLEGHI ════════════════ -->
 <section class="colleghi-wrap">
   <div class="colleghi-grid" id="colleghi-container">
@@ -712,7 +644,6 @@ const WEBAPPS = [
 /* ─────────────────────────────────────────────────────────────
    STATE & DPIA
    ───────────────────────────────────────────────────────────── */
-const state = { query: "" };
 let DPIA_MAP = null;
 const DPIA_CLUSTERS = new Set();
 
@@ -779,25 +710,7 @@ function applyDPIABadges(){
   });
 }
 
-function renderDPIALegend(){
-  if(!DPIA_CLUSTERS.size) return;
-  const wrap = document.getElementById("dpia-info");
-  const span = document.getElementById("dpia-legend");
-  const order = ["A","B","C","D","E","F"];
-  const labels = {
-    A:"Profilazione/alto rischio",
-    B:"Trattamento dati personali",
-    C:"Trattamento limitato",
-    D:"Registrazione semplificata",
-    E:"Esente da specifica DPIA",
-    F:"Nessun dato personale"
-  };
-  span.innerHTML = order
-    .filter(c => DPIA_CLUSTERS.has(c))
-    .map(c => '<span class="legend-pill"><span class="dpia-badge" data-cluster="'+c+'">'+c+'</span> '+(labels[c]||"")+'</span>')
-    .join(" &nbsp;\u00b7&nbsp; ");
-  wrap.classList.add("visible");
-}
+function renderDPIALegend(){ /* legenda rimossa: nessun container */ }
 
 /* ─── Tooltip singleton body-level ─── */
 function initDPIATooltip(){
@@ -849,14 +762,6 @@ function initDPIATooltip(){
 }
 
 /* ─── Render Card ─── */
-function getFiltered(){
-  const q = state.query.trim().toLowerCase();
-  if(!q) return WEBAPPS.slice();
-  return WEBAPPS.filter(function(a){
-    const blob = (a.titolo + " " + a.descrizione + " " + a.autore).toLowerCase();
-    return blob.indexOf(q) !== -1;
-  });
-}
 
 function escapeHTML(s){
   return String(s||"").replace(/[&<>"']/g, function(c){
@@ -868,7 +773,7 @@ function renderColleghi(){
   const cont = document.getElementById("colleghi-container");
   if(!cont) return;
   cont.innerHTML = "";
-  const filtered = getFiltered();
+  const filtered = WEBAPPS;
   if(filtered.length === 0){
     cont.innerHTML = '<div class="empty"><strong>Nessun risultato.</strong><br>Prova a modificare la ricerca.</div>';
     return;
@@ -908,15 +813,6 @@ function renderColleghi(){
     cont.appendChild(card);
   });
   applyDPIABadges();
-}
-
-/* ─── Listener ricerca ─── */
-const searchInput = document.getElementById("search-input");
-if(searchInput){
-  searchInput.addEventListener("input", function(e){
-    state.query = e.target.value;
-    renderColleghi();
-  });
 }
 
 /* ─── INIT immediato delle card e DPIA ─── */
