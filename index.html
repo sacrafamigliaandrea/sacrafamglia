@@ -74,6 +74,23 @@
   .banner svg.banner-bg{
     position:absolute;inset:0;width:100%;height:100%;display:block;
   }
+  .globe-canvas{
+    position:absolute;
+    right:6%;
+    top:50%;
+    transform:translateY(-50%);
+    width:240px;height:240px;
+    z-index:1;
+    pointer-events:none;
+    /* alone glow per integrare con il cosmo */
+    filter:drop-shadow(0 0 18px rgba(255,140,60,.25));
+  }
+  @media (max-width:1100px){
+    .globe-canvas{width:180px;height:180px;right:4%}
+  }
+  @media (max-width:760px){
+    .globe-canvas{display:none}
+  }
   .banner-overlay{
     position:absolute;inset:0;
     display:flex;align-items:center;
@@ -129,7 +146,24 @@
   }
 @media (max-width:760px){
     .banner{aspect-ratio:auto;min-height:200px}
-    .banner-overlay{padding:24px 22px;gap:16px}
+    .globe-canvas{
+    position:absolute;
+    right:6%;
+    top:50%;
+    transform:translateY(-50%);
+    width:240px;height:240px;
+    z-index:1;
+    pointer-events:none;
+    /* alone glow per integrare con il cosmo */
+    filter:drop-shadow(0 0 18px rgba(255,140,60,.25));
+  }
+  @media (max-width:1100px){
+    .globe-canvas{width:180px;height:180px;right:4%}
+  }
+  @media (max-width:760px){
+    .globe-canvas{display:none}
+  }
+  .banner-overlay{padding:24px 22px;gap:16px}
     .banner-logo{width:80px;height:80px;padding:6px;border-radius:12px}
     .banner-eyebrow{letter-spacing:.24em}
   }
@@ -374,14 +408,16 @@
 <div class="banner" role="banner">
   <svg class="banner-bg" viewBox="0 0 1600 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
-      <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="0.5">
         <stop offset="0" stop-color="#EE7C00"/>
-        <stop offset="0.5" stop-color="#F08510"/>
-        <stop offset="1" stop-color="#E07000"/>
+        <stop offset="0.55" stop-color="#EE7C00"/>
+        <stop offset="0.72" stop-color="#9B4A1A"/>
+        <stop offset="0.88" stop-color="#1A2A4A"/>
+        <stop offset="1" stop-color="#050B1A"/>
       </linearGradient>
-      <radialGradient id="rightGlow" cx="0.85" cy="0.5" r="0.45">
-        <stop offset="0" stop-color="#FFE6CC" stop-opacity="0.25"/>
-        <stop offset="1" stop-color="#EE7C00" stop-opacity="0"/>
+      <radialGradient id="rightGlow" cx="0.86" cy="0.5" r="0.18">
+        <stop offset="0" stop-color="#FFA340" stop-opacity="0.35"/>
+        <stop offset="1" stop-color="#050B1A" stop-opacity="0"/>
       </radialGradient>
       <radialGradient id="globeFace" cx="0.35" cy="0.3" r="0.85">
         <stop offset="0" stop-color="#3B6EA8" stop-opacity="1"/>
@@ -487,159 +523,49 @@
       <circle cx="820" cy="200" r="3"><animate attributeName="opacity" values="0.35;0.95;0.35" dur="2.4s" repeatCount="indefinite"/></circle>
     </g>
 
-    <!-- GLOBO TERRESTRE — continenti realistici + data flow animato -->
-    <!-- alone esterno -->
-    <circle cx="1380" cy="140" r="125" fill="url(#globeHalo)"/>
-
-    <!-- linee statiche di connessione esterne (mesh→globo) -->
-    <g stroke="#1E3A5F" stroke-width="0.6" fill="none" opacity="0.45">
-      <line x1="1295" y1="100" x2="1100" y2="60"/>
-      <line x1="1300" y1="180" x2="1120" y2="220"/>
-      <line x1="1380" y1="55" x2="1380" y2="20"/>
-      <line x1="1465" y1="140" x2="1560" y2="140"/>
-      <line x1="1450" y1="200" x2="1540" y2="240"/>
+    <!-- Stelle del cosmo (lato destro del banner, sopra il gradient blu) -->
+    <g fill="#FFFFFF" opacity="0.85">
+      <circle cx="1180" cy="40"  r="0.9"/>
+      <circle cx="1230" cy="80"  r="1.1"/>
+      <circle cx="1290" cy="50"  r="0.8"/>
+      <circle cx="1265" cy="180" r="1.0"/>
+      <circle cx="1310" cy="230" r="0.9"/>
+      <circle cx="1360" cy="30"  r="1.2"/>
+      <circle cx="1430" cy="60"  r="0.8"/>
+      <circle cx="1500" cy="100" r="1.0"/>
+      <circle cx="1480" cy="200" r="1.1"/>
+      <circle cx="1550" cy="250" r="0.9"/>
+      <circle cx="1560" cy="50"  r="1.3"/>
+      <circle cx="1380" cy="245" r="0.8"/>
+      <circle cx="1535" cy="160" r="0.9"/>
+      <circle cx="1200" cy="200" r="0.8"/>
+      <circle cx="1340" cy="100" r="0.7"/>
+      <circle cx="1265" cy="20"  r="0.9"/>
+      <circle cx="1455" cy="225" r="0.8"/>
+      <circle cx="1580" cy="120" r="1.0"/>
     </g>
-
-    <!-- sfera oceano -->
-    <circle cx="1380" cy="140" r="85" fill="url(#globeFace)"/>
-
-    <!-- CONTINENTI rotanti, clippati alla sfera -->
-    <g clip-path="url(#globeClip)">
-      <g>
-        <animateTransform attributeName="transform" attributeType="XML" type="translate"
-                          from="0 0" to="-200 0" dur="42s" repeatCount="indefinite"/>
-        <g transform="translate(1380 140)" fill="#F4E4C9" fill-opacity="0.95">
-          <!-- NORD AMERICA -->
-          <path d="M -90,-50 Q -78,-58 -68,-52 L -55,-48 Q -48,-40 -52,-32 L -58,-22 Q -65,-18 -72,-25 L -82,-32 Q -90,-40 -90,-50 Z"/>
-          <path d="M -68,-22 Q -62,-18 -58,-14 L -54,-8 L -60,-4 Q -65,-6 -68,-12 Z"/>
-          <!-- SUD AMERICA -->
-          <path d="M -55,-2 Q -50,-5 -45,-2 Q -42,5 -45,12 L -48,28 Q -50,38 -45,45 L -42,52 Q -38,55 -42,58 Q -48,55 -52,48 L -55,32 Q -58,18 -56,8 Z"/>
-          <!-- EUROPA -->
-          <path d="M -8,-50 Q 0,-54 8,-50 Q 14,-44 10,-38 Q 4,-34 -2,-36 Q -8,-40 -10,-46 Z"/>
-          <!-- AFRICA -->
-          <path d="M 0,-28 Q 8,-32 16,-28 Q 22,-22 24,-12 L 26,2 Q 24,14 18,22 L 12,32 Q 8,38 4,32 L -2,22 Q -6,12 -4,2 L 0,-12 Z"/>
-          <!-- MEDIO ORIENTE -->
-          <path d="M 18,-42 Q 26,-46 34,-42 Q 38,-36 35,-30 L 30,-22 Q 24,-20 20,-26 Q 16,-34 18,-42 Z"/>
-          <!-- ASIA -->
-          <path d="M 35,-52 Q 50,-58 65,-54 Q 78,-50 84,-42 Q 90,-36 86,-28 L 78,-22 Q 70,-24 62,-30 L 52,-32 Q 42,-34 38,-40 Z"/>
-          <!-- INDIA -->
-          <path d="M 38,-18 Q 44,-20 48,-14 L 52,-4 Q 50,4 44,2 Q 38,-2 38,-10 Z"/>
-          <!-- INDONESIA / arcipelaghi -->
-          <ellipse cx="65" cy="8" rx="8" ry="2.5" transform="rotate(-15 65 8)"/>
-          <ellipse cx="78" cy="14" rx="5" ry="2"/>
-          <ellipse cx="55" cy="6" rx="3" ry="1.5"/>
-          <!-- AUSTRALIA -->
-          <path d="M 70,30 Q 80,28 88,32 Q 92,38 86,42 L 76,44 Q 68,42 66,36 Z"/>
-          <!-- GROENLANDIA -->
-          <path d="M -28,-72 Q -22,-76 -16,-72 Q -12,-66 -16,-62 L -22,-60 Q -28,-64 -28,-72 Z"/>
-          <!-- ANTARTIDE -->
-          <path d="M -50,72 Q -20,80 20,78 Q 50,76 70,72 L 70,82 L -50,82 Z" fill-opacity="0.5"/>
-        </g>
-        <!-- copia 2: stessa figura traslata di +200 per loop seamless -->
-        <g transform="translate(1580 140)" fill="#F4E4C9" fill-opacity="0.95">
-          <path d="M -90,-50 Q -78,-58 -68,-52 L -55,-48 Q -48,-40 -52,-32 L -58,-22 Q -65,-18 -72,-25 L -82,-32 Q -90,-40 -90,-50 Z"/>
-          <path d="M -68,-22 Q -62,-18 -58,-14 L -54,-8 L -60,-4 Q -65,-6 -68,-12 Z"/>
-          <path d="M -55,-2 Q -50,-5 -45,-2 Q -42,5 -45,12 L -48,28 Q -50,38 -45,45 L -42,52 Q -38,55 -42,58 Q -48,55 -52,48 L -55,32 Q -58,18 -56,8 Z"/>
-          <path d="M -8,-50 Q 0,-54 8,-50 Q 14,-44 10,-38 Q 4,-34 -2,-36 Q -8,-40 -10,-46 Z"/>
-          <path d="M 0,-28 Q 8,-32 16,-28 Q 22,-22 24,-12 L 26,2 Q 24,14 18,22 L 12,32 Q 8,38 4,32 L -2,22 Q -6,12 -4,2 L 0,-12 Z"/>
-          <path d="M 18,-42 Q 26,-46 34,-42 Q 38,-36 35,-30 L 30,-22 Q 24,-20 20,-26 Q 16,-34 18,-42 Z"/>
-          <path d="M 35,-52 Q 50,-58 65,-54 Q 78,-50 84,-42 Q 90,-36 86,-28 L 78,-22 Q 70,-24 62,-30 L 52,-32 Q 42,-34 38,-40 Z"/>
-          <path d="M 38,-18 Q 44,-20 48,-14 L 52,-4 Q 50,4 44,2 Q 38,-2 38,-10 Z"/>
-          <ellipse cx="65" cy="8" rx="8" ry="2.5" transform="rotate(-15 65 8)"/>
-          <ellipse cx="78" cy="14" rx="5" ry="2"/>
-          <ellipse cx="55" cy="6" rx="3" ry="1.5"/>
-          <path d="M 70,30 Q 80,28 88,32 Q 92,38 86,42 L 76,44 Q 68,42 66,36 Z"/>
-          <path d="M -28,-72 Q -22,-76 -16,-72 Q -12,-66 -16,-62 L -22,-60 Q -28,-64 -28,-72 Z"/>
-          <path d="M -50,72 Q -20,80 20,78 Q 50,76 70,72 L 70,82 L -50,82 Z" fill-opacity="0.5"/>
-        </g>
-      </g>
-    </g>
-
-    <!-- paralleli + meridiani sopra ai continenti, fissi -->
-    <g clip-path="url(#globeClip)" stroke="#FFFFFF" stroke-width="0.4" fill="none" opacity="0.35">
-      <path d="M 1295 95 Q 1380 105 1465 95"/>
-      <path d="M 1295 120 Q 1380 128 1465 120"/>
-      <path d="M 1295 140 L 1465 140" stroke-width="0.6" opacity="0.6"/>
-      <path d="M 1295 160 Q 1380 152 1465 160"/>
-      <path d="M 1295 185 Q 1380 175 1465 185"/>
-      <ellipse cx="1380" cy="140" rx="22" ry="85" stroke-width="0.35"/>
-      <ellipse cx="1380" cy="140" rx="55" ry="85" stroke-width="0.35"/>
-    </g>
-
-    <!-- highlight 3D -->
-    <ellipse cx="1355" cy="115" rx="32" ry="16" fill="#FFFFFF" opacity="0.18"/>
-
-    <!-- contorno sfera -->
-    <circle cx="1380" cy="140" r="85" fill="none" stroke="#1E3A5F" stroke-width="1.5" opacity="0.85"/>
-
-    <!-- ═══════ DATA FLOW: archi animati tipo Norse Attack Map ═══════ -->
-    <!-- nodi-citta visibili sul globo + pulse glow -->
-    <g fill="#FFE6CC">
-      <circle cx="1325" cy="115" r="2"/>
-      <circle cx="1410" cy="135" r="2"/>
-      <circle cx="1395" cy="180" r="2"/>
-      <circle cx="1355" cy="155" r="2"/>
-      <circle cx="1440" cy="120" r="2"/>
-      <circle cx="1325" cy="115" r="3" fill="#FFFFFF" opacity="0.7">
-        <animate attributeName="r" values="2;7;2" dur="2.4s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.7;0;0.7" dur="2.4s" repeatCount="indefinite"/>
+    <!-- Stelle più grandi con glow -->
+    <g fill="#FFFFFF">
+      <circle cx="1565" cy="80" r="1.4">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="1410" cy="135" r="3" fill="#FFFFFF" opacity="0.7">
-        <animate attributeName="r" values="2;6;2" dur="3.1s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.7;0;0.7" dur="3.1s" repeatCount="indefinite"/>
+      <circle cx="1220" cy="220" r="1.3">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2.4s" repeatCount="indefinite"/>
       </circle>
-    </g>
-
-    <!-- archi globo→globo (messaggi tra citta) -->
-    <g fill="none" stroke="#FFE6CC" stroke-width="1.4" stroke-linecap="round">
-      <path d="M 1325 115 Q 1370 80 1410 135" stroke-dasharray="3 250">
-        <animate attributeName="stroke-dashoffset" from="250" to="-3" dur="2.8s" repeatCount="indefinite"/>
-      </path>
-      <path d="M 1410 135 Q 1450 100 1440 120" stroke-dasharray="3 250">
-        <animate attributeName="stroke-dashoffset" from="250" to="-3" dur="3.4s" begin="0.6s" repeatCount="indefinite"/>
-      </path>
-      <path d="M 1395 180 Q 1380 140 1410 135" stroke-dasharray="3 200">
-        <animate attributeName="stroke-dashoffset" from="200" to="-3" dur="2.4s" begin="1.1s" repeatCount="indefinite"/>
-      </path>
-    </g>
-
-    <!-- archi globo→satellite/mesh esterno -->
-    <g fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round">
-      <path d="M 1325 115 Q 1200 50 1100 130" stroke-dasharray="4 320">
-        <animate attributeName="stroke-dashoffset" from="320" to="-4" dur="3.6s" repeatCount="indefinite"/>
-      </path>
-      <path d="M 1395 180 Q 1300 250 1120 230" stroke-dasharray="4 320">
-        <animate attributeName="stroke-dashoffset" from="320" to="-4" dur="4.2s" begin="1.4s" repeatCount="indefinite"/>
-      </path>
-      <path d="M 1440 120 Q 1480 70 1500 30" stroke-dasharray="4 250">
-        <animate attributeName="stroke-dashoffset" from="250" to="-4" dur="2.6s" begin="0.3s" repeatCount="indefinite"/>
-      </path>
-      <path d="M 1500 30 Q 1480 80 1410 135" stroke-dasharray="4 250">
-        <animate attributeName="stroke-dashoffset" from="250" to="-4" dur="3.2s" begin="2.0s" repeatCount="indefinite"/>
-      </path>
-    </g>
-
-    <!-- punti orbitanti (satelliti) -->
-    <g>
-      <animateTransform attributeName="transform" attributeType="XML" type="rotate"
-                        from="0 1380 140" to="360 1380 140" dur="14s" repeatCount="indefinite"/>
-      <circle cx="1480" cy="140" r="3" fill="#FFFFFF" filter="url(#dotGlow)"/>
-    </g>
-    <g>
-      <animateTransform attributeName="transform" attributeType="XML" type="rotate"
-                        from="360 1380 140" to="0 1380 140" dur="22s" repeatCount="indefinite"/>
-      <circle cx="1380" cy="40" r="2.5" fill="#FFFFFF" filter="url(#dotGlow)"/>
+      <circle cx="1490" cy="40" r="1.2">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="3.6s" repeatCount="indefinite"/>
+      </circle>
     </g>
   </svg>
+  <canvas class="globe-canvas" id="globe-canvas" width="480" height="480"></canvas>
 
   <div class="banner-overlay">
     <div class="banner-logo">
       <img src="logo_arancio.jpg" alt="Sacra Famiglia" onerror="this.style.display='none'">
     </div>
     <div class="banner-text">
-      <span class="banner-eyebrow">Portale</span>
-      <h1 class="banner-title">Web App Didattiche</h1>
-      <p class="banner-sub">Andrea Cerioli &middot; Animatore Digitale</p>
+      <h1 class="banner-title">Scuola Sacra Famiglia</h1>
+      <p class="banner-sub">Scuola Primaria e Secondaria di I grado</p>
     </div>
   </div>
 
@@ -668,6 +594,9 @@
   </div>
 </footer>
 
+
+<!-- Three.js per il globo terrestre -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 const DPIA_FILES = [
   "DPIA_Web_App_maestre_aprile_2026_v1.0.json"
@@ -913,6 +842,126 @@ document.getElementById("search-input").addEventListener("input", e => {
 
 renderColleghi();
 loadDPIA();
+</script>
+
+
+<!-- Inizializzazione globo Three.js -->
+<script>
+(function initGlobe(){
+  const canvas = document.getElementById('globe-canvas');
+  if(!canvas || typeof THREE === 'undefined') return;
+
+  const W = 240, H = 240;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+  camera.position.z = 3;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas, alpha: true, antialias: true
+  });
+  renderer.setPixelRatio(window.devicePixelRatio || 1);
+  renderer.setSize(W, H, false);
+
+  // Gruppo terra: contiene oceano + luci, ruota insieme
+  const earth = new THREE.Group();
+  // tilt asse terrestre realistico (~23.4 gradi)
+  earth.rotation.z = 0.41;
+  scene.add(earth);
+
+  // Sfera oceano (blu profondo come fallback se texture non carica)
+  const oceanGeo = new THREE.SphereGeometry(1, 64, 64);
+  const oceanMat = new THREE.MeshBasicMaterial({color: 0x0A1F3A});
+  const ocean = new THREE.Mesh(oceanGeo, oceanMat);
+  earth.add(ocean);
+
+  // Caricamento texture NASA Black Marble (Earth at Night)
+  // La texture include continenti scuri + luci arancio delle citta
+  const loader = new THREE.TextureLoader();
+  loader.setCrossOrigin('anonymous');
+
+  // Cascata di URL: prima locale, poi CDN affidabili
+  // Per usare il file locale: scarica BlackMarble da NASA SVS e mettilo
+  // accanto a index.html con nome 'earth_night.jpg'
+  const TEXTURE_URLS = [
+    './earth_night.jpg',
+    'https://cdn.jsdelivr.net/gh/turban/webgl-earth@master/images/2_no_clouds_4k_night.jpg',
+    'https://threejs.org/examples/textures/planets/earth_lights_2048.png'
+  ];
+
+  function loadEarthTexture(idx){
+    if(idx >= TEXTURE_URLS.length){
+      console.warn('[Globe] Tutte le texture fallite, mostro solo oceano');
+      return;
+    }
+    const url = TEXTURE_URLS[idx];
+    const isLightsOnly = url.includes('earth_lights'); // ultima opzione: solo luci
+    loader.load(
+      url,
+      function(tex){
+        tex.colorSpace = THREE.SRGBColorSpace || tex.colorSpace;
+        if(isLightsOnly){
+          // Fallback: lights additivi sopra l'oceano blu (look del codice precedente)
+          const lightsGeo = new THREE.SphereGeometry(1.002, 64, 64);
+          const lightsMat = new THREE.MeshBasicMaterial({
+            map: tex,
+            color: 0xFF8C40,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+          });
+          earth.add(new THREE.Mesh(lightsGeo, lightsMat));
+        } else {
+          // Black Marble completa: la uso come materiale principale dell'oceano
+          // Boost saturazione + luminosita per intensificare l'arancio delle citta
+          ocean.material.dispose();
+          ocean.material = new THREE.MeshBasicMaterial({
+            map: tex,
+            color: 0xFFFFFF
+          });
+        }
+      },
+      undefined,
+      function(){
+        console.warn('[Globe] Texture fallita:', url, '- provo successiva');
+        loadEarthTexture(idx + 1);
+      }
+    );
+  }
+  loadEarthTexture(0);
+
+  // Atmosfera: sfera leggermente piu grande, BackSide, additive
+  const haloGeo = new THREE.SphereGeometry(1.15, 32, 32);
+  const haloMat = new THREE.MeshBasicMaterial({
+    color: 0xFFA340,
+    transparent: true,
+    opacity: 0.18,
+    side: THREE.BackSide,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const halo = new THREE.Mesh(haloGeo, haloMat);
+  earth.add(halo);
+
+  // Animation loop: rotazione veloce
+  let mounted = false;
+  function tick(){
+    requestAnimationFrame(tick);
+    earth.rotation.y += 0.022;  // ~5s per giro - rotazione veloce
+    renderer.render(scene, camera);
+  }
+  // Doppio rAF per garantire layout completato (pattern Andrea per Three.js)
+  requestAnimationFrame(function(){
+    requestAnimationFrame(tick);
+  });
+
+  // Stop quando reduced-motion
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    // ferma rotazione ma renderizza una volta
+    earth.rotation.y = 0;
+    renderer.render(scene, camera);
+    return;
+  }
+})();
 </script>
 
 </body>
