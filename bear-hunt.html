@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We're Going on a Bear Hunt — Teacher Daniela</title>
+<meta name="description" content="We're Going on a Bear Hunt by Michael Rosen — risorsa di inglese per la scuola primaria, Sacra Famiglia Orzinuovi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;height:100%}
+  body{
+    font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    background:#0F0F0F;
+    color:#fff;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+  }
+  header{
+    background:#EE7C00;
+    color:#1E3A5F;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  header h1{
+    margin:0;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:-.01em;
+  }
+  header .author{
+    font-size:13px;
+    font-weight:500;
+    font-style:italic;
+    opacity:.85;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:13px;
+    font-weight:600;
+    color:#1E3A5F;
+    border:1.5px solid #1E3A5F;
+    padding:6px 12px;
+    border-radius:999px;
+    text-decoration:none;
+    transition:all .15s;
+  }
+  .back-link:hover{
+    background:#1E3A5F;
+    color:#fff;
+  }
+  .back-link svg{transition:transform .15s}
+  .back-link:hover svg{transform:translateX(-2px)}
+
+  .video-wrap{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    background:#000;
+  }
+  .video-frame{
+    width:100%;
+    max-width:1280px;
+    aspect-ratio:16/9;
+    border:none;
+    display:block;
+  }
+
+  footer{
+    background:#221208;
+    color:rgba(255,255,255,.7);
+    padding:14px 32px;
+    font-size:12px;
+    text-align:center;
+  }
+
+  @media (max-width:760px){
+    header{padding:12px 18px}
+    header h1{font-size:15px}
+    footer{padding:12px 18px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>We're Going on a Bear Hunt</h1>
+    <span class="author">Michael Rosen &middot; Risorsa di Teacher Daniela</span>
+  </div>
+  <a class="back-link" href="./" aria-label="Torna al portale">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m12 19-7-7 7-7"/>
+      <path d="M19 12H5"/>
+    </svg>
+    Torna al portale
+  </a>
+</header>
+
+<div class="video-wrap">
+  <iframe
+    class="video-frame"
+    src="https://www.youtube.com/embed/2OI7fe766nk?rel=0&playsinline=1&modestbranding=1"
+    title="We're Going on a Bear Hunt performed by Michael Rosen"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</div>
+
+<footer>
+  Scuola Sacra Famiglia &middot; Orzinuovi &middot; Risorsa didattica per la classe
+</footer>
+
+</body>
+</html>
