@@ -29,13 +29,6 @@
 
     --shadow-card:0 1px 0 rgba(45,26,13,.04), 0 8px 24px -12px rgba(45,26,13,.20);
     --shadow-card-h:0 1px 0 rgba(45,26,13,.06), 0 16px 36px -14px rgba(45,26,13,.36);
-
-    --c-A-bg:#FECACA; --c-A-fg:#9F1239; --c-A-bd:#FCA5A5;
-    --c-B-bg:#FED7AA; --c-B-fg:#9A3412; --c-B-bd:#FDBA74;
-    --c-C-bg:#DBEAFE; --c-C-fg:#1E40AF; --c-C-bd:#93C5FD;
-    --c-D-bg:#E7E5E4; --c-D-fg:#57534E; --c-D-bd:#D6D3D1;
-    --c-E-bg:#D6D3D1; --c-E-fg:#1C1917; --c-E-bd:#A8A29E;
-    --c-F-bg:#ECFCCB; --c-F-fg:#3F6212; --c-F-bd:#BEF264;
   }
 
   *{box-sizing:border-box}
@@ -244,81 +237,7 @@
   }
   .empty strong{color:var(--ink);font-weight:600}
 
-  /* ── DPIA BADGE ─────────────────────────────────── */
-  .dpia-badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:22px;
-    height:22px;
-    border-radius:11px;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.3px;
-    border:1.5px solid;
-    cursor:help;
-    line-height:1;
-    transition:transform .15s;
-    flex-shrink:0;
-  }
-  .dpia-badge:hover{transform:scale(1.12)}
-  .dpia-badge[data-cluster="A"]{background:var(--c-A-bg);color:var(--c-A-fg);border-color:var(--c-A-bd)}
-  .dpia-badge[data-cluster="B"]{background:var(--c-B-bg);color:var(--c-B-fg);border-color:var(--c-B-bd)}
-  .dpia-badge[data-cluster="C"]{background:var(--c-C-bg);color:var(--c-C-fg);border-color:var(--c-C-bd)}
-  .dpia-badge[data-cluster="D"]{background:var(--c-D-bg);color:var(--c-D-fg);border-color:var(--c-D-bd)}
-  .dpia-badge[data-cluster="E"]{background:var(--c-E-bg);color:var(--c-E-fg);border-color:var(--c-E-bd)}
-  .dpia-badge[data-cluster="F"]{background:var(--c-F-bg);color:var(--c-F-fg);border-color:var(--c-F-bd)}
-
-  /* ── DPIA TOOLTIP body-level (singleton) ────────── */
-  #dpia-tooltip{
-    position:fixed;
-    z-index:9999;
-    background:#0F0A06;
-    color:#fff;
-    padding:12px 14px;
-    border-radius:10px;
-    width:260px;
-    font-size:12.5px;
-    line-height:1.5;
-    pointer-events:none;
-    opacity:0;
-    transform:translateY(-4px);
-    transition:opacity .15s ease, transform .15s ease;
-    box-shadow:0 18px 40px -8px rgba(0,0,0,.5);
-    border:1px solid rgba(255,255,255,.08);
-  }
-  #dpia-tooltip.visible{opacity:1;transform:translateY(0)}
-  #dpia-tooltip .tt-head{
-    display:block;
-    font-weight:700;
-    font-size:13px;
-    color:var(--orange-bright);
-    margin-bottom:4px;
-  }
-  #dpia-tooltip .tt-body{
-    display:block;
-    color:rgba(255,255,255,.88);
-  }
-  #dpia-tooltip .tt-meta{
-    display:block;
-    margin-top:8px;
-    padding-top:8px;
-    border-top:1px solid rgba(255,255,255,.12);
-    font-size:10.5px;
-    color:rgba(255,255,255,.55);
-    letter-spacing:.3px;
-  }
-  #dpia-tooltip::after{
-    content:"";
-    position:absolute;
-    top:100%;
-    left:50%;
-    transform:translateX(-50%);
-    border:6px solid transparent;
-    border-top-color:#0F0A06;
-  }
-
-  /* ── FOOTER ─────────────────────────────────────── */
+/* ── FOOTER ─────────────────────────────────────── */
   footer{
     background:#221208;
     color:rgba(255,255,255,.78);
@@ -572,23 +491,7 @@
 <!-- ═════ SCRIPT PORTALE (deve girare PRIMA di Three.js per garantire che le card si vedano sempre) ═════ -->
 <script>
 /* ─────────────────────────────────────────────────────────────
-   FILE JSON DPIA
-   ───────────────────────────────────────────────────────────── */
-const DPIA_FILES = [
-  "DPIA_Web_App_maestre_aprile_2026_v1.0.json"
-];
-
-const CLUSTER_HEADLINES = {
-  A: "App ad alto rischio - DPIA + FRIA",
-  B: "App con trattamento dati personali",
-  C: "App con trattamento limitato",
-  D: "App certificata - Registrazione semplificata",
-  E: "App esente da specifica DPIA",
-  F: "App certificata - Nessuna raccolta dati"
-};
-
-/* ─────────────────────────────────────────────────────────────
-   WEB APP — { titolo, descrizione, url, autore }
+   WEBAPPS — { titolo, descrizione, url, autore }
    ───────────────────────────────────────────────────────────── */
 const WEBAPPS = [
   {
@@ -689,126 +592,6 @@ const WEBAPPS = [
   }
 ];
 
-/* ─────────────────────────────────────────────────────────────
-   STATE & DPIA
-   ───────────────────────────────────────────────────────────── */
-let DPIA_MAP = null;
-const DPIA_CLUSTERS = new Set();
-
-function normalizeUrl(u){
-  if(!u) return "";
-  return u.trim().toLowerCase().replace(/\/+$/, "");
-}
-
-async function loadDPIA(){
-  const map = new Map();
-  await Promise.all(DPIA_FILES.map(async file => {
-    try {
-      const r = await fetch(file, { cache: "no-store" });
-      if(!r.ok) return;
-      const j = await r.json();
-      const info = {
-        cluster: j.cluster || j.clusterAuto || "?",
-        reason:  j.clusterReason || "",
-        date:    (j.meta && j.meta.date)    || "",
-        prot:    (j.meta && j.meta.prot)    || "",
-        version: (j.meta && j.meta.version) || "",
-        clusterName: (j.meta && j.meta.name) || "",
-        titolare:    (j.meta && j.meta.titolare)    || "",
-        dpo:         (j.meta && j.meta.dpo)         || ""
-      };
-      const apps = (j.meta && j.meta.clusterApps) || [];
-      apps.forEach(a => {
-        const u = normalizeUrl(a.url);
-        if(u){
-          map.set(u, info);
-          DPIA_CLUSTERS.add(info.cluster);
-        }
-      });
-    } catch(e){
-      console.warn("[DPIA] Caricamento fallito:", file, e);
-    }
-  }));
-  DPIA_MAP = map;
-  applyDPIABadges();
-  renderDPIALegend();
-}
-
-function applyDPIABadges(){
-  if(!DPIA_MAP) return;
-  document.querySelectorAll(".app-row").forEach(row => {
-    const url = normalizeUrl(row.getAttribute("href"));
-    const info = DPIA_MAP.get(url);
-    if(!info) return;
-    const titleEl = row.querySelector(".app-row-title");
-    if(!titleEl || titleEl.querySelector(".dpia-badge")) return;
-
-    const badge = document.createElement("span");
-    badge.className = "dpia-badge";
-    badge.dataset.cluster = info.cluster;
-    badge.dataset.head    = CLUSTER_HEADLINES[info.cluster] || ("Cluster " + info.cluster);
-    badge.dataset.body    = info.reason || "";
-    const metaParts = [];
-    if(info.prot)    metaParts.push("Prot. " + info.prot);
-    if(info.date)    metaParts.push(info.date);
-    if(info.version) metaParts.push(info.version);
-    badge.dataset.meta = metaParts.join(" \u00b7 ");
-    badge.textContent = info.cluster;
-    titleEl.prepend(badge);
-  });
-}
-
-function renderDPIALegend(){ /* legenda rimossa: nessun container */ }
-
-/* ─── Tooltip singleton body-level ─── */
-function initDPIATooltip(){
-  let tooltip = document.getElementById("dpia-tooltip");
-  if(!tooltip){
-    tooltip = document.createElement("div");
-    tooltip.id = "dpia-tooltip";
-    tooltip.innerHTML = '<span class="tt-head"></span><span class="tt-body"></span><span class="tt-meta"></span>';
-    document.body.appendChild(tooltip);
-  }
-  const ttHead = tooltip.querySelector(".tt-head");
-  const ttBody = tooltip.querySelector(".tt-body");
-  const ttMeta = tooltip.querySelector(".tt-meta");
-
-  document.addEventListener("mouseover", function(e){
-    const badge = e.target.closest(".dpia-badge");
-    if(!badge) return;
-    // Skip badge senza contenuto (es. quelli della legenda DPIA)
-    if(!badge.dataset.head && !badge.dataset.body && !badge.dataset.meta) return;
-    ttHead.textContent = badge.dataset.head || "";
-    ttBody.textContent = badge.dataset.body || "";
-    ttMeta.textContent = badge.dataset.meta || "";
-    ttBody.style.display = badge.dataset.body ? "block" : "none";
-    ttMeta.style.display = badge.dataset.meta ? "block" : "none";
-
-    const r = badge.getBoundingClientRect();
-    tooltip.classList.add("visible");
-    const tw = tooltip.offsetWidth;
-    const th = tooltip.offsetHeight;
-    let left = r.left + r.width/2 - tw/2;
-    let top  = r.top - th - 12;
-    const margin = 8;
-    if(left < margin) left = margin;
-    if(left + tw > window.innerWidth - margin) left = window.innerWidth - tw - margin;
-    if(top < margin) top = r.bottom + 12;
-    tooltip.style.left = left + "px";
-    tooltip.style.top  = top + "px";
-  });
-
-  document.addEventListener("mouseout", function(e){
-    const badge = e.target.closest(".dpia-badge");
-    if(!badge) return;
-    tooltip.classList.remove("visible");
-  });
-
-  window.addEventListener("scroll", function(){
-    tooltip.classList.remove("visible");
-  }, { passive: true });
-}
-
 /* ─── Render Card ─── */
 
 function escapeHTML(s){
@@ -860,14 +643,16 @@ function renderColleghi(){
       + '<div class="collega-apps">' + appsHTML + '</div>';
     cont.appendChild(card);
   });
-  applyDPIABadges();
+  
 }
 
-/* ─── INIT immediato delle card e DPIA ─── */
-initDPIATooltip();
+/* ─── INIT immediato delle card ─── */
 renderColleghi();
-loadDPIA();
+
 </script>
+
+<!-- ═════ Badge DPIA generati da DPIA Studio ═════ -->
+<script src="dpia-badges.js"></script>
 
 </body>
 </html>
