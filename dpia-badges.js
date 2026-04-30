@@ -3,7 +3,7 @@
  * Bollini di conformità GDPR/AI Act per il portale Sacra Famiglia (sacrafamiglia.vercel.app)
  * 
  * Generato automaticamente da DPIA Studio il 2026-04-30
- * 16 app interne + 0 servizi terzi
+ * 21 app interne + 0 servizi terzi
  * 
  * Ogni link nel portale che corrisponde a un'app classificata riceve un piccolo
  * badge colorato accanto al nome, indicante il cluster di rischio.
@@ -84,6 +84,26 @@
   "https://nutrizione.neocities.org": {
     "cluster": "D",
     "name": "Quiz: Il Cibo e la Nutrizione"
+  },
+  "https://www.canva.com/design/dahgzoykrlw/s7vuqodkhapjvitfnq1hew/view?utm_content=dahgzoykrlw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlid=h07e5f5f931": {
+    "cluster": "D",
+    "name": "English - Risorsa Canva"
+  },
+  "https://maestramelissa.my.canva.site/escape-room-sui-vertebrati": {
+    "cluster": "D",
+    "name": "Escape room sui vertebrati"
+  },
+  "https://maestramelissa.my.canva.site/carte-d-identit-dei-vertebrati": {
+    "cluster": "D",
+    "name": "Carte d'identita' dei vertebrati"
+  },
+  "https://maestramelissa.my.canva.site/le-parole-del-fiume": {
+    "cluster": "D",
+    "name": "Le parole del fiume"
+  },
+  "https://maestramelissa.my.canva.site": {
+    "cluster": "D",
+    "name": "Flora e fauna del Fiume"
   }
 };
   
@@ -94,7 +114,8 @@
     "risk": "ALTO",
     "color": "#8B4A3C",
     "bg": "#F4E6E2",
-    "desc": "L'app costruisce profili persistenti degli studenti basati su comportamenti, competenze o valutazioni. Richiede DPIA completa e FRIA secondo l'AI Act (Allegato III)."
+    "desc": "Questa applicazione costruisce profili dettagliati degli studenti per analizzarne competenze e comportamenti nel tempo. Richiede consenso esplicito delle famiglie e supervisione costante.",
+    "legalRef": "Trattamento ad alto rischio ex GDPR art. 35 e AI Act art. 26 (Allegato III). DPIA + FRIA obbligatorie."
   },
   "B": {
     "label": "B",
@@ -102,7 +123,8 @@
     "risk": "ALTO-MEDIO",
     "color": "#B8860B",
     "bg": "#FBF3DC",
-    "desc": "L'app monitora in tempo reale i comportamenti degli studenti durante l'uso. I dati possono restare in-app (SalaStudio) o essere trasmessi a server esterni."
+    "desc": "Questa applicazione osserva il comportamento degli studenti durante l'uso (tempi, scelte, attenzione). I dati possono restare nel browser o essere trasmessi alla scuola.",
+    "legalRef": "GDPR art. 35 e AI Act Allegato III. Uso solo formativo, mai sommativo."
   },
   "C": {
     "label": "C",
@@ -110,7 +132,8 @@
     "risk": "MEDIO",
     "color": "#1E4A8A",
     "bg": "#E4EAF3",
-    "desc": "L'app integra modelli di IA generativa (LLM). Prompt e risposte possono essere trasferiti al fornitore. Obbligo di trasparenza ex art. 50 AI Act."
+    "desc": "Questa applicazione utilizza intelligenza artificiale per generare risposte e contenuti. Le richieste degli studenti sono inviate al fornitore del servizio IA.",
+    "legalRef": "GDPR art. 28 e AI Act art. 50 (obbligo di trasparenza). Uso supervisionato dal docente."
   },
   "D": {
     "label": "D",
@@ -118,7 +141,8 @@
     "risk": "MINIMO",
     "color": "#6B7280",
     "bg": "#EDEFF2",
-    "desc": "App single-page client-side senza alcun trattamento di dati personali identificativi. Architettura zero-backend. Coperta da Registro semplificato art. 30 GDPR."
+    "desc": "Questa applicazione non raccoglie alcun dato personale degli studenti. Funziona interamente nel browser senza inviare informazioni a server esterni.",
+    "legalRef": "GDPR art. 30 par. 5 (registro semplificato). Principio di minimizzazione applicato."
   },
   "E": {
     "label": "E",
@@ -126,7 +150,8 @@
     "risk": "BASSO-MEDIO",
     "color": "#4A5160",
     "bg": "#F1F3F7",
-    "desc": "L'app raccoglie dati inseriti dagli studenti (nickname, risposte, scelte) e li trasferisce a Google Sheets via Apps Script. Dentro perimetro Workspace scolastico."
+    "desc": "Questa applicazione raccoglie alcuni dati degli studenti (nickname, risposte, scelte didattiche) e li salva in fogli di lavoro accessibili solo al docente di classe.",
+    "legalRef": "GDPR art. 5 (minimizzazione) e art. 30. Workspace for Education DPA."
   },
   "F": {
     "label": "F",
@@ -134,7 +159,8 @@
     "risk": "BASSO",
     "color": "#2C5F8D",
     "bg": "#E4EAF3",
-    "desc": "Strumento accessibile esclusivamente ai docenti tramite area riservata. I dati sono trattati nelle funzioni professionali ordinarie, paragonabili al registro elettronico."
+    "desc": "Questa applicazione è accessibile soltanto ai docenti tramite area riservata. I dati trattati sono analoghi a quelli del registro elettronico.",
+    "legalRef": "GDPR art. 6.1.e (interesse pubblico) e art. 9.2.g. D.Lgs. 297/1994."
   }
 };
   
@@ -268,10 +294,21 @@
         color: #5A6270;
       }
       .dpia-popout-desc {
-        margin: 0 0 12px 0;
+        margin: 0 0 8px 0;
         color: #4A5160;
         font-size: 12.5px;
         line-height: 1.6;
+      }
+      .dpia-popout-legal {
+        margin: 0 0 12px 0;
+        padding: 6px 10px;
+        background: #F8F9FB;
+        border-left: 2px solid #DDE1E7;
+        color: #8A92A0;
+        font-size: 10.5px;
+        line-height: 1.5;
+        font-style: italic;
+        border-radius: 0 2px 2px 0;
       }
       .dpia-popout-app {
         margin: 0 0 14px 0;
@@ -509,9 +546,6 @@
     const isThirdparty = !appUrl || appUrl.indexOf('vercel.app') < 0 && appUrl.indexOf('neocities.org') < 0 && appUrl.indexOf('github.io') < 0;
     
     let actionsHtml = '';
-    if (appUrl) {
-      actionsHtml += '<a href="' + appUrl + '" target="_blank" rel="noopener" class="dpia-popout-btn">Apri applicazione ↗</a>';
-    }
     if (isThirdparty) {
       actionsHtml += '<span class="dpia-popout-btn" style="background:#F7F5EE;color:#5A4600;border-color:#E8D9B0;cursor:default;font-style:italic">Servizio terzo</span>';
     }
@@ -525,6 +559,7 @@
       '</div>' +
       (appName ? '<div class="dpia-popout-app"><strong>App:</strong> ' + escapeForHtml(appName) + '</div>' : '') +
       '<p class="dpia-popout-desc">' + meta.desc + '</p>' +
+      (meta.legalRef ? '<p class="dpia-popout-legal">' + meta.legalRef + '</p>' : '') +
       (actionsHtml ? '<div class="dpia-popout-actions">' + actionsHtml + '</div>' : '') +
       '<div class="dpia-popout-footer">Classificazione DPIA Studio · GDPR + AI Act</div>';
     
