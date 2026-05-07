@@ -333,16 +333,20 @@
     grid-template-columns:1fr 1fr;
     gap:32px;
   }
-  R0px;
+  .landing-card{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-end;
+    min-height:220px;
     padding:36px 36px 32px;
     border:2px solid var(--line);
     border-radius:24px;
     background:var(--paper-2);
-    box-shadow:var(--shadow-card);
     cursor:pointer;
     text-decoration:none;
     color:inherit;
-    transition:all .22s ease;
+    transition:border-color .22s ease, transform .22s ease;
     position:relative;
     overflow:hidden;
   }
@@ -356,8 +360,7 @@
   }
   .landing-card:hover{
     transform:translateY(-4px);
-    box-shadow:var(--shadow-card-h);
-    border-color:var(--primaria-soft);
+    border-color:var(--primaria);
   }
   .landing-card:hover::before{
     height:14px;
@@ -498,10 +501,6 @@
   }
 
   /* ── VISTE: nascondi/mostra ──────────────────────────── */
-  .view{display:none !important}
-  .view.active{display:block !important}
-
-
   /* Breadcrumb colorato in base alla vista corrente */
   body[data-view="primaria"] .breadcrumb a,
   body[data-view="primaria"] .breadcrumb button{
@@ -521,7 +520,7 @@
   }
 
 
-  /* ── LAYOUT FULLSCREEN NELLA LANDING ──────────────────── */
+  /* ── LAYOUT FULLSCREEN: footer incollato al fondo ──── */
   body{
     display:flex;
     flex-direction:column;
@@ -530,31 +529,31 @@
   .banner{flex-shrink:0}
   .breadcrumb{flex-shrink:0}
   footer{flex-shrink:0}
-  .view.active{flex-grow:1}
-
-  /* Quando siamo in landing: vista riempie lo spazio + niente scroll */
+  
+  /* Solo nella landing: niente scroll, le 2 card riempiono lo spazio */
   body[data-view="landing"]{
     height:100vh;
     overflow:hidden;
   }
-  body[data-view="landing"] #view-landing{
+  body[data-view="landing"] .landing{
+    flex-grow:1;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:0;
-  }
-  body[data-view="landing"] .landing{
-    width:100%;
     padding:32px 6%;
+    gap:32px;
+    width:100%;
+    max-width:1320px;
     margin:0 auto;
   }
+  body[data-view="landing"] .landing-card{
+    flex:1;
+    max-width:600px;
+  }
 
 
-  /* Regola difensiva: viste senza .active sono nascoste */
-  [hidden]{display:none !important}
-  .view:not(.active){display:none !important}
-
-</style>
+  /* (regole legacy rimosse) */
+  </style>
 </head>
 <body data-view="landing">
 

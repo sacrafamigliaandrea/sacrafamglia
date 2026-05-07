@@ -333,16 +333,20 @@
     grid-template-columns:1fr 1fr;
     gap:32px;
   }
-  R0px;
+  .landing-card{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-end;
+    min-height:220px;
     padding:36px 36px 32px;
     border:2px solid var(--line);
     border-radius:24px;
     background:var(--paper-2);
-    box-shadow:var(--shadow-card);
     cursor:pointer;
     text-decoration:none;
     color:inherit;
-    transition:all .22s ease;
+    transition:border-color .22s ease, transform .22s ease;
     position:relative;
     overflow:hidden;
   }
@@ -356,8 +360,7 @@
   }
   .landing-card:hover{
     transform:translateY(-4px);
-    box-shadow:var(--shadow-card-h);
-    border-color:var(--primaria-soft);
+    border-color:var(--primaria);
   }
   .landing-card:hover::before{
     height:14px;
@@ -527,6 +530,7 @@
     flex-direction:column;
     min-height:100vh;
   }
+  .colleghi-wrap{flex-grow:1}
   .banner{flex-shrink:0}
   .breadcrumb{flex-shrink:0}
   footer{flex-shrink:0}
