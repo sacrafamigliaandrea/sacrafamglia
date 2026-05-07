@@ -17,6 +17,14 @@
     --orange-line:#F8B580;
     --orange-pale:#FFF1E0;
 
+    /* Colori guida delle due sezioni */
+    --primaria:#F58A24;
+    --primaria-deep:#C4690F;
+    --primaria-soft:#FEE6CD;
+    --secondaria:#154C9A;
+    --secondaria-deep:#0D3470;
+    --secondaria-soft:#D9E4F4;
+
     --blue-deep:#1E3A5F;
     --blue:#2A4D7A;
     --blue-soft:#5B7BA0;
@@ -158,12 +166,12 @@
   }
   .collega-card:hover{
     box-shadow:var(--shadow-card-h);
-    border-color:var(--orange-line);
+    border-color:var(--primaria-soft);
   }
   .collega-head{
     padding:22px 24px 20px;
     background:linear-gradient(180deg, var(--paper-2) 0%, #FBF6EE 100%);
-    border-bottom:2px solid var(--orange);
+    border-bottom:2px solid var(--primaria);
     border-radius:16px 16px 0 0;
   }
   .collega-name{
@@ -191,7 +199,7 @@
   }
   .collega-apps .app-row:first-child{border-top:none}
   .app-row:hover{
-    background:var(--orange-soft);
+    background:var(--primaria-soft);
     padding-left:28px;
   }
   .app-row-main{flex:1;min-width:0}
@@ -212,7 +220,7 @@
     margin-top:4px;
   }
   .app-row-arrow{
-    color:var(--orange);
+    color:var(--primaria);
     flex-shrink:0;
     display:flex;
     align-items:center;
@@ -223,7 +231,7 @@
     transition:background .15s, transform .15s;
   }
   .app-row:hover .app-row-arrow{
-    background:var(--orange);
+    background:var(--primaria);
     color:#fff;
     transform:translateX(2px);
   }
@@ -241,7 +249,7 @@
   footer{
     background:#221208;
     color:rgba(255,255,255,.78);
-    padding:36px 32px 28px;
+    padding:22px 32px 18px;
     border-top:3px solid var(--orange);
   }
   .foot-inner{
@@ -274,6 +282,273 @@
       animation-play-state:paused;
     }
   }
+
+  /* ── BREADCRUMB / NAV TRA VISTE ──────────────────────── */
+  .breadcrumb{
+    max-width:1320px;
+    margin:0 auto;
+    padding:14px 32px 18px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--ink-soft);
+    flex-wrap:wrap;
+  }
+  .breadcrumb a, .breadcrumb button{
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    color:var(--blue);
+    font-weight:600;
+    font-size:13px;
+    cursor:pointer;
+    font-family:inherit;
+    text-decoration:none;
+    transition:color .12s;
+  }
+  .breadcrumb a:hover, .breadcrumb button:hover{
+    color:var(--orange-deep);
+    text-decoration:underline;
+  }
+  .breadcrumb .current{
+    color:var(--ink);
+    font-weight:700;
+  }
+  .breadcrumb .sep{
+    color:var(--line);
+    font-weight:700;
+  }
+  @media (max-width:760px){
+    .breadcrumb{padding:12px 22px 14px}
+  }
+
+  /* ── LANDING PAGE: due grossi pulsanti ───────────────── */
+  .landing{
+    max-width:1320px;
+    margin:0 auto;
+    padding:40px 32px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+  R0px;
+    padding:36px 36px 32px;
+    border:2px solid var(--line);
+    border-radius:24px;
+    background:var(--paper-2);
+    box-shadow:var(--shadow-card);
+    cursor:pointer;
+    text-decoration:none;
+    color:inherit;
+    transition:all .22s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .landing-card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:8px;
+    background:var(--primaria);
+    transition:height .22s ease;
+  }
+  .landing-card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-card-h);
+    border-color:var(--primaria-soft);
+  }
+  .landing-card:hover::before{
+    height:14px;
+  }
+  .landing-card[data-area="secondaria"]::before{
+    background:var(--secondaria);
+  }
+  .landing-card[data-area="secondaria"]:hover{
+    border-color:var(--secondaria-soft);
+  }
+  .landing-eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  .landing-title{
+    margin:0 0 12px;
+    font-size:clamp(28px,3.4vw,44px);
+    font-weight:800;
+    letter-spacing:-.025em;
+    color:var(--blue-deep);
+    line-height:1.05;
+  }
+  .landing-card[data-area="secondaria"] .landing-title{
+    color:var(--blue-deep);
+  }
+  .landing-desc{
+    font-size:15px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0 0 20px;
+  }
+  .landing-arrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--primaria-deep);
+    font-weight:700;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+  }
+  .landing-card[data-area="secondaria"] .landing-arrow{
+    color:var(--secondaria);
+  }
+  .landing-card:hover .landing-arrow svg{
+    transform:translateX(4px);
+  }
+  .landing-arrow svg{
+    transition:transform .18s ease;
+  }
+  @media (max-width:760px){
+    .landing{
+      grid-template-columns:1fr;
+      padding:36px 22px 60px;
+      gap:20px;
+    }
+    .landing-card{min-height:220px;padding:28px 26px 24px}
+  }
+
+  /* ── AREE DIDATTICHE (Secondaria) ────────────────────── */
+  .aree-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:22px;
+  }
+  @media (max-width:900px){
+    .aree-grid{grid-template-columns:1fr}
+  }
+  .area-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:var(--shadow-card);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .area-card:hover{
+    box-shadow:var(--shadow-card-h);
+    border-color:var(--secondaria-soft);
+  }
+  .area-head{
+    padding:22px 24px 20px;
+    background:linear-gradient(180deg, var(--paper-2) 0%, #FBF6EE 100%);
+    border-bottom:2px solid var(--secondaria);
+    border-radius:16px 16px 0 0;
+  }
+  .area-name{
+    margin:0;
+    font-weight:700;
+    font-size:24px;
+    letter-spacing:-.02em;
+    color:var(--secondaria);
+    line-height:1.2;
+  }
+  .area-meta{
+    display:block;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-weight:600;
+  }
+  .area-apps{
+    display:flex;
+    flex-direction:column;
+    border-radius:0 0 16px 16px;
+    overflow:hidden;
+  }
+  .area-apps .app-row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+  .area-apps .app-row-docenti{
+    font-size:12px;
+    color:var(--ink-soft);
+    font-style:italic;
+    font-weight:500;
+    margin-bottom:2px;
+  }
+  .area-apps .app-row-body{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .area-apps .app-row-main{flex:1;min-width:0}
+  .area-empty{
+    padding:24px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:13px;
+    font-style:italic;
+  }
+
+  /* ── VISTE: nascondi/mostra ──────────────────────────── */
+  .view{display:none}
+  .view.active{display:block}
+
+
+  /* Breadcrumb colorato in base alla vista corrente */
+  body[data-view="primaria"] .breadcrumb a,
+  body[data-view="primaria"] .breadcrumb button{
+    color:var(--primaria-deep);
+  }
+  body[data-view="primaria"] .breadcrumb a:hover,
+  body[data-view="primaria"] .breadcrumb button:hover{
+    color:var(--primaria);
+  }
+  body[data-view="secondaria"] .breadcrumb a,
+  body[data-view="secondaria"] .breadcrumb button{
+    color:var(--secondaria);
+  }
+  body[data-view="secondaria"] .breadcrumb a:hover,
+  body[data-view="secondaria"] .breadcrumb button:hover{
+    color:var(--secondaria-deep);
+  }
+
+
+  /* ── LAYOUT FULLSCREEN NELLA LANDING ──────────────────── */
+  body{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+  }
+  .banner{flex-shrink:0}
+  .breadcrumb{flex-shrink:0}
+  footer{flex-shrink:0}
+  .view{flex-grow:1}
+
+  /* Quando siamo in landing: vista riempie lo spazio + niente scroll */
+  body[data-view="landing"]{
+    height:100vh;
+    overflow:hidden;
+  }
+  body[data-view="landing"] #view-landing{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+  }
+  body[data-view="landing"] .landing{
+    width:100%;
+    padding:32px 6%;
+    margin:0 auto;
+  }
+
 </style>
 </head>
 <body>
@@ -473,18 +748,61 @@
   </div>
 </div>
 
+<!-- BREADCRUMB (nascosto in landing) -->
+<div class="breadcrumb" id="breadcrumb" style="display:none"></div>
+
+<!-- ════════════════ VISTA: LANDING ════════════════ -->
+<div class="view" id="view-landing">
+  <section class="landing">
+    <a class="landing-card" data-area="primaria" href="#primaria" onclick="goTo('primaria'); return false;">
+      <span class="landing-eyebrow">Sezione</span>
+      <h2 class="landing-title">Scuola Primaria</h2>
+      <p class="landing-desc">Le web app didattiche delle maestre, organizzate per docente.</p>
+      <span class="landing-arrow">
+        Entra
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+    <a class="landing-card" data-area="secondaria" href="#secondaria" onclick="goTo('secondaria'); return false;">
+      <span class="landing-eyebrow">Sezione</span>
+      <h2 class="landing-title">Scuola Secondaria</h2>
+      <p class="landing-desc">Le risorse digitali dei professori, organizzate per area didattica.</p>
+      <span class="landing-arrow">
+        Entra
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+  </section>
+</div>
+
+<!-- ════════════════ VISTA: PRIMARIA ════════════════ -->
+<div class="view" id="view-primaria">
+</div>
+
 <!-- ════════════════ CARD COLLEGHI ════════════════ -->
 <section class="colleghi-wrap">
   <div class="colleghi-grid" id="colleghi-container">
     <div class="empty"><strong>Caricamento in corso...</strong></div>
   </div>
 </section>
+</div>
+
+<!-- ════════════════ VISTA: SECONDARIA ════════════════ -->
+<div class="view" id="view-secondaria">
+  <section class="colleghi-wrap">
+    <div class="aree-grid" id="aree-container">
+      <div class="area-empty">Caricamento...</div>
+    </div>
+  </section>
+</div>
+
+</section>
 
 <!-- ════════════════ FOOTER ════════════════ -->
 <footer>
   <div class="foot-inner">
-    <div class="foot-brand">Scuola Sacra Famiglia · Orzinuovi</div>
-    <div class="foot-copyright">© 2026 · A cura di Andrea Cerioli, Animatore Digitale</div>
+    <div class="foot-brand">Sacra Famiglia · Tutti i diritti riservati</div>
+    <div class="foot-copyright">© 2026 · A cura dell'Animatore Digitale</div>
   </div>
 </footer>
 
@@ -561,6 +879,12 @@ const WEBAPPS = [
     autore: "Maestro Andrea Castelli"
   },
   {
+    titolo: "Frazione e Numero",
+    descrizione: "Esplorare il rapporto tra frazioni e numeri decimali con esercizi e visualizzazioni.",
+    url: "https://frazionenumero.neocities.org/",
+    autore: "Maestro Andrea Castelli"
+  },
+  {
     titolo: "Ancient Egypt Quiz",
     descrizione: "Quiz interattivo in inglese sull'antico Egitto: lessico e civilta'.",
     url: "https://canva.link/eyew3e2mvycv9as",
@@ -633,6 +957,144 @@ const WEBAPPS = [
     autore: "Maestra Melissa"
   }
 ];
+/* ─────────────────────────────────────────────────────────────
+   SECONDARIA — { titolo, descrizione, url, area, docenti[] }
+   docenti e' un array per supportare collaborazioni multi-docente
+   ───────────────────────────────────────────────────────────── */
+const AREE_SECONDARIA = [
+  { id: "letteraria",   nome: "Area Letteraria",            sub: "Italiano, Storia, Geografia" },
+  { id: "matematica",   nome: "Area Matematico-Scientifica", sub: "Matematica, Scienze, Tecnologia" },
+  { id: "lingue",       nome: "Area Lingue",                 sub: "Inglese, Spagnolo, Francese" },
+  { id: "artistica",    nome: "Area Artistico-Espressiva",   sub: "Arte, Musica, Educazione fisica" },
+  { id: "civica",       nome: "Educazione Civica",           sub: "Cittadinanza, ambiente, legalita'" }
+];
+
+const SECONDARIA = [
+  /* ─── AREA CIVICA ─── */
+  {
+    titolo: "Geopolitica",
+    descrizione: "Esplorare scenari geopolitici contemporanei attraverso una webapp interattiva.",
+    url: "https://geodash-gamma.vercel.app/",
+    area: "civica",
+    docenti: ["Prof.ssa Eleonora Rota", "Prof.ssa Siria Bertoli", "Prof. Giacomo Bulla"]
+  },
+  {
+    titolo: "Governare uno stato europeo",
+    descrizione: "Simulazione di governo: prendere decisioni politiche e osservarne le conseguenze.",
+    url: "https://euro-dash.vercel.app/",
+    area: "civica",
+    docenti: ["Prof.ssa Eleonora Rota", "Prof.ssa Siria Bertoli", "Prof. Giacomo Bulla"]
+  },
+
+  /* ─── AREA MATEMATICO-SCIENTIFICA ─── */
+  {
+    titolo: "Le frazioni",
+    descrizione: "Esercizi e attivita' interattive sulle frazioni per la classe prima della Secondaria.",
+    url: "https://frazioni1a.neocities.org/",
+    area: "matematica",
+    docenti: ["Prof.ssa Nicole Mercandelli"]
+  },
+  {
+    titolo: "La cellula",
+    descrizione: "Struttura e funzioni della cellula: percorso interattivo per le classi prime e quarte.",
+    url: "https://cellulaprimequarte.neocities.org/",
+    area: "matematica",
+    docenti: ["Prof.ssa Nicole Mercandelli"]
+  },
+  {
+    titolo: "La sintesi proteica",
+    descrizione: "Trascrizione, traduzione e codice genetico spiegati passo dopo passo.",
+    url: "https://sintesiproteica.vercel.app/",
+    area: "matematica",
+    docenti: ["Prof.ssa Paola Grassi"]
+  }
+];
+
+/* ─── Router: legge window.location.hash e mostra la vista giusta ─── */
+function setView(name){
+  const valid = ["landing", "primaria", "secondaria"];
+  if(!valid.includes(name)) name = "landing";
+  document.querySelectorAll(".view").forEach(function(v){
+    v.classList.toggle("active", v.id === "view-" + name);
+  });
+  document.body.setAttribute("data-view", name);
+  // Aggiorno breadcrumb
+  const bc = document.getElementById("breadcrumb");
+  if(bc){
+    if(name === "landing"){
+      bc.style.display = "none";
+    } else {
+      bc.style.display = "flex";
+      const label = name === "primaria" ? "Scuola Primaria" : "Scuola Secondaria";
+      bc.innerHTML = ''
+        + '<button onclick="goTo(\'landing\')">Portale</button>'
+        + '<span class="sep">/</span>'
+        + '<span class="current">' + label + '</span>';
+    }
+  }
+  // Scroll in alto al cambio vista
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function goTo(name){
+  if(name === "landing"){
+    history.pushState(null, "", window.location.pathname);
+  } else {
+    window.location.hash = "#" + name;
+  }
+  setView(name);
+}
+
+function readHash(){
+  const h = window.location.hash.replace("#", "");
+  return h || "landing";
+}
+
+window.addEventListener("hashchange", function(){
+  setView(readHash());
+});
+
+/* ─── Render Secondaria ─── */
+function renderSecondaria(){
+  const cont = document.getElementById("aree-container");
+  if(!cont) return;
+  cont.innerHTML = "";
+  AREE_SECONDARIA.forEach(function(area){
+    const apps = SECONDARIA.filter(function(a){ return a.area === area.id; });
+    const card = document.createElement("article");
+    card.className = "area-card";
+    let appsHTML = "";
+    if(apps.length === 0){
+      appsHTML = '<div class="area-empty">Nessuna app ancora pubblicata in questa area.</div>';
+    } else {
+      appsHTML = apps.map(function(a){
+        const docenti = (a.docenti || []).join(" · ");
+        return ''
+          + '<a class="app-row" href="' + escapeHTML(a.url) + '" target="_blank" rel="noopener">'
+          + '  ' + (docenti ? '<div class="app-row-docenti">' + escapeHTML(docenti) + '</div>' : '')
+          + '  <div class="app-row-body">'
+          + '    <div class="app-row-main">'
+          + '      <div class="app-row-title">' + escapeHTML(a.titolo) + '</div>'
+          + '      <div class="app-row-desc">' + escapeHTML(a.descrizione) + '</div>'
+          + '    </div>'
+          + '    <span class="app-row-arrow">'
+          + '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'
+          + '    </span>'
+          + '  </div>'
+          + '</a>';
+      }).join("");
+    }
+    card.innerHTML = ''
+      + '<header class="area-head">'
+      + '  <h2 class="area-name">' + escapeHTML(area.nome) + '</h2>'
+      + '  <span class="area-meta">' + escapeHTML(area.sub) + '</span>'
+      + '</header>'
+      + '<div class="area-apps">' + appsHTML + '</div>';
+    cont.appendChild(card);
+  });
+}
+
+
 
 /* ─── Render Card ─── */
 
@@ -689,8 +1151,10 @@ function renderColleghi(){
 }
 
 /* ─── INIT immediato delle card ─── */
+/* ─── INIT del portale ─── */
 renderColleghi();
-
+renderSecondaria();
+setView(readHash());
 </script>
 
 <!-- ═════ Badge DPIA generati da DPIA Studio ═════ -->
