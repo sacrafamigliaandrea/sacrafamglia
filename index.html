@@ -549,6 +549,11 @@
     margin:0 auto;
   }
 
+
+  /* Regola difensiva: viste senza .active sono nascoste */
+  [hidden]{display:none !important}
+  .view:not(.active){display:none !important}
+
 </style>
 </head>
 <body data-view="landing">
@@ -776,7 +781,7 @@
 </div>
 
 <!-- ════════════════ VISTA: PRIMARIA ════════════════ -->
-<div class="view" id="view-primaria">
+<div class="view" id="view-primaria" hidden>
 </div>
 
 <!-- ════════════════ CARD COLLEGHI ════════════════ -->
@@ -788,7 +793,7 @@
 </div>
 
 <!-- ════════════════ VISTA: SECONDARIA ════════════════ -->
-<div class="view" id="view-secondaria">
+<div class="view" id="view-secondaria" hidden>
   <section class="colleghi-wrap">
     <div class="aree-grid" id="aree-container">
       <div class="area-empty">Caricamento...</div>
@@ -1024,7 +1029,14 @@ function setView(name){
   const valid = ["landing", "primaria", "secondaria"];
   if(!valid.includes(name)) name = "landing";
   document.querySelectorAll(".view").forEach(function(v){
-    v.classList.toggle("active", v.id === "view-" + name);
+    const isActive = v.id === "view-" + name;
+    v.classList.toggle("active", isActive);
+    // Attributo hidden HTML5: bulletproof, non sovrascrivibile
+    if(isActive){
+      v.removeAttribute("hidden");
+    } else {
+      v.setAttribute("hidden", "");
+    }
   });
   document.body.setAttribute("data-view", name);
   // Aggiorno breadcrumb
