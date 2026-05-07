@@ -29,11 +29,11 @@
     --blue:#2A4D7A;
     --blue-soft:#5B7BA0;
 
-    --ink:#1A1310;
-    --ink-soft:#5C4734;
-    --paper:#FBF1E2;
+    --ink:#0F1B2D;
+    --ink-soft:#475569;
+    --paper:#F5F7FA;
     --paper-2:#FFFFFF;
-    --line:#E8DDC7;
+    --line:#DCE3EC;
 
     --shadow-card:0 1px 0 rgba(45,26,13,.04), 0 8px 24px -12px rgba(45,26,13,.20);
     --shadow-card-h:0 1px 0 rgba(45,26,13,.06), 0 16px 36px -14px rgba(45,26,13,.36);
@@ -113,7 +113,7 @@
     font-size:clamp(16px,1.7vw,22px);
     font-weight:500;
     font-style:italic;
-    color:var(--blue);
+    color:#FFFFFF;
     line-height:1.3;
   }
 
@@ -170,7 +170,7 @@
   }
   .collega-head{
     padding:22px 24px 20px;
-    background:linear-gradient(180deg, var(--paper-2) 0%, #FBF6EE 100%);
+    background:linear-gradient(180deg, var(--paper-2) 0%, #F8FAFC 100%);
     border-bottom:2px solid var(--primaria);
     border-radius:16px 16px 0 0;
   }
@@ -340,8 +340,8 @@
     justify-content:flex-end;
     min-height:220px;
     padding:36px 36px 32px;
-    border:2px solid var(--line);
-    border-radius:24px;
+    border:1px solid var(--line);
+    border-radius:20px;
     background:var(--paper-2);
     cursor:pointer;
     text-decoration:none;
@@ -354,7 +354,7 @@
     content:"";
     position:absolute;
     top:0; left:0; right:0;
-    height:8px;
+    height:12px;
     background:var(--primaria);
     transition:height .22s ease;
   }
@@ -363,7 +363,7 @@
     border-color:var(--primaria);
   }
   .landing-card:hover::before{
-    height:14px;
+    height:18px;
   }
   .landing-card[data-area="secondaria"]::before{
     background:var(--secondaria);
@@ -446,7 +446,7 @@
   }
   .area-head{
     padding:22px 24px 20px;
-    background:linear-gradient(180deg, var(--paper-2) 0%, #FBF6EE 100%);
+    background:linear-gradient(180deg, var(--paper-2) 0%, #F8FAFC 100%);
     border-bottom:2px solid var(--secondaria);
     border-radius:16px 16px 0 0;
   }
@@ -558,6 +558,34 @@
   [hidden]{display:none !important}
   .view:not(.active){display:none !important}
 
+
+  /* ── RETE NEL BANNER: pause se reduced motion ──────────── */
+  @media (prefers-reduced-motion: reduce){
+    .banner-bg .network-graph animate{
+      animation-play-state:paused;
+    }
+  }
+
+  /* ── NOTA EDUCATIVA SOPRA IL FOOTER ──────────────────── */
+  .nota-educativa{
+    background:var(--paper-2);
+    border-top:1px solid var(--line);
+    padding:18px 32px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:13px;
+    line-height:1.65;
+    font-style:italic;
+  }
+  .nota-educativa strong{
+    color:var(--ink);
+    font-style:normal;
+    font-weight:600;
+  }
+  @media (max-width:760px){
+    .nota-educativa{padding:16px 22px;font-size:12px}
+  }
+
 </style>
 </head>
 <body data-view="primaria">
@@ -577,6 +605,76 @@
       </linearGradient>
     </defs>
     <rect width="1600" height="280" fill="url(#bgGrad)"/>
+
+    <!-- ═════ Rete di connessioni animate (sfondo) ═════ -->
+    <g class="network-graph" opacity="0.85">
+      <!-- Linee della rete (sotto i nodi) -->
+      <g stroke="#FFFFFF" stroke-width="1" fill="none" stroke-linecap="round">
+        <!-- Connessione 1: alto-sx → centro -->
+        <line x1="80" y1="40" x2="320" y2="120" stroke-opacity="0.18" stroke-dasharray="4 6">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.5s" repeatCount="indefinite"/>
+        </line>
+        <!-- Connessione 2: basso-sx → centro -->
+        <line x1="60" y1="240" x2="320" y2="120" stroke-opacity="0.16" stroke-dasharray="4 6">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="3.2s" repeatCount="indefinite"/>
+        </line>
+        <!-- Connessione 3: centro → alto-dx-superiore -->
+        <line x1="320" y1="120" x2="640" y2="50" stroke-opacity="0.20" stroke-dasharray="4 6">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.8s" repeatCount="indefinite"/>
+        </line>
+        <!-- Connessione 4: centro → basso-dx -->
+        <line x1="320" y1="120" x2="700" y2="230" stroke-opacity="0.16" stroke-dasharray="4 6">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="3.6s" repeatCount="indefinite"/>
+        </line>
+        <!-- Connessione 5: alto-sx → alto-dx (lunga) -->
+        <line x1="80" y1="40" x2="640" y2="50" stroke-opacity="0.12" stroke-dasharray="3 8">
+          <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="4.2s" repeatCount="indefinite"/>
+        </line>
+        <!-- Connessione 6: basso-sx → basso-dx (lunga) -->
+        <line x1="60" y1="240" x2="700" y2="230" stroke-opacity="0.10" stroke-dasharray="3 8">
+          <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="4.8s" repeatCount="indefinite"/>
+        </line>
+        <!-- Connessione 7: collegamento secondario -->
+        <line x1="640" y1="50" x2="700" y2="230" stroke-opacity="0.14" stroke-dasharray="3 5">
+          <animate attributeName="stroke-dashoffset" from="0" to="-16" dur="3.8s" repeatCount="indefinite"/>
+        </line>
+      </g>
+
+      <!-- Nodi della rete (sopra le linee) -->
+      <g fill="#FFFFFF">
+        <!-- Nodo 1: alto-sx -->
+        <circle cx="80" cy="40" r="3" opacity="0.55">
+          <animate attributeName="r" values="2.5;4;2.5" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.85;0.4" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Nodo 2: basso-sx -->
+        <circle cx="60" cy="240" r="3" opacity="0.55">
+          <animate attributeName="r" values="2.5;4;2.5" dur="3.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3.4s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Nodo 3: centro - hub principale -->
+        <circle cx="320" cy="120" r="4" opacity="0.7">
+          <animate attributeName="r" values="3;5.5;3" dur="2.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.55;1;0.55" dur="2.2s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Anello esterno del nodo centrale -->
+        <circle cx="320" cy="120" r="6" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.3">
+          <animate attributeName="r" values="6;14;6" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Nodo 4: alto-dx (verso il globo) -->
+        <circle cx="640" cy="50" r="3" opacity="0.55">
+          <animate attributeName="r" values="2.5;4;2.5" dur="2.9s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.9s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Nodo 5: basso-dx -->
+        <circle cx="700" cy="230" r="3" opacity="0.55">
+          <animate attributeName="r" values="2.5;4;2.5" dur="3.7s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3.7s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+    </g>
+
     <!-- stelle del cosmo (lato destro) -->
     <g fill="#FFFFFF" opacity="0.85">
       <circle cx="1180" cy="40"  r="0.9"/>
@@ -752,7 +850,7 @@
     </div>
     <div class="banner-text">
       <h1 class="banner-title">Portale Sacra Famiglia</h1>
-      <p class="banner-sub">Le web app didattiche dei nostri docenti</p>
+      <p class="banner-sub">Un ecosistema digitale costruito in casa, dai nostri docenti per le classi.</p>
     </div>
   </div>
 </div>
@@ -770,6 +868,12 @@
     <div class="empty">Caricamento in corso...</div>
   </div>
 </section>
+
+
+<!-- ═════ NOTA EDUCATIVA ═════ -->
+<aside class="nota-educativa">
+  Le risorse delle due sezioni sono liberamente accessibili a tutti gli studenti, perche' la curiosita' non si ferma all'eta'. <strong>Questo portale, pero', non vuole intrattenere ma stimolare l'interesse e offrire occasioni di approfondimento</strong>: vi invitiamo a farne un uso consapevole.
+</aside>
 
 <!-- ════════════════ FOOTER ════════════════ -->
 <footer>
