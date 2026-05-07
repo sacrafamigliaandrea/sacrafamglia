@@ -556,7 +556,7 @@
 
 </style>
 </head>
-<body data-view="landing">
+<body data-view="secondaria">
 
 <!-- ════════════════ BANNER ════════════════ -->
 <div class="banner" role="banner">
@@ -753,26 +753,18 @@
   </div>
 </div>
 
-<!-- ════════════════ LANDING ════════════════ -->
-<section class="landing">
-  <a class="landing-card" data-area="primaria" href="primaria.html">
-    <span class="landing-eyebrow">Sezione</span>
-    <h2 class="landing-title">Scuola Primaria</h2>
-    <p class="landing-desc">Le web app didattiche delle maestre, organizzate per docente.</p>
-    <span class="landing-arrow">
-      Entra
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-    </span>
-  </a>
-  <a class="landing-card" data-area="secondaria" href="secondaria.html">
-    <span class="landing-eyebrow">Sezione</span>
-    <h2 class="landing-title">Scuola Secondaria</h2>
-    <p class="landing-desc">Le risorse digitali dei professori, organizzate per area didattica.</p>
-    <span class="landing-arrow">
-      Entra
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-    </span>
-  </a>
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Portale</a>
+  <span class="sep">/</span>
+  <span class="current">Scuola Secondaria</span>
+</nav>
+
+<!-- ════════════════ AREE DIDATTICHE ════════════════ -->
+<section class="colleghi-wrap">
+  <div class="aree-grid" id="aree-container">
+    <div class="empty">Caricamento in corso...</div>
+  </div>
 </section>
 
 <!-- ════════════════ FOOTER ════════════════ -->
@@ -782,6 +774,120 @@
     <div class="foot-copyright">© 2026 · A cura dell'Animatore Digitale</div>
   </div>
 </footer>
+
+<script>
+function escapeHTML(s){
+  return String(s||"").replace(/[&<>"']/g, function(c){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c];
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SECONDARIA — { titolo, descrizione, url, area, docenti[] }
+   docenti e' un array per supportare collaborazioni multi-docente
+   ───────────────────────────────────────────────────────────── */
+const AREE_SECONDARIA = [
+  { id: "letteraria",   nome: "Area Letteraria",            sub: "Italiano, Storia, Geografia" },
+  { id: "matematica",   nome: "Area Matematico-Scientifica", sub: "Matematica, Scienze, Tecnologia" },
+  { id: "lingue",       nome: "Area Lingue",                 sub: "Inglese, Spagnolo, Francese" },
+  { id: "artistica",    nome: "Area Artistico-Espressiva",   sub: "Arte, Musica, Educazione fisica" },
+  { id: "civica",       nome: "Educazione Civica",           sub: "Cittadinanza, ambiente, legalita'" }
+];
+
+const SECONDARIA = [
+  /* ─── AREA LETTERARIA ─── */
+  {
+    titolo: "Harry Potter e la Pietra Filosofale",
+    descrizione: "Audiolettura sincronizzata del romanzo: tap su ogni paragrafo durante la narrazione per seguire il testo. Modalita' accessibile DSA-friendly e salvataggio del segnalibro.",
+    url: "https://harrypotter-1.vercel.app/",
+    area: "letteraria",
+    docenti: ["Prof. Giacomo Bulla"]
+  },
+
+  /* ─── AREA CIVICA ─── */
+  {
+    titolo: "Geopolitica",
+    descrizione: "Esplorare scenari geopolitici contemporanei attraverso una webapp interattiva.",
+    url: "https://geodash-gamma.vercel.app/",
+    area: "civica",
+    docenti: ["Prof.ssa Eleonora Rota", "Prof.ssa Siria Bertoli", "Prof. Giacomo Bulla"]
+  },
+  {
+    titolo: "Governare uno stato europeo",
+    descrizione: "Simulazione di governo: prendere decisioni politiche e osservarne le conseguenze.",
+    url: "https://euro-dash.vercel.app/",
+    area: "civica",
+    docenti: ["Prof.ssa Eleonora Rota", "Prof.ssa Siria Bertoli", "Prof. Giacomo Bulla"]
+  },
+
+  /* ─── AREA MATEMATICO-SCIENTIFICA ─── */
+  {
+    titolo: "Le frazioni",
+    descrizione: "Esercizi e attivita' interattive sulle frazioni per la classe prima della Secondaria.",
+    url: "https://frazioni1a.neocities.org/",
+    area: "matematica",
+    docenti: ["Prof.ssa Nicole Mercandelli"]
+  },
+  {
+    titolo: "La cellula",
+    descrizione: "Struttura e funzioni della cellula: percorso interattivo per le classi prime e quarte.",
+    url: "https://cellulaprimequarte.neocities.org/",
+    area: "matematica",
+    docenti: ["Prof.ssa Nicole Mercandelli"]
+  },
+  {
+    titolo: "La sintesi proteica",
+    descrizione: "Trascrizione, traduzione e codice genetico spiegati passo dopo passo.",
+    url: "https://sintesiproteica.vercel.app/",
+    area: "matematica",
+    docenti: ["Prof.ssa Paola Grassi"]
+  }
+];
+
+function renderSecondaria(){
+  const cont = document.getElementById("aree-container");
+  if(!cont) return;
+  cont.innerHTML = "";
+  AREE_SECONDARIA.forEach(function(area){
+    const apps = SECONDARIA.filter(function(a){ return a.area === area.id; });
+    const card = document.createElement("article");
+    card.className = "area-card";
+    let appsHTML = "";
+    if(apps.length === 0){
+      appsHTML = '<div class="area-empty">Nessuna app ancora pubblicata in questa area.</div>';
+    } else {
+      appsHTML = apps.map(function(a){
+        const docenti = (a.docenti || []).join(" · ");
+        return ''
+          + '<a class="app-row" href="' + escapeHTML(a.url) + '" target="_blank" rel="noopener">'
+          + '  ' + (docenti ? '<div class="app-row-docenti">' + escapeHTML(docenti) + '</div>' : '')
+          + '  <div class="app-row-body">'
+          + '    <div class="app-row-main">'
+          + '      <div class="app-row-title">' + escapeHTML(a.titolo) + '</div>'
+          + '      <div class="app-row-desc">' + escapeHTML(a.descrizione) + '</div>'
+          + '    </div>'
+          + '    <span class="app-row-arrow">'
+          + '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'
+          + '    </span>'
+          + '  </div>'
+          + '</a>';
+      }).join("");
+    }
+    card.innerHTML = ''
+      + '<header class="area-head">'
+      + '  <h2 class="area-name">' + escapeHTML(area.nome) + '</h2>'
+      + '  <span class="area-meta">' + escapeHTML(area.sub) + '</span>'
+      + '</header>'
+      + '<div class="area-apps">' + appsHTML + '</div>';
+    cont.appendChild(card);
+  });
+}
+
+renderSecondaria();
+</script>
+
+<!-- ═════ Badge DPIA generati da DPIA Studio ═════ -->
+<script src="dpia-badges.js"></script>
 
 </body>
 </html>

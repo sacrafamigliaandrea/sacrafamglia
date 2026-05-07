@@ -556,7 +556,7 @@
 
 </style>
 </head>
-<body data-view="landing">
+<body data-view="primaria">
 
 <!-- ════════════════ BANNER ════════════════ -->
 <div class="banner" role="banner">
@@ -753,26 +753,18 @@
   </div>
 </div>
 
-<!-- ════════════════ LANDING ════════════════ -->
-<section class="landing">
-  <a class="landing-card" data-area="primaria" href="primaria.html">
-    <span class="landing-eyebrow">Sezione</span>
-    <h2 class="landing-title">Scuola Primaria</h2>
-    <p class="landing-desc">Le web app didattiche delle maestre, organizzate per docente.</p>
-    <span class="landing-arrow">
-      Entra
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-    </span>
-  </a>
-  <a class="landing-card" data-area="secondaria" href="secondaria.html">
-    <span class="landing-eyebrow">Sezione</span>
-    <h2 class="landing-title">Scuola Secondaria</h2>
-    <p class="landing-desc">Le risorse digitali dei professori, organizzate per area didattica.</p>
-    <span class="landing-arrow">
-      Entra
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-    </span>
-  </a>
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Portale</a>
+  <span class="sep">/</span>
+  <span class="current">Scuola Primaria</span>
+</nav>
+
+<!-- ════════════════ CARD COLLEGHI ════════════════ -->
+<section class="colleghi-wrap">
+  <div class="colleghi-grid" id="colleghi-container">
+    <div class="empty">Caricamento in corso...</div>
+  </div>
 </section>
 
 <!-- ════════════════ FOOTER ════════════════ -->
@@ -782,6 +774,215 @@
     <div class="foot-copyright">© 2026 · A cura dell'Animatore Digitale</div>
   </div>
 </footer>
+
+<script>
+function escapeHTML(s){
+  return String(s||"").replace(/[&<>"']/g, function(c){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c];
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────
+   WEBAPPS — { titolo, descrizione, url, autore }
+   ───────────────────────────────────────────────────────────── */
+const WEBAPPS = [
+  {
+    titolo: "I mesi dell'anno",
+    descrizione: "Attivita' per la classe prima: scoprire e ordinare i dodici mesi dell'anno.",
+    url: "https://mesi-classe1.neocities.org/",
+    autore: "Maestra Ilaria"
+  },
+  {
+    titolo: "Ortografia classe 1",
+    descrizione: "Esercizi di ortografia per la classe prima, realizzati con Canva.",
+    url: "https://maestraila.my.canva.site/ortografia-classe-1",
+    autore: "Maestra Ilaria"
+  },
+  {
+    titolo: "Le stagioni di Pitti - Comprensione del testo",
+    descrizione: "Comprensione del testo a tre livelli, abbinamento stampato/corsivo e autovalutazione metacognitiva per la classe prima.",
+    url: "https://comprensione-classe1.neocities.org/",
+    autore: "Maestra Ilaria"
+  },
+  {
+    titolo: "Egizi - escape room",
+    descrizione: "Escape room digitale sull'antico Egitto: enigmi, indizi e civilta' del Nilo.",
+    url: "https://egizi-escape.neocities.org/",
+    autore: "Maestra Elisa"
+  },
+  {
+    titolo: "L'ultimo bagno",
+    descrizione: "Allenare il pensiero logico riconoscendo e completando sequenze.",
+    url: "https://sequenze.neocities.org/",
+    autore: "Maestra Elisa"
+  },
+  {
+    titolo: "Il Viaggio dell'Oglio",
+    descrizione: "Escape room geografica per la classe quarta: scoprire i 4 paesaggi attraversati dal fiume Oglio, dalla montagna alla pianura.",
+    url: "https://oglio.neocities.org/",
+    autore: "Maestra Elisa"
+  },
+  {
+    titolo: "La ruota della settimana",
+    descrizione: "Attivita' interattiva sui giorni della settimana, realizzata con Canva.",
+    url: "https://maestraolga.my.canva.site/c2djjkmamj1mt18y",
+    autore: "Maestra Olga"
+  },
+  {
+    titolo: "La rana salterina",
+    descrizione: "Attivita' ludica con la rana protagonista, realizzata con Canva.",
+    url: "https://maestraolga.my.canva.site/",
+    autore: "Maestra Olga"
+  },
+  {
+    titolo: "Il Baule dei Ricordi",
+    descrizione: "Percorso in 6 tappe sulle fonti della storia personale (orali, scritte, materiali, iconografiche): visione, riconoscimento e costruzione del proprio piccolo archivio.",
+    url: "https://bauledeiricordi.neocities.org/",
+    autore: "Maestra Savina"
+  },
+  {
+    titolo: "Animal Quest!",
+    descrizione: "Riconoscere e classificare gli animali per gruppi e caratteristiche principali.",
+    url: "https://classanimali.neocities.org/",
+    autore: "Maestro Andrea Castelli"
+  },
+  {
+    titolo: "Decimal Quest",
+    descrizione: "Comprendere la divisione con i numeri decimali attraverso esercizi guidati.",
+    url: "https://decimaliperdiviso.neocities.org/",
+    autore: "Maestro Andrea Castelli"
+  },
+  {
+    titolo: "Frazione e Numero",
+    descrizione: "Esplorare il rapporto tra frazioni e numeri decimali con esercizi e visualizzazioni.",
+    url: "https://frazionenumero.neocities.org/",
+    autore: "Maestro Andrea Castelli"
+  },
+  {
+    titolo: "Ancient Egypt Quiz",
+    descrizione: "Quiz interattivo in inglese sull'antico Egitto: lessico e civilta'.",
+    url: "https://canva.link/eyew3e2mvycv9as",
+    autore: "Teacher Daniela"
+  },
+  {
+    titolo: "We're Going on a Bear Hunt",
+    descrizione: "Storia in inglese di Michael Rosen, da ascoltare in classe per esercitare comprensione e ritmo della lingua.",
+    url: "bear-hunt.html",
+    autore: "Teacher Daniela"
+  },
+  {
+    titolo: "English - Risorsa Canva",
+    descrizione: "Materiale didattico interattivo di lingua inglese, realizzato con Canva.",
+    url: "https://www.canva.com/design/DAHGZOyKrlw/s7VuQodKhApjvITFNq1HEw/view?utm_content=DAHGZOyKrlw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h07e5f5f931",
+    autore: "Teacher Daniela"
+  },
+  {
+    titolo: "Raccolta differenziata - Giochi (v1)",
+    descrizione: "Giochi interattivi sulla raccolta differenziata per la scuola primaria, realizzati con Canva.",
+    url: "https://maestrabarbaram.my.canva.site/copia-di-giochi-interattivi-sulla-raccolta-differenziata-per-scuola-primaria",
+    autore: "Maestra Barbara"
+  },
+  {
+    titolo: "Raccolta differenziata - Giochi (v2)",
+    descrizione: "Seconda versione dei giochi sulla raccolta differenziata per la scuola primaria.",
+    url: "https://maestrabarbaram.my.canva.site/copia-di-giochi-interattivi-sulla-raccolta-differenziata-per-la-scuola-primaria",
+    autore: "Maestra Barbara"
+  },
+  {
+    titolo: "Attivita' interattiva",
+    descrizione: "Attivita' didattica realizzata con Canva.",
+    url: "https://maestrabarbaram.my.canva.site/dahgukud5xe",
+    autore: "Maestra Barbara"
+  },
+  {
+    titolo: "Risorsa Gemini",
+    descrizione: "Conversazione condivisa con Gemini AI, utilizzata come risorsa didattica.",
+    url: "https://gemini.google.com/share/a285c947ae9b",
+    autore: "Maestra Barbara"
+  },
+  {
+    titolo: "Quiz: Il Cibo e la Nutrizione",
+    descrizione: "Quiz a 15 domande sull'alimentazione e l'educazione nutrizionale per la scuola primaria.",
+    url: "https://nutrizione.neocities.org/",
+    autore: "Maestra Francesca"
+  },
+  {
+    titolo: "Escape room sui vertebrati",
+    descrizione: "Attivita' interattiva sulla classificazione dei vertebrati, in formato escape room.",
+    url: "https://maestramelissa.my.canva.site/escape-room-sui-vertebrati",
+    autore: "Maestra Melissa"
+  },
+  {
+    titolo: "Carte d'identita' dei vertebrati",
+    descrizione: "Schede di classificazione dei cinque gruppi di vertebrati per scoprirne caratteristiche e habitat.",
+    url: "https://maestramelissa.my.canva.site/carte-d-identit-dei-vertebrati",
+    autore: "Maestra Melissa"
+  },
+  {
+    titolo: "Le parole del fiume",
+    descrizione: "Lessico dell'ambiente fluviale: glossario interattivo per scoprire i termini geografici legati al fiume.",
+    url: "https://maestramelissa.my.canva.site/le-parole-del-fiume",
+    autore: "Maestra Melissa"
+  },
+  {
+    titolo: "Flora e fauna del Fiume",
+    descrizione: "Sito Canva di raccolta sulle specie vegetali e animali dell'ecosistema fluviale.",
+    url: "https://maestramelissa.my.canva.site/",
+    autore: "Maestra Melissa"
+  }
+];
+
+function renderColleghi(){
+  const cont = document.getElementById("colleghi-container");
+  if(!cont) return;
+  cont.innerHTML = "";
+  const filtered = WEBAPPS;
+  if(filtered.length === 0){
+    cont.innerHTML = '<div class="empty"><strong>Nessun risultato.</strong><br>Prova a modificare la ricerca.</div>';
+    return;
+  }
+  // Group by autore
+  const byAutore = new Map();
+  filtered.forEach(function(a){
+    if(!byAutore.has(a.autore)) byAutore.set(a.autore, []);
+    byAutore.get(a.autore).push(a);
+  });
+  // Sort alfabetico
+  const sorted = Array.from(byAutore.entries()).sort(function(a,b){
+    return a[0].localeCompare(b[0], "it");
+  });
+  sorted.forEach(function(entry){
+    const nome = entry[0];
+    const apps = entry[1];
+    const card = document.createElement("article");
+    card.className = "collega-card";
+    const appsHTML = apps.map(function(a){
+      return ''
+        + '<a class="app-row" href="' + escapeHTML(a.url) + '" target="_blank" rel="noopener">'
+        + '  <div class="app-row-main">'
+        + '    <div class="app-row-title">' + escapeHTML(a.titolo) + '</div>'
+        + '    <div class="app-row-desc">' + escapeHTML(a.descrizione) + '</div>'
+        + '  </div>'
+        + '  <span class="app-row-arrow">'
+        + '    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'
+        + '  </span>'
+        + '</a>';
+    }).join("");
+    card.innerHTML = ''
+      + '<header class="collega-head">'
+      + '  <h2 class="collega-name">' + escapeHTML(nome) + '</h2>'
+      + '</header>'
+      + '<div class="collega-apps">' + appsHTML + '</div>';
+    cont.appendChild(card);
+  });
+  
+}
+
+renderColleghi();
+</script>
+
+<!-- ═════ Badge DPIA generati da DPIA Studio ═════ -->
+<script src="dpia-badges.js"></script>
 
 </body>
 </html>
