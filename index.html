@@ -498,8 +498,8 @@
   }
 
   /* ── VISTE: nascondi/mostra ──────────────────────────── */
-  .view{display:none}
-  .view.active{display:block}
+  .view{display:none !important}
+  .view.active{display:block !important}
 
 
   /* Breadcrumb colorato in base alla vista corrente */
@@ -530,7 +530,7 @@
   .banner{flex-shrink:0}
   .breadcrumb{flex-shrink:0}
   footer{flex-shrink:0}
-  .view{flex-grow:1}
+  .view.active{flex-grow:1}
 
   /* Quando siamo in landing: vista riempie lo spazio + niente scroll */
   body[data-view="landing"]{
@@ -551,7 +551,7 @@
 
 </style>
 </head>
-<body>
+<body data-view="landing">
 
 <!-- ════════════════ BANNER ════════════════ -->
 <div class="banner" role="banner">
@@ -752,7 +752,7 @@
 <div class="breadcrumb" id="breadcrumb" style="display:none"></div>
 
 <!-- ════════════════ VISTA: LANDING ════════════════ -->
-<div class="view" id="view-landing">
+<div class="view active" id="view-landing">
   <section class="landing">
     <a class="landing-card" data-area="primaria" href="#primaria" onclick="goTo('primaria'); return false;">
       <span class="landing-eyebrow">Sezione</span>
