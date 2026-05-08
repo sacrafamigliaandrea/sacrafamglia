@@ -2,8 +2,8 @@
  * dpia-badges.js
  * Bollini di conformità GDPR/AI Act per il portale Sacra Famiglia (sacrafamiglia.vercel.app)
  * 
- * Generato automaticamente da DPIA Studio il 2026-04-30
- * 21 app interne + 0 servizi terzi
+ * Generato automaticamente da DPIA Studio il 2026-05-08
+ * 26 app interne + 0 servizi terzi
  * 
  * Ogni link nel portale che corrisponde a un'app classificata riceve un piccolo
  * badge colorato accanto al nome, indicante il cluster di rischio.
@@ -104,6 +104,26 @@
   "https://maestramelissa.my.canva.site": {
     "cluster": "D",
     "name": "Flora e fauna del Fiume"
+  },
+  "https://maestraila.my.canva.site/ortografia-classe-1": {
+    "cluster": "D",
+    "name": "Ortografia classe 1"
+  },
+  "https://comprensione-classe1.neocities.org": {
+    "cluster": "D",
+    "name": "Le stagioni di Pitti - Comprensione del testo"
+  },
+  "https://sarasottura.my.canva.site": {
+    "cluster": "D",
+    "name": "Il Trattore della Grammatica"
+  },
+  "https://bauledeiricordi.neocities.org": {
+    "cluster": "D",
+    "name": "Il Baule dei Ricordi"
+  },
+  "https://frazionenumero.neocities.org": {
+    "cluster": "D",
+    "name": "Frazione e Numero"
   }
 };
   
@@ -668,7 +688,7 @@
     
     const footer = document.createElement('div');
     footer.className = 'dpia-legend-footer';
-    footer.textContent = 'Aggiornato al 2026-04-30 — ' + Object.keys(URL_MAP).length + ' applicazioni';
+    footer.textContent = 'Aggiornato al 2026-05-08 — ' + Object.keys(URL_MAP).length + ' applicazioni';
     legend.appendChild(footer);
     
     document.body.appendChild(toggle);
