@@ -829,7 +829,7 @@
             fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-opacity="0.85" stroke-linecap="round"/>
     </g>
 
-    <!-- ═══ Singolo arco con 4 tile colorate alternate (ciclo 12s) ═══ -->
+    <!-- ═══ Singolo arco con tile colorate in BURST irregolari (ciclo 14s) ═══ -->
     <defs>
       <!-- Arco corretto: parte dal bordo dell'iPad inclinato, arriva al bordo del MacBook -->
       <path id="arc-up" d="M 140 92 Q 206 30 272 92" fill="none"/>
@@ -841,70 +841,138 @@
       <animate attributeName="stroke-dashoffset" values="0;-16" dur="2.4s" repeatCount="indefinite"/>
     </use>
 
-    <!-- Tile (parte a t=0s, backward) -->
+    <!-- Tile #F58A24 t=0.0s forward -->
     <g opacity="0">
       <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
-            fill="#F58A24" fill-opacity="0.85" 
+            fill="#F58A24" fill-opacity="0.85"
             stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
       <animate attributeName="opacity"
                values="0; 0; 1; 1; 0; 0"
-               keyTimes="0; 0.0000; 0.0400; 0.1560; 0.2100; 1"
-               dur="12s" repeatCount="indefinite"/>
-      <animateMotion dur="12s" repeatCount="indefinite"
-                     rotate="0"
-                     keyPoints="1; 1; 0; 0"
-                     keyTimes="0; 0.0000; 0.1660; 1"
-                     calcMode="linear">
-        <mpath href="#arc-up"/>
-      </animateMotion>
-    </g>
-    <!-- Tile (parte a t=3s, forward) -->
-    <g opacity="0">
-      <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
-            fill="#FFFFFF" fill-opacity="0.30" 
-            stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
-      <animate attributeName="opacity"
-               values="0; 0; 1; 1; 0; 0"
-               keyTimes="0; 0.2500; 0.2900; 0.4060; 0.4600; 1"
-               dur="12s" repeatCount="indefinite"/>
-      <animateMotion dur="12s" repeatCount="indefinite"
+               keyTimes="0; 0.0000; 0.0086; 0.1379; 0.1514; 1"
+               dur="14.0s" repeatCount="indefinite"/>
+      <animateMotion dur="14.0s" repeatCount="indefinite"
                      rotate="0"
                      keyPoints="0; 0; 1; 1"
-                     keyTimes="0; 0.2500; 0.4160; 1"
+                     keyTimes="0; 0.0000; 0.1429; 1"
                      calcMode="linear">
         <mpath href="#arc-up"/>
       </animateMotion>
     </g>
-    <!-- Tile (parte a t=6s, backward) -->
+    <!-- Tile #FFFFFF t=0.7s forward -->
     <g opacity="0">
       <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
-            fill="#154C9A" fill-opacity="0.85" 
+            fill="#FFFFFF" fill-opacity="0.40"
             stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
       <animate attributeName="opacity"
                values="0; 0; 1; 1; 0; 0"
-               keyTimes="0; 0.5000; 0.5400; 0.6560; 0.7100; 1"
-               dur="12s" repeatCount="indefinite"/>
-      <animateMotion dur="12s" repeatCount="indefinite"
-                     rotate="0"
-                     keyPoints="1; 1; 0; 0"
-                     keyTimes="0; 0.5000; 0.6660; 1"
-                     calcMode="linear">
-        <mpath href="#arc-up"/>
-      </animateMotion>
-    </g>
-    <!-- Tile (parte a t=9s, forward) -->
-    <g opacity="0">
-      <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
-            fill="#F58A24" fill-opacity="0.65" 
-            stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
-      <animate attributeName="opacity"
-               values="0; 0; 1; 1; 0; 0"
-               keyTimes="0; 0.7500; 0.7900; 0.9060; 0.9600; 1"
-               dur="12s" repeatCount="indefinite"/>
-      <animateMotion dur="12s" repeatCount="indefinite"
+               keyTimes="0; 0.0500; 0.0586; 0.1879; 0.2014; 1"
+               dur="14.0s" repeatCount="indefinite"/>
+      <animateMotion dur="14.0s" repeatCount="indefinite"
                      rotate="0"
                      keyPoints="0; 0; 1; 1"
-                     keyTimes="0; 0.7500; 0.9160; 1"
+                     keyTimes="0; 0.0500; 0.1929; 1"
+                     calcMode="linear">
+        <mpath href="#arc-up"/>
+      </animateMotion>
+    </g>
+    <!-- Tile #154C9A t=3.5s backward -->
+    <g opacity="0">
+      <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
+            fill="#154C9A" fill-opacity="0.85"
+            stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
+      <animate attributeName="opacity"
+               values="0; 0; 1; 1; 0; 0"
+               keyTimes="0; 0.2500; 0.2586; 0.3879; 0.4014; 1"
+               dur="14.0s" repeatCount="indefinite"/>
+      <animateMotion dur="14.0s" repeatCount="indefinite"
+                     rotate="0"
+                     keyPoints="1; 1; 0; 0"
+                     keyTimes="0; 0.2500; 0.3929; 1"
+                     calcMode="linear">
+        <mpath href="#arc-up"/>
+      </animateMotion>
+    </g>
+    <!-- Tile #F58A24 t=4.2s backward -->
+    <g opacity="0">
+      <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
+            fill="#F58A24" fill-opacity="0.85"
+            stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
+      <animate attributeName="opacity"
+               values="0; 0; 1; 1; 0; 0"
+               keyTimes="0; 0.3000; 0.3086; 0.4379; 0.4514; 1"
+               dur="14.0s" repeatCount="indefinite"/>
+      <animateMotion dur="14.0s" repeatCount="indefinite"
+                     rotate="0"
+                     keyPoints="1; 1; 0; 0"
+                     keyTimes="0; 0.3000; 0.4429; 1"
+                     calcMode="linear">
+        <mpath href="#arc-up"/>
+      </animateMotion>
+    </g>
+    <!-- Tile #154C9A t=4.9s backward -->
+    <g opacity="0">
+      <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
+            fill="#154C9A" fill-opacity="0.65"
+            stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
+      <animate attributeName="opacity"
+               values="0; 0; 1; 1; 0; 0"
+               keyTimes="0; 0.3500; 0.3586; 0.4879; 0.5014; 1"
+               dur="14.0s" repeatCount="indefinite"/>
+      <animateMotion dur="14.0s" repeatCount="indefinite"
+                     rotate="0"
+                     keyPoints="1; 1; 0; 0"
+                     keyTimes="0; 0.3500; 0.4929; 1"
+                     calcMode="linear">
+        <mpath href="#arc-up"/>
+      </animateMotion>
+    </g>
+    <!-- Tile #F58A24 t=8.5s forward -->
+    <g opacity="0">
+      <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
+            fill="#F58A24" fill-opacity="0.85"
+            stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
+      <animate attributeName="opacity"
+               values="0; 0; 1; 1; 0; 0"
+               keyTimes="0; 0.6071; 0.6157; 0.7450; 0.7586; 1"
+               dur="14.0s" repeatCount="indefinite"/>
+      <animateMotion dur="14.0s" repeatCount="indefinite"
+                     rotate="0"
+                     keyPoints="0; 0; 1; 1"
+                     keyTimes="0; 0.6071; 0.7500; 1"
+                     calcMode="linear">
+        <mpath href="#arc-up"/>
+      </animateMotion>
+    </g>
+    <!-- Tile #FFFFFF t=11.2s backward -->
+    <g opacity="0">
+      <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
+            fill="#FFFFFF" fill-opacity="0.40"
+            stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
+      <animate attributeName="opacity"
+               values="0; 0; 1; 1; 0; 0"
+               keyTimes="0; 0.8000; 0.8086; 0.9379; 0.9514; 1"
+               dur="14.0s" repeatCount="indefinite"/>
+      <animateMotion dur="14.0s" repeatCount="indefinite"
+                     rotate="0"
+                     keyPoints="1; 1; 0; 0"
+                     keyTimes="0; 0.8000; 0.9429; 1"
+                     calcMode="linear">
+        <mpath href="#arc-up"/>
+      </animateMotion>
+    </g>
+    <!-- Tile #154C9A t=12.0s backward -->
+    <g opacity="0">
+      <rect x="-7" y="-5" width="14" height="10" rx="2.5" ry="2.5"
+            fill="#154C9A" fill-opacity="0.85"
+            stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.5"/>
+      <animate attributeName="opacity"
+               values="0; 0; 1; 1; 0; 0"
+               keyTimes="0; 0.8571; 0.8657; 0.9950; 1.0000; 1"
+               dur="14.0s" repeatCount="indefinite"/>
+      <animateMotion dur="14.0s" repeatCount="indefinite"
+                     rotate="0"
+                     keyPoints="1; 1; 0; 0"
+                     keyTimes="0; 0.8571; 1.0000; 1"
                      calcMode="linear">
         <mpath href="#arc-up"/>
       </animateMotion>
