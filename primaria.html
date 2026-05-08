@@ -829,39 +829,33 @@
             fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-opacity="0.85" stroke-linecap="round"/>
     </g>
 
-    <!-- ═══ Flusso bidirezionale ad ARCO (mandorla / vesica piscis) ═══ -->
+    <!-- ═══ Flusso bidirezionale su UN SOLO arco superiore ═══ -->
     <defs>
-      <!-- Arco SUPERIORE: da antenna iPad a antenna MacBook, curva verso l'alto -->
+      <!-- Arco unico: da antenna iPad a antenna MacBook, curva verso l'alto -->
       <path id="arc-up" d="M 135 108 Q 212.5 55 290 108" fill="none"/>
-      <!-- Arco INFERIORE: speculare, curva verso il basso, percorre destra→sinistra -->
-      <path id="arc-down" d="M 290 114 Q 212.5 165 135 114" fill="none"/>
     </defs>
 
-    <!-- Le 2 curve visibili (binari della "lente di apprendimento") -->
-    <g fill="none" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.32" stroke-dasharray="3 5">
-      <use href="#arc-up">
-        <animate attributeName="stroke-dashoffset" values="0;-16" dur="2.4s" repeatCount="indefinite"/>
-      </use>
-      <use href="#arc-down">
-        <animate attributeName="stroke-dashoffset" values="0;16" dur="2.7s" repeatCount="indefinite"/>
-      </use>
-    </g>
+    <!-- Curva visibile (canale del flusso) -->
+    <use href="#arc-up" fill="none" stroke="#FFFFFF" stroke-width="0.9" 
+         stroke-opacity="0.32" stroke-dasharray="3 5">
+      <animate attributeName="stroke-dashoffset" values="0;-16" dur="2.4s" repeatCount="indefinite"/>
+    </use>
 
-    <!-- Caratteri binari che SEGUONO l'arco superiore (iPad → MacBook) -->
+    <!-- Flusso 1: iPad → MacBook (sinistra → destra), startOffset cresce -->
     <text font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="9" font-weight="600"
           fill="#FFFFFF" fill-opacity="0.85" letter-spacing="2">
       <textPath href="#arc-up" startOffset="0%">
-        010110 011001 100101 011010 110010 010110 011001
-        <animate attributeName="startOffset" values="-100%;100%" dur="8s" repeatCount="indefinite"/>
+        010110 011001 100101 011010 110010 010110
+        <animate attributeName="startOffset" values="-90%;120%" dur="7.5s" repeatCount="indefinite"/>
       </textPath>
     </text>
 
-    <!-- Caratteri binari che SEGUONO l'arco inferiore (MacBook → iPad) -->
+    <!-- Flusso 2: MacBook → iPad (destra → sinistra), startOffset decresce -->
     <text font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="9" font-weight="600"
           fill="#FFFFFF" fill-opacity="0.7" letter-spacing="2">
-      <textPath href="#arc-down" startOffset="0%">
-        100110 011010 110010 010110 011001 001101 110010
-        <animate attributeName="startOffset" values="-100%;100%" dur="9.5s" repeatCount="indefinite"/>
+      <textPath href="#arc-up" startOffset="0%">
+        100110 011010 110010 010110 011001 001101
+        <animate attributeName="startOffset" values="120%;-90%" dur="9s" repeatCount="indefinite"/>
       </textPath>
     </text>
 
