@@ -829,31 +829,37 @@
             fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-opacity="0.85" stroke-linecap="round"/>
     </g>
 
-    <!-- ═══ Flusso bidirezionale su UN SOLO arco superiore ═══ -->
+    <!-- ═══ DOPPIO arco parallelo (arcobaleno bidirezionale) ═══ -->
     <defs>
-      <!-- Arco unico: da antenna iPad a antenna MacBook, curva verso l'alto -->
-      <path id="arc-up" d="M 135 108 Q 212.5 55 290 108" fill="none"/>
+      <!-- Arco ESTERNO (banda alta) -->
+      <path id="arc-outer" d="M 135 108 Q 212.5 48 290 108" fill="none"/>
+      <!-- Arco INTERNO (banda bassa, parallelo) -->
+      <path id="arc-inner" d="M 142 110 Q 212.5 72 283 110" fill="none"/>
     </defs>
 
-    <!-- Curva visibile (canale del flusso) -->
-    <use href="#arc-up" fill="none" stroke="#FFFFFF" stroke-width="0.9" 
-         stroke-opacity="0.32" stroke-dasharray="3 5">
-      <animate attributeName="stroke-dashoffset" values="0;-16" dur="2.4s" repeatCount="indefinite"/>
-    </use>
+    <!-- Curve visibili (canali tratteggiati paralleli) -->
+    <g fill="none" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.32" stroke-dasharray="3 5">
+      <use href="#arc-outer">
+        <animate attributeName="stroke-dashoffset" values="0;-16" dur="2.4s" repeatCount="indefinite"/>
+      </use>
+      <use href="#arc-inner">
+        <animate attributeName="stroke-dashoffset" values="0;16" dur="2.7s" repeatCount="indefinite"/>
+      </use>
+    </g>
 
-    <!-- Flusso 1: iPad → MacBook (sinistra → destra), startOffset cresce -->
+    <!-- Flusso 1: arco ESTERNO, iPad → MacBook -->
     <text font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="9" font-weight="600"
           fill="#FFFFFF" fill-opacity="0.85" letter-spacing="2">
-      <textPath href="#arc-up" startOffset="0%">
+      <textPath href="#arc-outer" startOffset="0%">
         010110 011001 100101 011010 110010 010110
         <animate attributeName="startOffset" values="-90%;120%" dur="7.5s" repeatCount="indefinite"/>
       </textPath>
     </text>
 
-    <!-- Flusso 2: MacBook → iPad (destra → sinistra), startOffset decresce -->
+    <!-- Flusso 2: arco INTERNO, MacBook → iPad -->
     <text font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="9" font-weight="600"
-          fill="#FFFFFF" fill-opacity="0.7" letter-spacing="2">
-      <textPath href="#arc-up" startOffset="0%">
+          fill="#FFFFFF" fill-opacity="0.75" letter-spacing="2">
+      <textPath href="#arc-inner" startOffset="0%">
         100110 011010 110010 010110 011001 001101
         <animate attributeName="startOffset" values="120%;-90%" dur="9s" repeatCount="indefinite"/>
       </textPath>
