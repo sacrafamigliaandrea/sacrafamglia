@@ -3,7 +3,7 @@
  * Bollini di conformità GDPR/AI Act per il portale Sacra Famiglia (sacrafamiglia.vercel.app)
  * 
  * Generato automaticamente da DPIA Studio il 2026-05-08
- * 26 app interne + 0 servizi terzi
+ * 35 app interne + 0 servizi terzi
  * 
  * Ogni link nel portale che corrisponde a un'app classificata riceve un piccolo
  * badge colorato accanto al nome, indicante il cluster di rischio.
@@ -21,6 +21,14 @@
   'use strict';
   
   const URL_MAP = {
+  "https://sintesiproteica.vercel.app": {
+    "cluster": "D",
+    "name": "Sintesi Proteica"
+  },
+  "https://harrypotter-1.vercel.app": {
+    "cluster": "E",
+    "name": "Harry Potter e la Pietra Filosofale"
+  },
   "https://mesi-classe1.neocities.org": {
     "cluster": "D",
     "name": "I mesi dell'anno"
@@ -78,7 +86,7 @@
     "name": "Attività interattiva"
   },
   "https://gemini.google.com/share/a285c947ae9b": {
-    "cluster": "D",
+    "cluster": "C",
     "name": "Risorsa Gemini condivisa"
   },
   "https://nutrizione.neocities.org": {
@@ -118,12 +126,40 @@
     "name": "Il Trattore della Grammatica"
   },
   "https://bauledeiricordi.neocities.org": {
-    "cluster": "D",
+    "cluster": "E",
     "name": "Il Baule dei Ricordi"
   },
   "https://frazionenumero.neocities.org": {
     "cluster": "D",
     "name": "Frazione e Numero"
+  },
+  "bear-hunt.html": {
+    "cluster": "D",
+    "name": "We're Going on a Bear Hunt"
+  },
+  "https://geodash-gamma.vercel.app": {
+    "cluster": "D",
+    "name": "Geopolitica"
+  },
+  "https://euro-dash.vercel.app": {
+    "cluster": "D",
+    "name": "Governare uno stato europeo"
+  },
+  "https://frazioni1a.neocities.org": {
+    "cluster": "D",
+    "name": "Le frazioni"
+  },
+  "https://cellulaprimequarte.neocities.org": {
+    "cluster": "D",
+    "name": "La cellula"
+  },
+  "https://englishandspanish.neocities.org/english_recupero_2": {
+    "cluster": "D",
+    "name": "English Power Up - Vol. 2"
+  },
+  "https://quadriappesi.vercel.app": {
+    "cluster": "E",
+    "name": "Opere dei nostri artisti"
   }
 };
   
