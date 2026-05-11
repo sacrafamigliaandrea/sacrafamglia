@@ -150,6 +150,18 @@
     "cluster": "D",
     "name": "English Power Up - Vol. 2"
   },
+  "https://storiatermeromane.neocities.org/index.com": {
+    "cluster": "D",
+    "name": "Le Terme Romane"
+  },
+  "https://storiatermeromane.neocities.org": {
+    "cluster": "D",
+    "name": "Le Terme Romane"
+  },
+  "https://englishandspanish.neocities.org/preterito_perfecto": {
+    "cluster": "D",
+    "name": "Pretérito Perfecto"
+  },
   "https://riassuntii.neocities.org": {
     "cluster": "D",
     "name": "Laboratorio di Riassunto"
