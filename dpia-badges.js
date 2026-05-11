@@ -2,8 +2,8 @@
  * dpia-badges.js
  * Bollini di conformità GDPR/AI Act per il portale Sacra Famiglia (sacrafamiglia.vercel.app)
  * 
- * Generato automaticamente da DPIA Studio il 2026-05-09
- * 36 app interne + 0 servizi terzi
+ * Aggiornato il 2026-05-08
+ * 33 app interne + 0 servizi terzi
  * 
  * Ogni link nel portale che corrisponde a un'app classificata riceve un piccolo
  * badge colorato accanto al nome, indicante il cluster di rischio.
@@ -21,17 +21,34 @@
   'use strict';
   
   const URL_MAP = {
-  "https://sintesiproteica.vercel.app": {
-    "cluster": "D",
-    "name": "Sintesi Proteica"
+  // === CLUSTER A · Profilazione · ALTO ===
+  "https://sacrafamiglia.vercel.app/bear-hunt.html": {
+    "cluster": "A",
+    "name": "We're Going on a Bear Hunt"
   },
-  "https://harrypotter-1.vercel.app": {
-    "cluster": "E",
-    "name": "Harry Potter e la Pietra Filosofale"
+  "bear-hunt.html": {
+    "cluster": "A",
+    "name": "We're Going on a Bear Hunt"
   },
+
+  // === CLUSTER C · IA generativa · MEDIO ===
+  "https://gemini.google.com/share/a285c947ae9b": {
+    "cluster": "C",
+    "name": "Risorsa Gemini condivisa"
+  },
+
+  // === CLUSTER D · Senza dati · MINIMO ===
   "https://mesi-classe1.neocities.org": {
     "cluster": "D",
     "name": "I mesi dell'anno"
+  },
+  "https://maestraila.my.canva.site/ortografia-classe-1": {
+    "cluster": "D",
+    "name": "Ortografia classe 1"
+  },
+  "https://comprensione-classe1.neocities.org": {
+    "cluster": "D",
+    "name": "Le stagioni di Pitti"
   },
   "https://egizi-escape.neocities.org": {
     "cluster": "D",
@@ -53,6 +70,10 @@
     "cluster": "D",
     "name": "La rana salterina"
   },
+  "https://sarasottura.my.canva.site": {
+    "cluster": "D",
+    "name": "Il Trattore della Grammatica"
+  },
   "https://classanimali.neocities.org": {
     "cluster": "D",
     "name": "Animal Quest!"
@@ -61,13 +82,13 @@
     "cluster": "D",
     "name": "Decimal Quest"
   },
+  "https://frazionenumero.neocities.org": {
+    "cluster": "D",
+    "name": "Frazione e Numero"
+  },
   "https://canva.link/eyew3e2mvycv9as": {
     "cluster": "D",
     "name": "Ancient Egypt Quiz"
-  },
-  "https://sacrafamiglia.vercel.app/bear-hunt.html": {
-    "cluster": "D",
-    "name": "We're Going on a Bear Hunt"
   },
   "https://www.canva.com/design/dahgzoykrlw/s7vuqodkhapjvitfnq1hew/view": {
     "cluster": "D",
@@ -85,17 +106,9 @@
     "cluster": "D",
     "name": "Attività interattiva"
   },
-  "https://gemini.google.com/share/a285c947ae9b": {
-    "cluster": "C",
-    "name": "Risorsa Gemini condivisa"
-  },
   "https://nutrizione.neocities.org": {
     "cluster": "D",
     "name": "Quiz: Il Cibo e la Nutrizione"
-  },
-  "https://www.canva.com/design/dahgzoykrlw/s7vuqodkhapjvitfnq1hew/view?utm_content=dahgzoykrlw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlid=h07e5f5f931": {
-    "cluster": "D",
-    "name": "English - Risorsa Canva"
   },
   "https://maestramelissa.my.canva.site/escape-room-sui-vertebrati": {
     "cluster": "D",
@@ -103,7 +116,7 @@
   },
   "https://maestramelissa.my.canva.site/carte-d-identit-dei-vertebrati": {
     "cluster": "D",
-    "name": "Carte d'identita' dei vertebrati"
+    "name": "Carte d'identità dei vertebrati"
   },
   "https://maestramelissa.my.canva.site/le-parole-del-fiume": {
     "cluster": "D",
@@ -112,30 +125,6 @@
   "https://maestramelissa.my.canva.site": {
     "cluster": "D",
     "name": "Flora e fauna del Fiume"
-  },
-  "https://maestraila.my.canva.site/ortografia-classe-1": {
-    "cluster": "D",
-    "name": "Ortografia classe 1"
-  },
-  "https://comprensione-classe1.neocities.org": {
-    "cluster": "D",
-    "name": "Le stagioni di Pitti - Comprensione del testo"
-  },
-  "https://sarasottura.my.canva.site": {
-    "cluster": "D",
-    "name": "Il Trattore della Grammatica"
-  },
-  "https://bauledeiricordi.neocities.org": {
-    "cluster": "E",
-    "name": "Il Baule dei Ricordi"
-  },
-  "https://frazionenumero.neocities.org": {
-    "cluster": "D",
-    "name": "Frazione e Numero"
-  },
-  "bear-hunt.html": {
-    "cluster": "D",
-    "name": "We're Going on a Bear Hunt"
   },
   "https://geodash-gamma.vercel.app": {
     "cluster": "D",
@@ -153,17 +142,43 @@
     "cluster": "D",
     "name": "La cellula"
   },
+  "https://sintesiproteica.vercel.app": {
+    "cluster": "D",
+    "name": "La sintesi proteica"
+  },
   "https://englishandspanish.neocities.org/english_recupero_2": {
     "cluster": "D",
     "name": "English Power Up - Vol. 2"
   },
-  "https://quadriappesi.vercel.app": {
-    "cluster": "E",
-    "name": "Opere dei nostri artisti"
+  "https://riassuntii.neocities.org": {
+    "cluster": "D",
+    "name": "Laboratorio di Riassunto"
+  },
+  "https://reazioni.neocities.org": {
+    "cluster": "D",
+    "name": "Reazioni Chimiche & Atomi"
+  },
+  "https://quiz11.neocities.org": {
+    "cluster": "D",
+    "name": "Conosco Me Stesso e Imparo Meglio"
   },
   "https://fontiprimagerramondiale.neocities.org": {
     "cluster": "D",
     "name": "La Grande Guerra"
+  },
+
+  // === CLUSTER E · Dati studenti · BASSO-MEDIO ===
+  "https://bauledeiricordi.neocities.org": {
+    "cluster": "E",
+    "name": "Il Baule dei Ricordi"
+  },
+  "https://harrypotter-1.vercel.app": {
+    "cluster": "E",
+    "name": "Harry Potter e la Pietra Filosofale"
+  },
+  "https://quadriappesi.vercel.app": {
+    "cluster": "E",
+    "name": "Opere dei nostri artisti"
   }
 };
   
@@ -174,8 +189,7 @@
     "risk": "ALTO",
     "color": "#8B4A3C",
     "bg": "#F4E6E2",
-    "desc": "Questa applicazione costruisce profili dettagliati degli studenti per analizzarne competenze e comportamenti nel tempo. Richiede consenso esplicito delle famiglie e supervisione costante.",
-    "legalRef": "Trattamento ad alto rischio ex GDPR art. 35 e AI Act art. 26 (Allegato III). DPIA + FRIA obbligatorie."
+    "desc": "L'app costruisce profili persistenti degli studenti basati su comportamenti, competenze o valutazioni. Richiede DPIA completa e FRIA secondo l'AI Act (Allegato III)."
   },
   "B": {
     "label": "B",
@@ -183,8 +197,7 @@
     "risk": "ALTO-MEDIO",
     "color": "#B8860B",
     "bg": "#FBF3DC",
-    "desc": "Questa applicazione osserva il comportamento degli studenti durante l'uso (tempi, scelte, attenzione). I dati possono restare nel browser o essere trasmessi alla scuola.",
-    "legalRef": "GDPR art. 35 e AI Act Allegato III. Uso solo formativo, mai sommativo."
+    "desc": "L'app monitora in tempo reale i comportamenti degli studenti durante l'uso. I dati possono restare in-app (SalaStudio) o essere trasmessi a server esterni."
   },
   "C": {
     "label": "C",
@@ -192,8 +205,7 @@
     "risk": "MEDIO",
     "color": "#1E4A8A",
     "bg": "#E4EAF3",
-    "desc": "Questa applicazione utilizza intelligenza artificiale per generare risposte e contenuti. Le richieste degli studenti sono inviate al fornitore del servizio IA.",
-    "legalRef": "GDPR art. 28 e AI Act art. 50 (obbligo di trasparenza). Uso supervisionato dal docente."
+    "desc": "L'app integra modelli di IA generativa (LLM). Prompt e risposte possono essere trasferiti al fornitore. Obbligo di trasparenza ex art. 50 AI Act."
   },
   "D": {
     "label": "D",
@@ -201,8 +213,7 @@
     "risk": "MINIMO",
     "color": "#6B7280",
     "bg": "#EDEFF2",
-    "desc": "Questa applicazione non raccoglie alcun dato personale degli studenti. Funziona interamente nel browser senza inviare informazioni a server esterni.",
-    "legalRef": "GDPR art. 30 par. 5 (registro semplificato). Principio di minimizzazione applicato."
+    "desc": "App single-page client-side senza alcun trattamento di dati personali identificativi. Architettura zero-backend. Coperta da Registro semplificato art. 30 GDPR."
   },
   "E": {
     "label": "E",
@@ -210,8 +221,7 @@
     "risk": "BASSO-MEDIO",
     "color": "#4A5160",
     "bg": "#F1F3F7",
-    "desc": "Questa applicazione raccoglie alcuni dati degli studenti (nickname, risposte, scelte didattiche) e li salva in fogli di lavoro accessibili solo al docente di classe.",
-    "legalRef": "GDPR art. 5 (minimizzazione) e art. 30. Workspace for Education DPA."
+    "desc": "L'app raccoglie dati inseriti dagli studenti (nickname, risposte, scelte) e li trasferisce a Google Sheets via Apps Script. Dentro perimetro Workspace scolastico."
   },
   "F": {
     "label": "F",
@@ -219,8 +229,7 @@
     "risk": "BASSO",
     "color": "#2C5F8D",
     "bg": "#E4EAF3",
-    "desc": "Questa applicazione è accessibile soltanto ai docenti tramite area riservata. I dati trattati sono analoghi a quelli del registro elettronico.",
-    "legalRef": "GDPR art. 6.1.e (interesse pubblico) e art. 9.2.g. D.Lgs. 297/1994."
+    "desc": "Strumento accessibile esclusivamente ai docenti tramite area riservata. I dati sono trattati nelle funzioni professionali ordinarie, paragonabili al registro elettronico."
   }
 };
   
@@ -354,21 +363,10 @@
         color: #5A6270;
       }
       .dpia-popout-desc {
-        margin: 0 0 8px 0;
+        margin: 0 0 12px 0;
         color: #4A5160;
         font-size: 12.5px;
         line-height: 1.6;
-      }
-      .dpia-popout-legal {
-        margin: 0 0 12px 0;
-        padding: 6px 10px;
-        background: #F8F9FB;
-        border-left: 2px solid #DDE1E7;
-        color: #8A92A0;
-        font-size: 10.5px;
-        line-height: 1.5;
-        font-style: italic;
-        border-radius: 0 2px 2px 0;
       }
       .dpia-popout-app {
         margin: 0 0 14px 0;
@@ -561,7 +559,7 @@
     if (!meta) return;
     
     // Cerca il contenitore del nome (gestisce diverse strutture HTML del portale)
-    const nameEl = linkElement.querySelector('.link-name') || linkElement;
+    const nameEl = linkElement.querySelector('.app-row-title') || linkElement.querySelector('.link-name') || linkElement;
     
     // Evita doppi badge
     if (nameEl.querySelector('.dpia-badge')) return;
@@ -606,6 +604,9 @@
     const isThirdparty = !appUrl || appUrl.indexOf('vercel.app') < 0 && appUrl.indexOf('neocities.org') < 0 && appUrl.indexOf('github.io') < 0;
     
     let actionsHtml = '';
+    if (appUrl) {
+      actionsHtml += '<a href="' + appUrl + '" target="_blank" rel="noopener" class="dpia-popout-btn">Apri applicazione ↗</a>';
+    }
     if (isThirdparty) {
       actionsHtml += '<span class="dpia-popout-btn" style="background:#F7F5EE;color:#5A4600;border-color:#E8D9B0;cursor:default;font-style:italic">Servizio terzo</span>';
     }
@@ -619,7 +620,6 @@
       '</div>' +
       (appName ? '<div class="dpia-popout-app"><strong>App:</strong> ' + escapeForHtml(appName) + '</div>' : '') +
       '<p class="dpia-popout-desc">' + meta.desc + '</p>' +
-      (meta.legalRef ? '<p class="dpia-popout-legal">' + meta.legalRef + '</p>' : '') +
       (actionsHtml ? '<div class="dpia-popout-actions">' + actionsHtml + '</div>' : '') +
       '<div class="dpia-popout-footer">Classificazione DPIA Studio · GDPR + AI Act</div>';
     
@@ -728,7 +728,7 @@
     
     const footer = document.createElement('div');
     footer.className = 'dpia-legend-footer';
-    footer.textContent = 'Aggiornato al 2026-05-09 — ' + Object.keys(URL_MAP).length + ' applicazioni';
+    footer.textContent = 'Aggiornato al 2026-04-30 — ' + Object.keys(URL_MAP).length + ' applicazioni';
     legend.appendChild(footer);
     
     document.body.appendChild(toggle);
@@ -753,7 +753,8 @@
     
     links.forEach(link => {
       const href = link.getAttribute('href');
-      if (!href || !href.startsWith('http')) return;
+      if (!href) return;
+      // Accetta sia URL completi che path relativi (es. bear-hunt.html)
       
       const norm = normalizeUrl(href);
       const item = URL_MAP[norm];
