@@ -138,7 +138,7 @@
     "cluster": "D",
     "name": "Le frazioni"
   },
-  "https://cellulaprimequarte.neocities.org": {
+  "https://cellulaprimariasecondaria.neocities.org": {
     "cluster": "D",
     "name": "La cellula"
   },
@@ -149,6 +149,10 @@
   "https://englishandspanish.neocities.org/english_recupero_2": {
     "cluster": "D",
     "name": "English Power Up - Vol. 2"
+  },
+  "https://maestraolga.neocities.org": {
+    "cluster": "D",
+    "name": "I Giochi della Classe"
   },
   "https://storiatermeromane.neocities.org/index.com": {
     "cluster": "D",
